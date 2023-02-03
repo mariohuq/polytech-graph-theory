@@ -10,6 +10,7 @@
 #include <map>
 #include <algorithm>
 #include <bitset>
+#include <cassert>
 
 using freq_t = size_t;
 using FrequencyMap = std::map<char, freq_t>;
@@ -56,6 +57,9 @@ struct Code {
         } else {
             value &= ~(1u << position);
         }
+    }
+    bool operator==(const Code other) const {
+        return std::tie(value, length) == std::tie(other.value, other.length);
     }
 };
 
@@ -113,6 +117,8 @@ int main() {
     std::string alphabet{(std::ostringstream{} << std::fstream {"alphabet.txt"}.rdbuf()).str()};
     generate_file(alphabet, 10'000,out,gen);
 //    - B — Алгоритм Хаффмена
-    auto codes = Huffman({31, 24, 17, 11, 9, 5, 2, 1});
+
+    std::vector<Code> expected{{{0, 2}, {1, 2}, {0b11, 2}, {0b110, 3}, {0b0010, 4}, {0b01010, 5}, {0b011010, 6}, {0b111010, 6}}};
+    assert(Huffman({31, 24, 17, 11, 9, 5, 2, 1}) == expected);
     return 0;
 }
