@@ -51,63 +51,53 @@ constexpr size_t L = 24; // max code length for alphabet of 25 chars
 struct Code {
     unsigned int value: L;
     unsigned char length;
-    void set(size_t position, bool val = true) {
-        if (val) {
-            value |= 1u << position;
-        } else {
-            value &= ~(1u << position);
-        }
-    }
+
+    Code() = default;
+
     bool operator==(const Code other) const {
         return std::tie(value, length) == std::tie(other.value, other.length);
+    }
+
+    Code with_zero() const {
+        return { value,
+                static_cast<decltype(length)>(length + 1u)};
+    }
+
+    Code with_one() const {
+        return { value | (1u << length),
+                static_cast<decltype(length)>(length + 1u)};
     }
 };
 
 static_assert(sizeof(Code) == 4);
 
 std::vector<Code> Huffman(std::vector<freq_t> probabilities) {
-    size_t n = probabilities.size();
-    std::vector<Code> codes{n};
-    auto Up = [&](size_t n, freq_t q) -> size_t {
-        size_t j = 0;
-        for (int i = n - 2; i >= 1; --i) {
-            if (probabilities[i - 1] < q) {
-                probabilities[i] = probabilities[i - 1];
-            } else {
-                j = i;
-                break;
-            }
-        }
-        probabilities[j] = q;
+    std::vector<Code> codes;
+    codes.reserve(probabilities.size());
+    auto Up = [&](freq_t q) -> size_t {
         probabilities.pop_back();
-        // pop_back, pop_back, insert into lower_bound/upper_bound & return index
-        return j;
+        probabilities.pop_back();
+        auto where = std::lower_bound(probabilities.rbegin(), probabilities.rend(), q).base();
+        return probabilities.insert(where, q) - probabilities.begin();
     };
-    auto Down = [&](size_t n, size_t j) {
-        Code c = codes[j];
-        for (int i = j; i < n - 1; ++i) {
-            codes[i] = codes[i + 1];
-        }
-        codes[n - 2] = codes[n - 1] = c;
-        codes[n - 2].set(c.length, false);
-        codes[n - 1].set(c.length, true);
-        ++codes[n - 2].length;
-        ++codes[n - 1].length;
+    auto Down = [&](size_t j) {
+        Code current = codes[j];
+        codes.erase(codes.begin() + j);
+        codes.push_back(current.with_zero());
+        codes.push_back(current.with_one());
     };
-    auto MyHuffman = [&](size_t n, auto&& my_huffman) -> void {
+    auto MyHuffman = [&](auto&& my_huffman) -> void {
+        size_t n = probabilities.size();
         if (n == 2) {
-            codes[0].set(0, false);
-            codes[0].length = 1;
-            codes[1].set(0, true);
-            codes[1].length = 1;
+            codes.push_back(Code{}.with_zero());
+            codes.push_back(Code{}.with_one());
             return;
         }
-        freq_t q = probabilities[n-2] + probabilities[n-1];
-        size_t j = Up(n, q);
-        my_huffman(n - 1, my_huffman);
-        Down(n, j);
+        size_t j = Up(probabilities[n-2] + probabilities[n-1]);
+        my_huffman(my_huffman);
+        Down(j);
     };
-    MyHuffman(n, MyHuffman);
+    MyHuffman(MyHuffman);
     return codes;
 }
 
@@ -116,9 +106,19 @@ int main() {
     std::fstream out{"10k.in", std::ios::out};
     std::string alphabet{(std::ostringstream{} << std::fstream {"alphabet.txt"}.rdbuf()).str()};
     generate_file(alphabet, 10'000,out,gen);
-//    - B — Алгоритм Хаффмена
-
-    std::vector<Code> expected{{{0, 2}, {1, 2}, {0b11, 2}, {0b110, 3}, {0b0010, 4}, {0b01010, 5}, {0b011010, 6}, {0b111010, 6}}};
-    assert(Huffman({31, 24, 17, 11, 9, 5, 2, 1}) == expected);
     return 0;
+}
+
+void test_haffman() {
+    std::vector<Code> expected{
+        {0b00, 2},
+        {0b01, 2},
+        {0b11, 2},
+        {0b110, 3},
+        {0b0010, 4},
+        {0b01010, 5},
+        {0b011010, 6},
+        {0b111010, 6}};
+    std::vector<Code> actual = Huffman({31, 24, 17, 11, 9, 5, 2, 1});
+    assert(actual == expected);
 }
