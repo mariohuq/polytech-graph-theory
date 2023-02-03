@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <ostream>
 #include <random>
-#include <fstream>
+#include <cstring>
 #include "sstream"
 #include <iostream>
 #include <map>
@@ -15,17 +15,17 @@
 using freq_t = size_t;
 using FrequencyMap = std::map<char, freq_t>;
 
-void generate_file(const std::string& alphabet,
+void generate_file(const std::string &alphabet,
                    size_t characters_count,
-                   std::ostream& os,
-                   std::mt19937& generator) {
+                   std::ostream &os,
+                   std::mt19937 &generator) {
     std::uniform_int_distribution<size_t> distribution(0, alphabet.size() - 1);
     for (int i = 0; i < characters_count; ++i) {
         os << alphabet[distribution(generator)];
     }
 }
 
-FrequencyMap count_characters(std::istream& is) {
+FrequencyMap count_characters(std::istream &is) {
     FrequencyMap res{};
     char c;
     while (is >> c) {
@@ -34,10 +34,10 @@ FrequencyMap count_characters(std::istream& is) {
     return res;
 }
 
-std::vector<char> alphabet_sorted(const FrequencyMap& frequencies) {
+std::vector<char> alphabet_sorted(const FrequencyMap &frequencies) {
     std::vector<char> res{};
     res.reserve(frequencies.size());
-    for (auto [c, _] : frequencies) {
+    for (auto [c, _]: frequencies) {
         res.push_back(c);
     }
     std::sort(res.begin(), res.end(), [&](auto left, auto right) {
@@ -59,12 +59,12 @@ struct Code {
     }
 
     Code with_zero() const {
-        return { value,
+        return {value,
                 static_cast<decltype(length)>(length + 1u)};
     }
 
     Code with_one() const {
-        return { value | (1u << length),
+        return {value | (1u << length),
                 static_cast<decltype(length)>(length + 1u)};
     }
 };
@@ -86,39 +86,48 @@ std::vector<Code> Huffman(std::vector<freq_t> probabilities) {
         codes.push_back(current.with_zero());
         codes.push_back(current.with_one());
     };
-    auto MyHuffman = [&](auto&& my_huffman) -> void {
+    auto MyHuffman = [&](auto &&my_huffman) -> void {
         size_t n = probabilities.size();
         if (n == 2) {
             codes.push_back(Code{}.with_zero());
             codes.push_back(Code{}.with_one());
             return;
         }
-        size_t j = Up(probabilities[n-2] + probabilities[n-1]);
+        size_t j = Up(probabilities[n - 2] + probabilities[n - 1]);
         my_huffman(my_huffman);
         Down(j);
     };
     MyHuffman(MyHuffman);
     return codes;
 }
+void test_haffman();
 
-int main() {
-    std::mt19937 gen{std::random_device{}()};
-    std::fstream out{"10k.in", std::ios::out};
-    std::string alphabet{(std::ostringstream{} << std::fstream {"alphabet.txt"}.rdbuf()).str()};
-    generate_file(alphabet, 10'000,out,gen);
-    return 0;
+int main(int argc, const char *argv[]) {
+    test_haffman();
+    // ./lab0 generate <alphabet.txt >10k.in
+    if (argc == 2 && strcmp(argv[1], "generate") == 0) {
+        std::mt19937 gen{std::random_device{}()};
+        std::string alphabet{(std::ostringstream{} << std::cin.rdbuf()).str()};
+        generate_file(alphabet, 10'000, std::cout, gen);
+        return EXIT_SUCCESS;
+    }
+    if (argc == 2 && strcmp(argv[1], "encode_huffman") == 0) {
+        count_characters(std::cin);
+        return EXIT_SUCCESS;
+    }
+    return EXIT_FAILURE;
 }
 
 void test_haffman() {
     std::vector<Code> expected{
-        {0b00, 2},
-        {0b01, 2},
-        {0b11, 2},
-        {0b110, 3},
-        {0b0010, 4},
-        {0b01010, 5},
-        {0b011010, 6},
-        {0b111010, 6}};
+            {0b00,     2},
+            {0b01,     2},
+            {0b11,     2},
+            {0b110,    3},
+            {0b0010,   4},
+            {0b01010,  5},
+            {0b011010, 6},
+            {0b111010, 6}};
     std::vector<Code> actual = Huffman({31, 24, 17, 11, 9, 5, 2, 1});
     assert(actual == expected);
 }
