@@ -59,6 +59,23 @@ struct Code {
     bool operator==(const Code other) const {
         return std::tie(value, length) == std::tie(other.value, other.length);
     }
+    bool operator<(const Code other) const {
+        return std::tie(value, length) < std::tie(other.value, other.length);
+        decltype(length) len= std::min(length, other.length);
+        decltype(value) mask = 1u;
+        for (decltype(length) i = 0; i < len; ++i, mask <<= 1, mask |= 1u) {
+            if ((value & mask) < (other.value & mask)) {
+                return true;
+            }
+            if ((value & mask) > (other.value & mask)) {
+                return false;
+            }
+        }
+        if (length == other.length) {
+            return false;
+        }
+        assert(false);
+    }
 
     Code with_zero() const {
         return {value,
@@ -119,29 +136,24 @@ double coding_price(const std::vector<Code>& codes, const std::vector<freq_t>& f
     return static_cast<double>(res) / static_cast<double>(one);
 }
 
-EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& coding) {
+EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& coding, Code longest) {
     // Header
     size_t alphabet_size = coding.size();
-    os.write(reinterpret_cast<char*>(&alphabet_size), sizeof(alphabet_size));
+    os.write(reinterpret_cast<char*>(&alphabet_size), sizeof(size_t));
     for (auto [character, code]: coding) {
-        os.write(&character, sizeof(char));
+        os.put(character);
         os.write(reinterpret_cast<char*>(&code), sizeof(Code));
     }
     EncodingStats result{};
     result.output_size = sizeof(alphabet_size) + alphabet_size * (sizeof(char) + sizeof(Code));
-    char input_buffer;
     size_t nbits = 0;
     char current_byte = '\0';
 
     auto bitout = [&](Code code) {
         for (; code.length > 0; code.length--, code.value >>= 1) {
-            /* shift current byte left one */
             current_byte <<= 1;
-            /* put a one on the end of this byte if b is '1' */
             current_byte |= code.value & 1;
-            /* one more bit */
             nbits++;
-            /* enough bits?  write out the byte */
             if (nbits == 8) {
                 os.put(current_byte);
                 result.output_size++;
@@ -150,22 +162,71 @@ EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& c
             }
         }
     };
+    // Body
+    char input_buffer;
     result.input_size = 0;
     while (is.get(input_buffer)) {
         bitout(coding.at(input_buffer));
         result.input_size++;
     }
+    //Padding
+    // use the trick introduced in https://cs.stackexchange.com/a/100163 by @evgeniy-berezovsky
     if (nbits != 0) {
-        bitout(Code{0, static_cast<unsigned char>(8 - nbits)});
+        auto needed_length = 8 - nbits;
+        assert(longest.length > needed_length);
+        bitout(Code{longest.value, static_cast<unsigned char>(8 - nbits)});
     }
     return result;
 }
 
 
+void decode(std::istream& is, std::ostream& os) {
+    size_t alphabet_size;
+    if (!is.read(reinterpret_cast<char*>(&alphabet_size), sizeof(size_t))) {
+        return;
+    }
+    std::map<Code, char> decoding;
+    for (; alphabet_size > 0;--alphabet_size) {
+        char ch;
+        Code c;
+        auto g = is.tellg();
+        if (!is.get(ch)) {
+            return;
+        }
+        if (!is.read(reinterpret_cast<char*>(&c), sizeof(Code))) {
+            return;
+        }
+        decoding.emplace(c, ch);
+    }
+
+    size_t nbits = 0;
+    Code currentCode{};
+
+    char input_buffer;
+    while(is.get(input_buffer)) {
+        for (int i = 0; i < 8; ++i, input_buffer <<= 1) {
+            if (input_buffer < 0) {
+                currentCode = currentCode.with_one();
+            } else {
+                currentCode = currentCode.with_zero();
+            }
+            auto it = decoding.find(currentCode);
+            if (it == decoding.end()) {
+                continue;
+            }
+            os << it->second;
+            currentCode = {};
+        }
+    }
+}
+
+
 void test_haffman();
+void test_header();
 
 int main(int argc, const char *argv[]) {
     test_haffman();
+    test_header();
     // ./lab0 generate <alphabet.txt >10k.in
     if (argc == 2 && strcmp(argv[1], "generate") == 0) {
         std::mt19937 gen{std::random_device{}()};
@@ -191,10 +252,14 @@ int main(int argc, const char *argv[]) {
                        std::make_pair<const char&, const Code&>);
         input.clear();
         input.seekg(0, std::ios::beg); // rewind
-        auto stats = encode(input, std::cout, encoding);
+        auto stats = encode(input, std::cout, encoding, codes.back());
         std::cerr
             << "коэффициент сжатия = "
             << static_cast<double>(stats.output_size) / static_cast<double>(stats.input_size) << '\n';
+        return EXIT_SUCCESS;
+    }
+    if (argc == 2 && strcmp(argv[1], "decode_huffman") == 0) {
+        decode(std::cin, std::cout);
         return EXIT_SUCCESS;
     }
     return EXIT_FAILURE;
@@ -212,4 +277,25 @@ void test_haffman() {
             {0b111010, 6}};
     std::vector<Code> actual = Huffman({31, 24, 17, 11, 9, 5, 2, 1});
     assert(actual == expected);
+}
+
+void test_header() {
+    AlphabetCoding table{
+            {'a', {0b00,     2}},
+            {'b', {0b01,     2}},
+            {'c', {0b11,     2}},
+            {'d', {0b110,    3}},
+            {'e', {0b0010,   4}},
+            {'f', {0b01010,  5}},
+            {'g', {0b011010, 6}},
+            {'h', {0b111010, 6}}
+    };
+    std::istringstream raw{"abcdefgh"};
+    std::stringstream coded;
+    encode(raw, coded, table, table['h']);
+    coded.seekg(0, std::ios::beg);
+    std::stringstream result;
+    decode(coded, result);
+    std::string output = result.str();
+    assert(output == "abcdefgh");
 }

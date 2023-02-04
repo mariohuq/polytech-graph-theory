@@ -18,7 +18,19 @@
 ```
 
 Декодировать информацию, определить
-коэффициент сжатия. Программно проверить, что декодирование произошло верно.
+коэффициент сжатия. 
+
+```shell
+(cd ../cmake-build-debug/L0
+./lab0 decode_huffman <10k.out.dat >10k.decoded)
+```
+
+Программно проверить, что декодирование произошло верно.
+
+```shell
+(cd ../cmake-build-debug/L0
+./lab0 encode_huffman 10k.in | ./lab0 decode_huffman | cmp 10k.in - && (echo "same!") || (echo "different!"))
+```
 
 б) Закодировать информацию алгоритмом RLE. Декодировать информацию, определить
 коэффициент сжатия. Программно проверить, что декодирование произошло верно.
@@ -52,3 +64,7 @@
 [Compression using Huffman Codes](https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/lecture14.html)
 
 [Hackers Delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
+
+- http://algolist.manual.ru/compress/standard/huffman.php
+- https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/assign7/assign7.html
+- https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/
