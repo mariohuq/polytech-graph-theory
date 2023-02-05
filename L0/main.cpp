@@ -61,20 +61,6 @@ struct Code {
     }
     bool operator<(const Code other) const {
         return std::tie(value, length) < std::tie(other.value, other.length);
-        decltype(length) len= std::min(length, other.length);
-        decltype(value) mask = 1u;
-        for (decltype(length) i = 0; i < len; ++i, mask <<= 1, mask |= 1u) {
-            if ((value & mask) < (other.value & mask)) {
-                return true;
-            }
-            if ((value & mask) > (other.value & mask)) {
-                return false;
-            }
-        }
-        if (length == other.length) {
-            return false;
-        }
-        assert(false);
     }
 
     Code with_zero() const {
@@ -123,20 +109,26 @@ std::vector<Code> Huffman(std::vector<freq_t> probabilities) {
 }
 
 struct EncodingStats {
-    size_t input_size;
-    size_t output_size;
+    size_t output_size; // bytes
+    size_t input_size; // bytes
 };
 
-double coding_price(const std::vector<Code>& codes, const std::vector<freq_t>& frequencies) {
-    size_t res = std::inner_product(codes.begin(), codes.end(), frequencies.begin(),
+struct AprioryStats {
+    size_t body_size_bits;
+    size_t message_length;
+};
+
+AprioryStats coding_price(const std::vector<Code>& codes, const std::vector<freq_t>& frequencies) {
+    return {
+        std::inner_product(codes.begin(), codes.end(), frequencies.begin(),
                                     size_t{}, std::plus<size_t>{}, [](Code code, freq_t freq) {
-        return code.length * freq;
-    });
-    size_t one = std::accumulate(frequencies.begin(), frequencies.end(), size_t{});
-    return static_cast<double>(res) / static_cast<double>(one);
+            return code.length * freq;
+        }),
+        std::accumulate(frequencies.begin(), frequencies.end(), size_t{})
+    };
 }
 
-EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& coding, Code longest) {
+EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& coding, Code longest, size_t body_size_bits) {
     // Header
     size_t alphabet_size = coding.size();
     os.write(reinterpret_cast<char*>(&alphabet_size), sizeof(size_t));
@@ -162,6 +154,9 @@ EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& c
             }
         }
     };
+    // Size of padding at the end
+    unsigned int leftover = (body_size_bits + 2) % 8;
+    bitout({(leftover == 0 || longest.length > 8 - leftover) ? 0u : (8 - leftover) & 0x11, 2});
     // Body
     char input_buffer;
     result.input_size = 0;
@@ -171,11 +166,14 @@ EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& c
     }
     //Padding
     // use the trick introduced in https://cs.stackexchange.com/a/100163 by @evgeniy-berezovsky
-    if (nbits != 0) {
-        auto needed_length = 8 - nbits;
-        assert(longest.length > needed_length);
-        bitout(Code{longest.value, static_cast<unsigned char>(8 - nbits)});
+    // and use two bits at the start to know padding size if it in range 5..7 bits
+    if (nbits == 0) {
+        return result;
     }
+    assert(leftover == nbits);
+    auto needed_length = 8 - nbits;
+    bitout({longest.length > needed_length ? longest.value : 0u, static_cast<unsigned char>(8 - nbits)});
+    assert(nbits == 0);
     return result;
 }
 
@@ -188,8 +186,7 @@ void decode(std::istream& is, std::ostream& os) {
     std::map<Code, char> decoding;
     for (; alphabet_size > 0;--alphabet_size) {
         char ch;
-        Code c;
-        auto g = is.tellg();
+        Code c{};
         if (!is.get(ch)) {
             return;
         }
@@ -199,12 +196,27 @@ void decode(std::istream& is, std::ostream& os) {
         decoding.emplace(c, ch);
     }
 
-    size_t nbits = 0;
     Code currentCode{};
-
     char input_buffer;
-    while(is.get(input_buffer)) {
-        for (int i = 0; i < 8; ++i, input_buffer <<= 1) {
+    int i;
+    if (!is.get(input_buffer)) {
+        return;
+    }
+    int padding_size;
+    {
+        Code padding{};
+        for (i = 0; i < 2; ++i, input_buffer <<= 1) {
+            if (input_buffer < 0) {
+                padding = padding.with_one();
+            } else {
+                padding = padding.with_zero();
+            }
+        }
+        padding_size = padding.value == 0 ? 0 : 4 + padding.value;
+    }
+    {
+        int i_max = is.peek() != EOF ? 8 : 8 - padding_size;
+        for (; i < i_max; ++i, input_buffer <<= 1) {
             if (input_buffer < 0) {
                 currentCode = currentCode.with_one();
             } else {
@@ -217,6 +229,24 @@ void decode(std::istream& is, std::ostream& os) {
             os << it->second;
             currentCode = {};
         }
+        i = 0;
+    }
+    while(is.get(input_buffer)) {
+        int i_max = is.peek() != EOF ? 8 : 8 - padding_size;
+        for (; i < i_max; ++i, input_buffer <<= 1) {
+            if (input_buffer < 0) {
+                currentCode = currentCode.with_one();
+            } else {
+                currentCode = currentCode.with_zero();
+            }
+            auto it = decoding.find(currentCode);
+            if (it == decoding.end()) {
+                continue;
+            }
+            os << it->second;
+            currentCode = {};
+        }
+        i = 0;
     }
 }
 
@@ -245,17 +275,24 @@ int main(int argc, const char *argv[]) {
             return freqs[alpha];
         });
         auto codes = Huffman(frequencies);
-        std::cerr << "цена кодирования = " << coding_price(codes, frequencies) << '\n';
+
+        auto stats = coding_price(codes, frequencies);
+        std::cerr
+                << "цена кодирования = "
+                << static_cast<double>(stats.body_size_bits) / static_cast<double>(stats.message_length) << '\n';
+
         std::map<char, Code> encoding{};
         std::transform(alphabet.begin(), alphabet.end(), codes.begin(),
                        std::inserter(encoding, encoding.end()),
                        std::make_pair<const char&, const Code&>);
         input.clear();
         input.seekg(0, std::ios::beg); // rewind
-        auto stats = encode(input, std::cout, encoding, codes.back());
-        std::cerr
-            << "коэффициент сжатия = "
-            << static_cast<double>(stats.output_size) / static_cast<double>(stats.input_size) << '\n';
+        {
+            auto p = encode(input, std::cout, encoding, codes.back(), stats.body_size_bits);
+            std::cerr
+                    << "коэффициент сжатия = "
+                    << static_cast<double>(p.output_size) / static_cast<double>(p.input_size) << '\n';
+        }
         return EXIT_SUCCESS;
     }
     if (argc == 2 && strcmp(argv[1], "decode_huffman") == 0) {
@@ -290,12 +327,13 @@ void test_header() {
             {'g', {0b011010, 6}},
             {'h', {0b111010, 6}}
     };
-    std::istringstream raw{"abcdefgh"};
+    constexpr auto subject= "abcdefgh";
+    std::istringstream raw{subject};
     std::stringstream coded;
-    encode(raw, coded, table, table['h']);
+    encode(raw, coded, table, table['h'], 30);
     coded.seekg(0, std::ios::beg);
     std::stringstream result;
     decode(coded, result);
     std::string output = result.str();
-    assert(output == "abcdefgh");
+    assert(output == subject);
 }
