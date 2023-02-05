@@ -14,6 +14,7 @@
 using freq_t = size_t;
 using FrequencyMap = std::map<char, freq_t>;
 using AlphabetCoding = std::map<char, Code>;
+using AlphabetDecoding = std::map<Code, char>;
 
 AprioriStats coding_price(const std::vector<Code>& codes, const std::vector<freq_t>& frequencies);
 EncodingStats encode(std::istream& is, std::ostream& os, const AlphabetCoding& coding, Code longest, size_t body_size_bits);
@@ -36,17 +37,17 @@ private:
             codes.push_back(Code{}.with_one());
             return;
         }
-        size_t j = Up(probabilities[n - 2] + probabilities[n - 1]);
+        long j = Up(probabilities[n - 2] + probabilities[n - 1]);
         Huff();
         Down(j);
     }
-    size_t Up(freq_t q) {
+    long Up(freq_t q) {
         probabilities.pop_back();
         probabilities.pop_back();
         auto where = std::lower_bound(probabilities.rbegin(), probabilities.rend(), q).base();
         return probabilities.insert(where, q) - probabilities.begin();
     }
-    void Down(size_t j) {
+    void Down(long j) {
         Code current = codes[j];
         codes.erase(codes.begin() + j);
         codes.push_back(current.with_zero());
@@ -80,7 +81,7 @@ std::pair<AprioriStats, EncodingStats> encode(std::istream& is, std::ostream& os
     }
     auto codes = Huffman{frequencies}();
     auto apriori = coding_price(codes, frequencies);
-    std::map<char, Code> encoding{};
+    AlphabetCoding encoding{};
     std::transform(alphabet.begin(), alphabet.end(), codes.begin(),
                    std::inserter(encoding, encoding.end()),
                    std::make_pair<const char&, const Code&>);
@@ -94,7 +95,7 @@ void decode(std::istream& is, std::ostream& os) {
     if (!is.read(reinterpret_cast<char*>(&alphabet_size), sizeof(size_t))) {
         return;
     }
-    std::map<Code, char> decoding;
+    AlphabetDecoding decoding;
     for (; alphabet_size > 0;--alphabet_size) {
         char ch;
         Code c{};
