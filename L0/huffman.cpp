@@ -55,7 +55,7 @@ private:
     }
 };
 
-std::pair<AprioriStats, EncodingStats> encode(std::istream& is, std::ostream& os) {
+std::pair<AprioriStats, EncodingStats> huffman::encode(std::istream& is, std::ostream& os) {
     std::vector<char> alphabet;
     std::vector<freq_t> frequencies;
     {
@@ -90,7 +90,7 @@ std::pair<AprioriStats, EncodingStats> encode(std::istream& is, std::ostream& os
     return {apriori, encode(is, os, encoding, codes.back(), apriori.body_size_bits)};
 }
 
-void decode(std::istream& is, std::ostream& os) {
+void huffman::decode(std::istream& is, std::ostream& os) {
     size_t alphabet_size;
     if (!is.read(reinterpret_cast<char*>(&alphabet_size), sizeof(size_t))) {
         return;
@@ -253,7 +253,7 @@ void test_header() {
     encode(raw, coded, table, table['h'], 30);
     coded.seekg(0, std::ios::beg);
     std::stringstream result;
-    decode(coded, result);
+    huffman::decode(coded, result);
     std::string output = result.str();
     assert(output == subject);
 }

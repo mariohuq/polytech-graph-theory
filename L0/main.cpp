@@ -1,13 +1,15 @@
 //
 // Created by mhq on 02/02/23.
 //
+#include "huffman.h"
+#include "runlength.h"
+
 #include <random>
 #include <cstring>
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
-#include "huffman.h"
 
 void generate_file(const std::string &alphabet,
                    size_t characters_count,
@@ -31,7 +33,7 @@ int main(int argc, const char *argv[]) {
     }
     if (argc == 3 && strcmp(argv[1], "encode_huffman") == 0) {
         std::ifstream input{argv[2]};
-        auto [apriori, stats] = encode(input, std::cout);
+        auto [apriori, stats] = huffman::encode(input, std::cout);
         std::cerr
                 << "цена кодирования = "
                 << static_cast<double>(apriori.body_size_bits) / static_cast<double>(apriori.message_length) << '\n'
@@ -40,9 +42,21 @@ int main(int argc, const char *argv[]) {
         return EXIT_SUCCESS;
     }
     if (argc == 2 && strcmp(argv[1], "decode_huffman") == 0) {
-        decode(std::cin, std::cout);
+        huffman::decode(std::cin, std::cout);
         return EXIT_SUCCESS;
     }
+    if (argc == 2 && strcmp(argv[1], "encode_rle") == 0) {
+        auto stats = rle::encode(std::cin, std::cout);
+        std::cerr
+            << "коэффициент сжатия = "
+            << static_cast<double>(stats.output_size) / static_cast<double>(stats.input_size) << '\n';
+        return EXIT_SUCCESS;
+    }
+    if (argc == 2 && strcmp(argv[1], "decode_rle") == 0) {
+        rle::decode(std::cin, std::cout);
+        return EXIT_SUCCESS;
+    }
+
     return EXIT_FAILURE;
 }
 

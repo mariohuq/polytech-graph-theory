@@ -17,8 +17,12 @@
 ./lab0 encode_huffman 10k.in >10k.out.dat)
 ```
 
-Декодировать информацию, определить
-коэффициент сжатия. 
+```
+цена кодирования = 4.7018
+коэффициент сжатия = 0.6011
+```
+
+Декодировать информацию, определить коэффициент сжатия. 
 
 ```shell
 (cd ../cmake-build-debug/L0
@@ -32,18 +36,63 @@
 ./lab0 encode_huffman 10k.in | ./lab0 decode_huffman | cmp 10k.in - && (echo "same!") || (echo "different!"))
 ```
 
+```
+цена кодирования = 4.7018
+коэффициент сжатия = 0.6011
+same!
+```
+
 б) Закодировать информацию алгоритмом RLE. Декодировать информацию, определить
 коэффициент сжатия. Программно проверить, что декодирование произошло верно.
+
+```shell
+(cd ../cmake-build-debug/L0
+./lab0 encode_rle <10k.in | ./lab0 decode_rle | cmp 10k.in - && (echo "same!") || (echo "different!"))
+```
+
+```
+коэффициент сжатия = 1.959
+same!
+```
 
 в) Аналогично пункту а) закодировать информацию, применив двухступенчатое кодирование
 (RLE + алгоритм варианта и алгоритм варианта + RLE). Показать, какой из способов более
 эффективный.
+```shell
+(cd ../cmake-build-debug/L0
+./lab0 encode_huffman 10k.in | ./lab0 encode_rle | ./lab0 decode_rle | ./lab0 decode_huffman | cmp 10k.in - && (echo "same!") || (echo "different!"))
+```
+
+```
+цена кодирования = 4.7018
+коэффициент сжатия = 0.6011
+коэффициент сжатия = 1.98436
+same!
+```
+
+Суммарный коэффициент сжатия $0.6011 * 1.98436 = 1.193$
+
+```shell
+(cd ../cmake-build-debug/L0
+./lab0 encode_rle <10k.in >10k.rle.out && ./lab0 encode_huffman 10k.rle.out | ./lab0 decode_huffman | ./lab0 decode_rle | cmp 10k.in - && (echo "same!") || (echo "different!")
+rm 10k.rle.out)
+```
+
+```
+коэффициент сжатия = 1.959
+цена кодирования = 3.43017
+коэффициент сжатия = 0.4366
+same!
+```
+
+Суммарный коэффициент сжатия $3.43017 * 0.4366 = 1.498$
+
+<details>
+<summary>Варианты</summary>
 
 - A — Алгоритм Фано
 - B — Алгоритм Хаффмена
 - C — Алгоритм LZW
-
-Варианты:
 
 1. {а, б, в, г, д, е, пробел, 0-9, %, .} Алгоритм A
 2. {ж, з, и, к, л, м, пробел, 0-9, @, .} Алгоритм B
@@ -61,6 +110,10 @@
 14. {с, м, и, ъ, е, т, пробел, 0-9, <, .} Алгоритм B
 15. {й, ё, п, в, о, д, пробел, 0-9, >, .} Алгоритм C
 
+</details>
+
+## References
+
 [Compression using Huffman Codes](https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/lecture14.html)
 
 [Hackers Delight](https://doc.lagout.org/security/Hackers%20Delight.pdf)
@@ -68,3 +121,7 @@
 - http://algolist.manual.ru/compress/standard/huffman.php
 - https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/assign7/assign7.html
 - https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/
+
+RLE
+
+- https://github.com/ttangeman/rle/blob/master/rle.c

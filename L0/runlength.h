@@ -1,23 +1,12 @@
-#include <istream>
+#pragma once
 #include <ostream>
+#include <istream>
 
-void encode(std::istream& is, std::ostream& os) {
-    char buffer;
-    char prev;
-    if (!is.get(prev)) {
-        return;
-    }
-    int count = 1;
-    while (is.get(buffer)) {
-        if (buffer == prev) {
-            count++;
-            continue;
-        }
-
-        prev = buffer;
-    }
-}
-
-void decode(std::istream& is, std::ostream& os) {
-
+namespace rle {
+    struct EncodingStats {
+        size_t output_size; // bytes
+        size_t input_size; // bytes
+    };
+    EncodingStats encode(std::istream& is, std::ostream& os);
+    void decode(std::istream& is, std::ostream& os);
 }

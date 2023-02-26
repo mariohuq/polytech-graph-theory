@@ -1,10 +1,7 @@
 //
 // Created by mhq on 05/02/23.
 //
-
-#ifndef POLYTECH_GRAPH_THEORY_HUFFMAN_H
-#define POLYTECH_GRAPH_THEORY_HUFFMAN_H
-
+#pragma once
 #include <cstddef>
 #include <tuple>
 #include <istream>
@@ -44,11 +41,10 @@ struct AprioriStats {
     size_t message_length;
 };
 
-std::pair<AprioriStats, EncodingStats> encode(std::istream& is, std::ostream& os);
-
-void decode(std::istream& is, std::ostream& os);
+namespace huffman {
+    std::pair<AprioriStats, EncodingStats> encode(std::istream& is, std::ostream& os);
+    void decode(std::istream& is, std::ostream& os);
+}
 
 void test_huffman();
 void test_header();
-
-#endif //POLYTECH_GRAPH_THEORY_HUFFMAN_H
