@@ -24,3 +24,5 @@ std::discrete_distribution<IntType> polya_1(IntType black_n, IntType red_n, IntT
     }
     return { probabilities.begin(), probabilities.end() };
 }
+
+void test_polya();

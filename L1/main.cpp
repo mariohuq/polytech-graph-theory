@@ -3,27 +3,13 @@
 //
 
 #include <iostream>
-#include <map>
 #include <cstdlib>
 #include <cassert>
 #include "polya_dist.h"
+#include "generate_graph.h"
 
-void test_polya() {
-    auto dis = polya_1<>(20, 20, 1, 5);
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::map<int, int> map;
-
-    for (int n = 0; n < 1e5; ++n)
-        ++map[dis(gen)];
-
-    for(const auto& [num, count] : map)
-        std::cout << num << "\t" << count << "\n";
-}
-
-using adjacency_matrix = std::vector<std::vector<bool>>;
 //Д. 1.3. Алгоритм построения случайного ориентированного бесконтурного графа, Хаг
-adjacency_matrix generate_acyclic_convex(size_t nVertices, size_t nEdges) {
+adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) {
     auto dis = polya_1<int>(20, 20, 1, nVertices * (nVertices - 1) / 2 - 1);
     auto split = [](int k) -> div_t {
         int i = (-1 + sqrt(8 * k + 1)) / 2;
@@ -32,7 +18,7 @@ adjacency_matrix generate_acyclic_convex(size_t nVertices, size_t nEdges) {
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    adjacency_matrix result{nVertices, std::vector<bool>(nVertices)};
+    adjacency_matrix<bool> result{nVertices, std::vector<bool>(nVertices)};
 
     for (int k = 0; k < nEdges; k++) {
         // i < j by construction
@@ -48,9 +34,16 @@ adjacency_matrix generate_acyclic_convex(size_t nVertices, size_t nEdges) {
     return result;
 }
 
+
 int main() {
-    int n = 10;
-    auto g = generate_acyclic_convex(10, 18);
+    size_t n = 10;
+    std::mt19937 gen(std::random_device{}());
+    auto degs = out_degrees(n, gen);
+    for (auto d: degs) {
+        std::cout << d << ' ';
+    }
+    std::cout << '\n';
+    auto g = from_degrees(degs, gen);
     for (const auto& row : g) {
         for (const auto& elem: row) {
             std::cout << elem << ',';
@@ -59,4 +52,3 @@ int main() {
     }
     return 0;
 }
-
