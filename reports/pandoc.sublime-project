@@ -1,0 +1,25 @@
+{
+	"build_systems": [
+		{
+			"name": "Pandoc for current file",
+			"cmd": ["./build.sh", "$file_base_name"],
+			"selector": "text.html.markdown",
+		}
+	],
+	"folders":
+	[
+		{
+			"path": ".",
+			"file_exclude_patterns": ["*.pdf"],
+		},
+		{
+			"path": "../L1"
+		},
+		{
+			"path": "../ydsk"
+		},
+		{
+			"path": "../lections"
+		}
+	],
+}

@@ -1,0 +1,150 @@
+\usepackage{textcase}
+\newcommand{\var}[1]{\texttt{#1}}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multicol} % {multicols}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+  \fvset{
+    fontsize=\footnotesize,
+    frame=leftline,
+    rulecolor=\color{gray},
+    tabsize=4,
+    breaklines=true,
+  breakanywhere=true}
+  \newcommand{\code}[1]{
+    \subsection*{#1}
+    \VerbatimInput{../L2/#1}
+  }
+\usepackage{fontspec}
+\newcommand{\n}{\overline}
+
+% \usepackage{array}
+% Define typographic struts, as suggested by Claudio Beccari
+%   in an article in TeX and TUG News, Vol. 2, 1993.
+% \newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+% \newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+% src https://tex.stackexchange.com/questions/65127/extra-vertical-space-after-hline-causes-a-gap-in-the-right-border-of-an-array
+  
+% \usepackage{adjustbox}
+%     \newcommand{\eqdef}{\xlongequal{\text{def}}}
+%     \DeclareMathOperator{\tg}{tg}
+%     \DeclareMathOperator{\arctg}{arctg}
+%     \newcommand{\deleted}[1]{\overset{∘}{#1}}
+%     \newcommand{\sequenceFrom}[3]{\left\{ #1 \right\}_{#2 = #3}^{∞}}
+%     \newcommand{\sequence}[2]{\sequenceFrom{#1}{#2}{1}}
+%     \newcommand{\sequenceN}[1]{\sequence{#1}{n}}
+%     \newcommand{\sequenceNFrom}[2]{\sequenceFrom{#1}{n}{#2}}
+% \newfontfamily\cyrillicfont[Script=Cyrillic]{Times New Roman}
+%
+%     \usepackage{pgfplots}
+%     \pgfplotsset{compat=1.18}
+%     \usepackage{mathrsfs}
+%     \usetikzlibrary{arrows}
+%     \usetikzlibrary{patterns.meta}
+%     \usepackage{longtable, booktabs, array}
+%     \usepackage{caption}
+%     \usepackage{subcaption}
+%     \AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
+%     \removenolimits{\int\iint}
+  
+
+% fancyvrb листинги
+
+% https://tex.stackexchange.com/a/457403 - nolimits
+% https://tex.stackexchange.com/a/140343 - setminus
+% \usepackage[mdici]{mathdesign}
+% \usepackage{upgreek}
+% \renewcommand{\alpha}{\upalpha}
+% \renewcommand{\beta}{\upbeta}
+% \renewcommand{\delta}{\updelta}
+% \renewcommand{\Delta}{\Updelta}
+% \renewcommand{\lambda}{\uplambda}
+% \renewcommand{\pi}{\uppi}
+% \renewcommand{\varepsilon}{\upvarepsilon}
+% \renewcommand{\varphi}{\upvarphi}
+% \renewcommand{\psi}{\uppsi}
+% \renewcommand{\xi}{\upxi}
+\newfontfamily{\cyrillicfontsf}{XITS}
+% \usepackage[mdici, greeklowercase=upright]{mathdesign}
+
+% \newcommand{\veichTableThree}[9][Q]{\begin{tabular}{ccccc}
+%   & \multicolumn{2}{c|}{$#1_2$} & \multicolumn{2}{c}{$\n #1_2$}   \Bstrut\\
+%   $#1_3$    & #2  & \multicolumn{1}{|c|}{#3} & \multicolumn{1}{c|}{#4}  & #5  \Tstrut\Bstrut\\ \hline
+%   $\n #1_3$ & #6  & \multicolumn{1}{|c|}{#7} & \multicolumn{1}{c|}{#8}  & #9  \Tstrut\\
+%   & $\n #1_1$ & \multicolumn{2}{|c|}{$#1_1$} & $\n #1_1$        
+%   \end{tabular}}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{Вход:}}
+\algrenewcommand\algorithmicensure{\textbf{Выход:}}
+\makeatletter
+\renewcommand*{\ALG@name}{Алгоритм}
+\makeatother
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\makeatletter
+\newcommand{\Scalecenter}[3]{#1{\mathpalette\Scalecenter@{{#2}{#3}}}}
+\newcommand{\Scalecenter@}[2]{\Scalecenter@@#1#2}
+\newcommand{\Scalecenter@@}[3]{%
+  \vcenter{\hbox{\scalebox{#2}{$\m@th#1#3$}}}%
+}
+\newcommand{\striangle}{\Scalecenter{\mathbin}{0.5}{\triangle}}
+\makeatother
+
+% https://tex.stackexchange.com/questions/9497/start-new-page-with-each-section
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\DeclareMathOperator{\func}{func}
+
+\newcommand{\va}{\var{a}}
+\newcommand{\vb}{\var{b}}
+\newcommand{\vc}{\var{c}}
+\newcommand{\vd}{\var{d}}
+\newcommand{\ve}{\var{e}}
+\newcommand{\vf}{\var{f}}
+\newcommand{\vg}{\var{g}}
+\newcommand{\vh}{\var{h}}
+\newcommand{\vi}{\var{i}}
+\newcommand{\vj}{\var{j}}
+\newcommand{\vk}{\var{k}}
+
+\usepackage{forest}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  0 my edge/.style={densely dashed, my edge},
+  my edge/.style={-{Stealth[]}},
+}
+\forestset{
+  BDT/.style={
+    for tree={
+      if n children=0{}{circle},% use a circle unless there are 0 children
+      draw,% draw every node
+      edge={
+        my edge,% use the my edge style for edges (with the arrow)
+      },
+      if n=1{
+        edge+={0 my edge},% if the child is the first one, add the 0 my edge style (dashed)
+      }{},
+      font=\sffamily,% use sans serif for node text
+    }
+  },
+}
+\forestset{
+  SYNT/.style={
+    for tree={
+      if n children=0{}{circle},% use a circle unless there are 0 children
+      draw,% draw every node
+      edge={
+        my edge,% use the my edge style for edges (with the arrow)
+      },
+      font=\sffamily,% use sans serif for node text
+    }
+  },
+}
+\DeclareMathOperator{\pdnf}{\text{СДНФ}}
+\DeclareMathOperator{\pcnf}{\text{СКНФ}}

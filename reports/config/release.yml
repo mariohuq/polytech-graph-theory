@@ -1,0 +1,8 @@
+metadata-files:
+- config/meta.yml
+defaults:
+  config/defaults.yml
+highlight-style: haddock
+citeproc: true
+# template: latex-abstract-without-title.tex
+# template: latex.tex
