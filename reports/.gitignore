@@ -1,0 +1,34 @@
+# Ignore everything
+*
+
+# But not Gitignore files...
+!.gitignore
+
+# ...and not building files
+!*.bat
+!*.sh
+
+# ...and not actual docs
+!*.md
+!*.tex
+
+# ...and not pandoc config/meta files
+!*.yml
+
+# ...and not bibliography stuff
+!*.bib
+!*.csl
+
+# ...and not images
+!*.png
+!*.svg
+!*.svg.pdf
+!*.txt
+
+# ...and not sublime text project file
+!*.sublime-project
+
+# ...even if they are in subdirectories
+!*/
+
+# and add pdf result manually!
