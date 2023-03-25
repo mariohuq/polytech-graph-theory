@@ -31,10 +31,11 @@ add_executable(lab1gui
     resources.qrc
     L9.ico
     L9.rc
-    )
+        Lab1.cpp Lab1.h Lab1.ui ResizeFilter.cpp ResizeFilter.h)
 target_link_libraries(lab1gui
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
         Qt5::Sql
+        graphsLib
         )

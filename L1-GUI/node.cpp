@@ -148,7 +148,10 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         {"triangle", QIcon{":/triangle"}},
         {"hexagon", QIcon{":/hexagon"}}
     };
+    auto delta = option->fontMetrics.boundingRect('0').center();
     painter->drawPixmap(SHAPE.toAlignedRect(), icons[m_type].pixmap({40, 40}));
+
+    painter->drawText(SHAPE.center() - delta, QString{ 'a' + m_id });
     if (isSelected()) {
         painter->setPen(QPen{{Qt::blue},1,Qt::DashLine});
         painter->drawRoundRect(SHAPE.marginsAdded({ 2,2,2,2 }), 3, 3);

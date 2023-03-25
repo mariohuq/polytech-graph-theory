@@ -10,24 +10,9 @@
 #include "CheckableComboBox.h"
 #include "GraphScene.h"
 #include "AmountDelegate.h"
+#include "ResizeFilter.h"
 
 #include <utility>
-
-class ResizeFilter : public QObject
-{
-public:
-    using QObject::QObject;
-protected:
-    bool eventFilter(QObject* obj, QEvent* event) override
-    {
-        if (event->type() == QEvent::Resize) {
-            auto e = static_cast<QResizeEvent*>(event);
-            auto w = static_cast<QGraphicsView*>(obj);
-            w->scene()->setSceneRect(0, 0, e->size().width(), e->size().height());
-        }
-        return QObject::eventFilter(obj, event);
-    }
-};
 
 void populate(QStandardItemModel* model) {
     auto q = QSqlQuery{ "select distinct type from Nodes order by type" };

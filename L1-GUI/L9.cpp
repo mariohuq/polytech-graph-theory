@@ -1,4 +1,5 @@
 #include "Editor.h"
+#include "Lab1.h"
 
 #include <QtWidgets>
 #include <QSqlDatabase>
@@ -11,14 +12,7 @@ bool connect(const char* const filename) {
     return db.open();
 }
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    if (!connect("shapes.sqlite"))
-    {
-        qDebug("Error opening db");
-        return EXIT_FAILURE;
-    }
+void initDatabase() {
     QSqlQuery(R"(
         create table if not exists Nodes (
           id integer primary key,
@@ -35,7 +29,18 @@ int main(int argc, char *argv[])
         ) without rowid
     )");
     QSqlQuery("PRAGMA foreign_keys = ON");
-    Editor window;
+}
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    if (!connect("shapes.sqlite"))
+    {
+        qDebug("Error opening db");
+        return EXIT_FAILURE;
+    }
+    initDatabase();
+    Lab1 window;
     window.show();
     return a.exec();
 }

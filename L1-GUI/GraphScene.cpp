@@ -188,3 +188,7 @@ void GraphScene::nodeMoved()
         timerId = startTimer(1000 / 25);
     }
 }
+
+void GraphScene::addEdge(int startId, int finishid, size_t label) {
+    addItem(new Edge(nodes[startId], nodes[finishid]));
+}
