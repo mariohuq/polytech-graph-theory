@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "Editor.h"
 
 #include <QtWidgets>
 #include <QSqlDatabase>
@@ -39,7 +39,7 @@ void populate(QStandardItemModel* model) {
     }
 }
 
-Main::Main(QWidget* parent)
+Editor::Editor(QWidget* parent)
     : QWidget(parent)
 {
     static auto id_of = [](auto* model, const auto& index) {

@@ -13,8 +13,8 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(lab1gui
     L9.cpp
-    Main.h
-    Main.cpp
+    Editor.h
+    Editor.cpp
     CheckableComboBox.cpp
     ComboHeaderView.h
     ComboHeaderView.cpp
@@ -27,7 +27,7 @@ add_executable(lab1gui
     GraphScene.cpp
     node.h
     node.cpp
-    Main.ui
+        Editor.ui
     resources.qrc
     L9.ico
     L9.rc

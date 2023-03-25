@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "Editor.h"
 
 #include <QtWidgets>
 #include <QSqlDatabase>
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         ) without rowid
     )");
     QSqlQuery("PRAGMA foreign_keys = ON");
-    Main window;
+    Editor window;
     window.show();
     return a.exec();
 }
