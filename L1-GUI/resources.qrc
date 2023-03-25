@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="triangle">img/change_history_FILL0_wght500_GRAD0_opsz40.svg</file>
+        <file alias="ellipse">img/circle_FILL0_wght500_GRAD0_opsz40.svg</file>
+        <file alias="hexagon">img/hexagon_FILL0_wght500_GRAD0_opsz40.svg</file>
+        <file alias="rectangle">img/rectangle_FILL0_wght500_GRAD0_opsz40.svg</file>
+    </qresource>
+</RCC>

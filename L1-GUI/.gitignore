@@ -1,0 +1,6 @@
+# Ignore build files
+x64/
+
+# ...not icon files
+!*.ico
+!*.rc
