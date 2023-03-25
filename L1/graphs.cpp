@@ -62,6 +62,10 @@ adjacency_matrix graphs::max_path_lengths(const adjacency_matrix<> &that, size_t
     return matrix_power_shimbell(that, path_length, fn);
 }
 
+adjacency_matrix graphs::generate(size_t nVertices, std::mt19937 &gen) {
+    return from_degrees(out_degrees(nVertices, gen), gen);
+}
+
 template<typename Func>
 adjacency_matrix graphs::matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
     assert(power > 0);

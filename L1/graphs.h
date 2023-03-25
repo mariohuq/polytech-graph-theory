@@ -10,6 +10,8 @@ namespace graphs {
     template<typename T=size_t>
     using adjacency_matrix = std::vector<std::vector<T>>;
 
+    adjacency_matrix<size_t> generate(size_t nVertices, std::mt19937& gen);
+
     std::vector<size_t> out_degrees(size_t nVertices, std::mt19937& gen);
 
     adjacency_matrix<size_t> from_degrees(std::vector<size_t> vertex_degrees, std::mt19937& gen);
