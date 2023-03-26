@@ -23,6 +23,7 @@ void initDatabase() {
         create table if not exists Edges (
           start_id integer,
           end_id integer,
+          weight integer DEFAULT 1,
           primary key (start_id, end_id),
           foreign key (start_id) references Nodes(id) ON DELETE CASCADE,
           foreign key (end_id) references Nodes(id) ON DELETE CASCADE

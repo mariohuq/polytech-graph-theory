@@ -143,15 +143,11 @@ QPainterPath Node::shape() const
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
-    static std::map<QString, QIcon> icons{
-        {"ellipse", QIcon{":/ellipse"}},
-        {"rectangle", QIcon{":/rectangle"}},
-        {"triangle", QIcon{":/triangle"}},
-        {"hexagon", QIcon{":/hexagon"}}
-    };
-    auto delta = option->fontMetrics.boundingRect('0').center();
-    painter->drawPixmap(SHAPE.toAlignedRect(), icons[m_type].pixmap({40, 40}));
-
+    painter->setBrush({ Qt::white });
+    painter->drawEllipse(SHAPE.toAlignedRect());
+    painter->setBrush(Qt::NoBrush);
+    Q_ASSERT(((void)"Too many vertices, can't show label properly", 'a' + m_id <= 'z'));
+    auto delta = option->fontMetrics.boundingRect('a' + m_id).center();
     painter->drawText(SHAPE.center() - delta, QString{ 'a' + m_id });
     if (isSelected()) {
         painter->setPen(QPen{{Qt::blue},1,Qt::DashLine});
