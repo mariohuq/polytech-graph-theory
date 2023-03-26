@@ -56,12 +56,13 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
+#include <utility>
 
 static QRectF SHAPE{ -10, -10, 20, 20 };
 
 Node::Node(int id, QString type)
     : m_id{id}
-    , m_type{type} {
+    , m_type{std::move(type)} {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setFlag(ItemIsSelectable);
@@ -89,7 +90,7 @@ void Node::calculateForces()
     }
     // Sum up all forces pushing this item away
     QPointF velocity{0, 0};
-    for (const auto& [_, node] : static_cast<GraphScene*>(scene())->nodes) {
+    for (const auto& [_, node] : scene()->nodes) {
         if (!node->isVisible()) {
             continue;
         }
@@ -101,7 +102,7 @@ void Node::calculateForces()
     }
 
     // Now subtract all forces pulling items together
-    double weight = (m_edges.size() + 1) * 10;
+    double weight = static_cast<double>(m_edges.size() + 1) * 10;
     for (Edge *edge : m_edges) {
         if (!edge->m_source->isVisible() || !edge->m_source->isVisible()) {
             continue;
@@ -162,14 +163,14 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     switch (change) {
     case ItemPositionHasChanged:
-        for (Edge *edge : m_edges)
+        for (Edge *edge : m_edges) {
             edge->adjust();
-        static_cast<GraphScene*>(scene())->nodeMoved();
+        }
+        scene()->nodeMoved();
         break;
     default:
         break;
-    };
-
+    }
     return QGraphicsItem::itemChange(change, value);
 }
 
@@ -183,4 +184,8 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     update();
     QGraphicsItem::mouseReleaseEvent(event);
+}
+
+GraphScene *Node::scene() const {
+    return dynamic_cast<GraphScene*>(QGraphicsItem::scene());
 }

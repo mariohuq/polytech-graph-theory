@@ -76,7 +76,10 @@ public:
     QRectF boundingRect() const override;
     
     QPainterPath shape() const override;
-    
+
+    // hides scene() from QGraphicsItem!
+    GraphScene *scene() const;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     void setType(QString type) {
