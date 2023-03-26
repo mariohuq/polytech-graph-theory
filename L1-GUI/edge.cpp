@@ -119,7 +119,7 @@ QPainterPath Edge::shape() const
     QLineF line(sourcePoint, destPoint);
     auto base = line.pointAt(1 - arrowSize / line.length());
     auto d = destPoint - base;
-    d = { d.y(), -d.x() };
+    d = { d.y(), -d.x() }; // rotate 90°
     auto path = QPainterPath{};
     path.addPolygon(QVector<QPointF>{
         sourcePoint + d, sourcePoint - d, destPoint - d, destPoint + d

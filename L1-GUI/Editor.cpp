@@ -26,6 +26,7 @@ void populate(QStandardItemModel* model) {
 
 Editor::Editor(QWidget* parent)
     : QWidget(parent)
+    , ui{}
 {
     static auto id_of = [](auto* model, const auto& index) {
         return model->data(model->index(index.row(), 0), 0).toInt();
@@ -61,10 +62,11 @@ Editor::Editor(QWidget* parent)
     ui.primitivesTable->horizontalHeader()->setDefaultSectionSize(49);
     ui.primitivesTable->horizontalHeader()->setStretchLastSection(true);
 
+    auto scene = new GraphScene{{}, ui.graphicsView};
+
     // selection of nodes
     connect(ui.primitivesTable->selectionModel(), &QItemSelectionModel::selectionChanged,
         [=](const QItemSelection& selected, const QItemSelection& deselected) {
-            auto scene = static_cast<GraphScene*>(ui.graphicsView->scene());
             for (const auto& index : selected.indexes()) {
                 scene->setSelectedNode(id_of(model, index), true);
             }
@@ -74,12 +76,11 @@ Editor::Editor(QWidget* parent)
         });
 
     connect(model, &QSqlTableModel::modelReset, [=]() {
-        static_cast<GraphScene*>(ui.graphicsView->scene())->reset(model->filter());
+        scene->reset(model->filter());
     });
 
-    // скрыть выбранные
-    connect(ui.hideSelected, &QPushButton::pressed, [=]() {    
-        auto scene = static_cast<GraphScene*>(ui.graphicsView->scene());
+    // hide selected nodes
+    connect(ui.hideSelected, &QPushButton::pressed, [=]() {
         ui.primitivesTable->setUpdatesEnabled(false);
         for (const auto& index : ui.primitivesTable->selectionModel()->selectedIndexes())
         {
@@ -89,9 +90,8 @@ Editor::Editor(QWidget* parent)
         ui.primitivesTable->setUpdatesEnabled(true);
     });
 
-    // показать скрытые
+    // show hidden nodes
     connect(ui.showHidden, &QPushButton::pressed, [=]() {
-        auto scene = static_cast<GraphScene*>(ui.graphicsView->scene());
         for (int i = ui.primitivesTable->model()->rowCount() - 1; i >= 0; i--)
         {
             scene->showNode(id_of(model, model->index(i, 0)));
@@ -99,7 +99,7 @@ Editor::Editor(QWidget* parent)
         }
     });
 
-    // удаление строк
+    // rows removal
     connect(ui.removeSelected, &QPushButton::pressed, [=]() {
         auto m = ui.primitivesTable->selectionModel();
         if (!m->hasSelection()) {
@@ -109,7 +109,7 @@ Editor::Editor(QWidget* parent)
         for (const auto& index : m->selectedRows())
         {
             model->removeRows(index.row(), 1);
-            static_cast<GraphScene*>(ui.graphicsView->scene())->hideNode(id_of(model, index));
+            scene->hideNode(id_of(model, index));
         }
         int before = count.value(0).toInt();
         model->submitAll();
@@ -137,8 +137,7 @@ Editor::Editor(QWidget* parent)
             model->insertRows(row, 1);
             model->setData(model->index(row, 1), type);
             model->submitAll();
-            static_cast<GraphScene*>(ui.graphicsView->scene())
-                ->updateNode(model->data(model->index(row, 0)).toInt(), type);
+            scene->updateNode(model->data(model->index(row, 0)).toInt(), type);
             groupModel->query().exec();
             groupModel->setQuery(groupModel->query());
             if (headerModel->findItems(type).empty()) {
@@ -151,7 +150,6 @@ Editor::Editor(QWidget* parent)
          });
     }
     ui.graphicsView->setViewport(new QOpenGLWidget);
-    ui.graphicsView->setScene(new GraphScene({}, ui.graphicsView));
-    
+    ui.graphicsView->setScene(scene);
     ui.graphicsView->installEventFilter(new ResizeFilter);
 }

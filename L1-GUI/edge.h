@@ -58,15 +58,20 @@ public:
     Edge(Node *sourceNode, Node *destNode);
 
     enum { Type = UserType + 2 };
+    [[nodiscard]]
     int type() const override { return Type; }
 
+    [[nodiscard]]
     int startNodeId() const;
+    [[nodiscard]]
     int destNodeId() const;
 
-    ~Edge();
+    ~Edge() override;
 
 protected:
+    [[nodiscard]]
     QRectF boundingRect() const override;
+    [[nodiscard]]
     QPainterPath shape() const override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

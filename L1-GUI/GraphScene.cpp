@@ -2,7 +2,6 @@
 #include "node.h"
 #include "edge.h"
 
-//#include <cmath>
 #include <QRandomGenerator>
 #include <QGraphicsSceneMouseEvent>
 #include <QSqlQuery>
@@ -19,15 +18,13 @@ GraphScene::GraphScene(const QRectF& sceneRect, QObject* parent)
     : QGraphicsScene{ sceneRect, parent }
     , timerId{ 0 }
     , startNodeId{ NoNode } {
-    
     prepared_add_edge.prepare("insert into Edges (start_id, end_id) values (:start_id, :end_id)");
     prepared_remove_edge.prepare("delete from Edges where start_id = :start_id and end_id = :end_id");
     setItemIndexMethod(QGraphicsScene::NoIndex);
-    
     reset();
 }
 
-void GraphScene::updateNode(int id, QString type)
+void GraphScene::updateNode(int id, const QString& type)
 {
     auto&& node = nodes[id];
     if (node == nullptr) {
@@ -56,7 +53,7 @@ void GraphScene::setSelectedNode(int id, bool selected)
     nodes.at(id)->setSelected(selected);
 }
 
-void GraphScene::reset(QString filter)
+void GraphScene::reset(const QString& filter)
 {
     for (auto x : items()) {
         auto e = qgraphicsitem_cast<Edge*>(x);
@@ -144,7 +141,7 @@ void GraphScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
                 addItem(new Edge(nodes[startNodeId], node));
                 prepared_add_edge.bindValue(":start_id", startNodeId);
                 prepared_add_edge.bindValue(":end_id", node->id());
-                bool res = prepared_add_edge.exec();
+                prepared_add_edge.exec();
                 startNodeId = NoNode;
             }
             return;
@@ -189,6 +186,6 @@ void GraphScene::nodeMoved()
     }
 }
 
-void GraphScene::addEdge(int startId, int finishid, size_t label) {
-    addItem(new Edge(nodes[startId], nodes[finishid]));
+void GraphScene::addEdge(int startId, int finishId, size_t label) {
+    addItem(new Edge(nodes[startId], nodes[finishId]));
 }

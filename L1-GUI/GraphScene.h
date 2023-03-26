@@ -9,16 +9,16 @@ class GraphScene : public QGraphicsScene
 {
 	Q_OBJECT
 public:
-	GraphScene(const QRectF& sceneRect, QObject* parent = nullptr);
+	explicit GraphScene(const QRectF& sceneRect, QObject* parent = nullptr);
 
-	void updateNode(int id, QString type);
-    void addEdge(int startId, int finishid, size_t label);
+	void updateNode(int id, const QString& type);
+    void addEdge(int startId, int finishId, size_t label);
 	void hideNode(int id);
 	void showNode(int id);
 	void setSelectedNode(int id, bool selected);
-	void reset(QString filter = "");
+	void reset(const QString& filter = "");
 
-	~GraphScene() = default;
+	~GraphScene() override = default;
 protected:
 	void keyPressEvent(QKeyEvent* event) override;
 	void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) override;

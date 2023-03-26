@@ -8,7 +8,6 @@
 ComboHeaderView::ComboHeaderView(CheckableComboBox* editor, QWidget* parent)
 	: QHeaderView(Qt::Orientation::Horizontal, parent)
 	, models{}
-	, editor{ editor }
 {
 	setSectionsClickable(true);
 	editor->setParent(this);
@@ -60,36 +59,33 @@ void ComboHeaderView::setModelForColumn(int column, QStandardItemModel* source)
 }
 
 // 
-int accumulatedSize(const QSet<QString>& list, int seplen, int quotelen)
+int accumulatedSize(const QSet<QString>& list, int separatorLen, int quoteLen)
 {
 	int result = 0;
-	if (!list.isEmpty())
-	{
-		for (const auto& e : list)
-			result += e.size() + seplen;
-		result -= seplen;
+	if (!list.isEmpty()) {
+        result += (list.size() - 1) * separatorLen;
 	}
-	return result + list.size() * quotelen;
+    for (const auto& e : list)
+        result += e.size();
+	return result + list.size() * quoteLen;
 }
 
 // QStringList_join
-QString join(const QSet<QString>& list, QString sep, QString qoute = "'")
+QString join(const QSet<QString>& list, const QString& sep, const QString& quote = "'")
 {
 	QString result;
-	if (!list.isEmpty())
-	{
-		result.reserve(accumulatedSize(list, sep.size(), qoute.size()));
+	if (!list.isEmpty()) {
+		result.reserve(accumulatedSize(list, sep.size(), quote.size()));
 		const auto end = list.cend();
 		auto it = list.cbegin();
-		result += qoute;
+		result += quote;
 		result += *it;
-		result += qoute;
-		while (++it != end)
-		{
+		result += quote;
+		while (++it != end) {
 			result += sep;
-			result += qoute;
+			result += quote;
 			result += *it;
-			result += qoute;
+			result += quote;
 		}
 	}
 	return result;

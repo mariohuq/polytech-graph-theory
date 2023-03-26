@@ -8,13 +8,12 @@ class QStandardItemModel;
 class ComboHeaderView : public QHeaderView
 {
 public:
-	ComboHeaderView(CheckableComboBox* editor, QWidget *parent = nullptr);
-	~ComboHeaderView() = default;
+	explicit ComboHeaderView(CheckableComboBox* editor, QWidget *parent = nullptr);
+	~ComboHeaderView() override = default;
 	void setModelForColumn(int column, QStandardItemModel* source);
 private:
 	void setFilter();
 private:
 	std::vector<QStandardItemModel*> models;
 	std::vector<QSet<QString>> filters;
-	CheckableComboBox* editor;
 };
