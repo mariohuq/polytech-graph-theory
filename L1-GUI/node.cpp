@@ -155,7 +155,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     painter->drawText(SHAPE.center() - delta, QString{ 'a' + m_id });
     if (isSelected()) {
         painter->setPen(QPen{{Qt::blue},1,Qt::DashLine});
-        painter->drawRoundRect(SHAPE.marginsAdded({ 2,2,2,2 }), 3, 3);
+        painter->drawRoundedRect(SHAPE.marginsAdded({ 2,2,2,2 }), 3, 3, Qt::RelativeSize);
     }
 }
 
@@ -188,4 +188,12 @@ void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 GraphScene *Node::scene() const {
     return dynamic_cast<GraphScene*>(QGraphicsItem::scene());
+}
+
+void Node::setType(QString type) {
+    if (type != m_type) {
+        show();
+        prepareGeometryChange();
+        m_type = std::move(type);
+    }
 }

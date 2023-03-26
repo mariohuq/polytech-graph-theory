@@ -63,32 +63,31 @@ class Node : public QGraphicsItem
 public:
     Node(int id, QString type);
     
-    ~Node();
+    ~Node() override;
 
     enum { Type = UserType + 1 };
+    [[nodiscard]]
     int id() const { return  m_id; };
+    [[nodiscard]]
     int type() const override { return Type; }
 
     void calculateForces();
     
     bool advancePosition();
 
+    [[nodiscard]]
     QRectF boundingRect() const override;
     
+    [[nodiscard]]
     QPainterPath shape() const override;
 
     // hides scene() from QGraphicsItem!
+    [[nodiscard]]
     GraphScene *scene() const;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void setType(QString type) {
-        if (type != m_type) {
-            show();
-            prepareGeometryChange();
-            m_type = type;
-        }
-    }
+    void setType(QString type);
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
