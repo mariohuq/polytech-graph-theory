@@ -6,6 +6,7 @@
 
 #include <QWidget>
 #include <random>
+#include "../L1/graphs.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Lab1; }

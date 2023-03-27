@@ -27,11 +27,19 @@ add_executable(lab1gui
     GraphScene.cpp
     node.h
     node.cpp
-        Editor.ui
+    Editor.ui
     resources.qrc
     L9.ico
     L9.rc
-        Lab1.cpp Lab1.h Lab1.ui ResizeFilter.cpp ResizeFilter.h)
+    Lab1.cpp
+    Lab1.h
+    Lab1.ui
+    ResizeFilter.cpp
+    ResizeFilter.h
+    MatrixModel.cpp
+    MatrixModel.h
+    NodesModel.cpp
+    NodesModel.h)
 target_link_libraries(lab1gui
         Qt5::Core
         Qt5::Gui

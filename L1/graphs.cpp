@@ -53,11 +53,17 @@ adjacency_matrix graphs::from_degrees(std::vector<size_t> vertex_degrees, std::m
 }
 
 adjacency_matrix graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+    if (that.empty()) {
+        return {};
+    }
     const size_t & (*fn)(const unsigned long &,const unsigned long &)  = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
 
 adjacency_matrix graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+    if (that.empty()) {
+        return {};
+    }
     const size_t & (*fn)(const unsigned long &,const unsigned long &)  = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
