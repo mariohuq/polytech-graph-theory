@@ -186,6 +186,6 @@ void GraphScene::nodeMoved()
     }
 }
 
-void GraphScene::addEdge(int startId, int finishId, size_t label) {
-    addItem(new Edge(nodes[startId], nodes[finishId]));
+void GraphScene::addEdge(int startId, int finishId, int label) {
+    addItem(new Edge(nodes[startId], nodes[finishId], label));
 }

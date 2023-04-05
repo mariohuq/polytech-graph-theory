@@ -143,12 +143,12 @@ QPainterPath Node::shape() const
 
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
+    auto shape = SHAPE.toAlignedRect();
     painter->setBrush({ Qt::white });
-    painter->drawEllipse(SHAPE.toAlignedRect());
+    painter->drawEllipse(shape);
     painter->setBrush(Qt::NoBrush);
     Q_ASSERT(((void)"Too many vertices, can't show label properly", 'a' + m_id <= 'z'));
-    auto delta = option->fontMetrics.boundingRect('a' + m_id).center();
-    painter->drawText(SHAPE.center() - delta, QString{ 'a' + m_id });
+    painter->drawText(shape, QString{ 'a' + m_id }, {Qt::AlignCenter});
     if (isSelected()) {
         painter->setPen(QPen{{Qt::blue},1,Qt::DashLine});
         painter->drawRoundedRect(SHAPE.marginsAdded({ 2,2,2,2 }), 3, 3, Qt::RelativeSize);

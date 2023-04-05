@@ -12,7 +12,7 @@ public:
 	explicit GraphScene(const QRectF& sceneRect, QObject* parent = nullptr);
 
 	void updateNode(int id, const QString& type);
-    void addEdge(int startId, int finishId, size_t label);
+    void addEdge(int startId, int finishId, int label = 0);
 	void hideNode(int id);
 	void showNode(int id);
 	void setSelectedNode(int id, bool selected);

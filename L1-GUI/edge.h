@@ -55,7 +55,7 @@ class Node;
 class Edge : public QGraphicsItem
 {
 public:
-    Edge(Node *sourceNode, Node *destNode);
+    Edge(Node *sourceNode, Node *destNode, int label = 0);
 
     enum { Type = UserType + 2 };
     [[nodiscard]]
@@ -85,4 +85,5 @@ private:
     QPointF sourcePoint;
     QPointF destPoint;
     qreal arrowSize;
+    int m_label;
 };

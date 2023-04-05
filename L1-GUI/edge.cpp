@@ -54,10 +54,11 @@
 #include <qmath.h>
 #include <QPainter>
 
-Edge::Edge(Node *sourceNode, Node *destNode)
+Edge::Edge(Node *sourceNode, Node *destNode, int label)
     : arrowSize{ 10 }
     , m_source{ sourceNode }
     , m_destination{ destNode }
+    , m_label{label}
 {
     setAcceptedMouseButtons(Qt::NoButton);
     m_source->m_edges.insert(this);
@@ -144,14 +145,29 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     // Draw the line itself
     painter->setPen({ Qt::black, 1.4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin });
     painter->drawLine(line);
-    // arrow head (namely stealth arrow)
-    auto base = line.pointAt(1 - arrowSize / segmentLength);
-    auto d = (destPoint - base) / 2;
-    painter->setBrush(Qt::black);
-    painter->drawPolygon(QVector<QPointF> {
-        destPoint,
-        base + QPointF{ -d.y(), d.x() },
-        line.pointAt(1 - 0.75 * arrowSize / segmentLength),
-        base + QPointF{ d.y(), -d.x() }
-    });
+    // Draw arrow head (namely stealth arrow)
+    {
+        auto base = line.pointAt(1 - arrowSize / segmentLength);
+        auto d = (destPoint - base) / 2;
+        painter->setBrush(Qt::BrushStyle::SolidPattern);
+        painter->drawPolygon(QVector<QPointF> {
+            destPoint,
+            base + QPointF{ -d.y(), d.x() },
+            line.pointAt(1 - 0.75 * arrowSize / segmentLength),
+            base + QPointF{ d.y(), -d.x() }
+        });
+    }
+    // Draw label
+    if (m_label != 0) {
+        auto margin = 8.;
+        auto center = (sourcePoint + destPoint) / 2;
+        auto rect = QRectF{center, center}.marginsAdded({margin, margin, margin, margin});
+        QColor bg_color = Qt::white;
+        bg_color.setAlphaF(0.85);
+        painter->setPen(bg_color);
+        painter->setBrush(bg_color);
+        painter->drawEllipse(rect);
+        painter->setPen(Qt::SolidLine);
+        painter->drawText(rect, QString::number(m_label), {Qt::AlignCenter});
+    }
 }
