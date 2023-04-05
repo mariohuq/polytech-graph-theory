@@ -12,15 +12,14 @@
 #include "MatrixModel.h"
 #include "NodesModel.h"
 
-
 Lab1::Lab1(QWidget *parent)
         : QWidget(parent), ui{new Ui::Lab1}, gen{std::random_device{}()} {
     ui->setupUi(this);
 
-    auto matrixModel = new MatrixModel{ this };
-    auto shimbelModel = new MatrixModel{ this };
+    auto matrixModel = new MatrixModel{this};
+    auto shimbelModel = new MatrixModel{this};
     auto graphScene = new GraphScene{{}, ui->graphicsView};
-    auto nodesModel = new NodesModel{ this, 10 };
+    auto nodesModel = new NodesModel{this, 10};
 
     connect(ui->nVertices, qOverload<int>(&QSpinBox::valueChanged), nodesModel, &NodesModel::setSize);
 
@@ -41,14 +40,26 @@ Lab1::Lab1(QWidget *parent)
             }
         }
     });
-    connect(ui->edgesCountInPath, qOverload<int>(&QSpinBox::valueChanged), [=](int value){
-        if (value == 0) {
-            return;
-        }
-        shimbelModel->setMatrix(graphs::max_path_lengths(matrixModel->matrix(), value));
-    });
+    // Shimbel method
+    {
+        const auto act = [=](bool minChosen, int edgesCount) {
+            if (edgesCount == 0) {
+                return;
+            }
+            shimbelModel->setMatrix(
+                    (minChosen ? graphs::min_path_lengths : graphs::max_path_lengths)
+                            (matrixModel->matrix(), edgesCount)
+            );
+        };
+        connect(ui->edgesCountInPath, qOverload<int>(&QSpinBox::valueChanged), [=](int value) {
+            act(ui->chooseExtremum->currentIndex() == 0, value);
+        });
+        connect(ui->chooseExtremum, qOverload<int>(&QComboBox::currentIndexChanged), [=](int index) {
+            act(index == 0, ui->edgesCountInPath->value());
+        });
+    }
     connect(ui->countPaths, &QPushButton::pressed, [=]() {
-        if (matrixModel->rowCount({}) == 0){
+        if (matrixModel->rowCount({}) == 0) {
             return;
         }
         size_t start = ui->startBox->currentData(Qt::UserRole).toUInt();
