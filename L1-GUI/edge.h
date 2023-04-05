@@ -66,6 +66,10 @@ public:
     [[nodiscard]]
     int destNodeId() const;
 
+    void setLabel(int label) {
+        m_label = label;
+    }
+
     ~Edge() override;
 
 protected:

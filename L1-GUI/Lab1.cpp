@@ -67,6 +67,13 @@ Lab1::Lab1(QWidget *parent)
         auto res = graphs::count_paths{matrixModel->matrix(), start}(end);
         ui->pathsCountOut->setText(QString::number(res));
     });
+    // allow edit adjMatrix -> that changes graph
+    connect(matrixModel, &MatrixModel::dataChanged, [=](const QModelIndex &topLeft, const QModelIndex &bottomRight){
+        Q_ASSERT(topLeft == bottomRight);
+        int i = topLeft.row();
+        int j = topLeft.column();
+        graphScene->updateEdge(i, j, topLeft.data().toUInt());
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);

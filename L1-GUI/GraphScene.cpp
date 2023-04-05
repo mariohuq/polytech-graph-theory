@@ -187,5 +187,26 @@ void GraphScene::nodeMoved()
 }
 
 void GraphScene::addEdge(int startId, int finishId, int label) {
-    addItem(new Edge(nodes[startId], nodes[finishId], label));
+    auto e = new Edge{nodes[startId], nodes[finishId], label};
+    addItem(e);
+    edges[{startId, finishId}] = e;
+}
+
+void GraphScene::updateEdge(int startId, int finishId, int label) {
+    Q_ASSERT(nodes.find(startId) != nodes.end() && nodes.find(finishId) != nodes.end());
+    auto it = edges.find({startId, finishId});
+    // add?
+    if (it == edges.end()) {
+        addEdge(startId, finishId, label);
+        return;
+    }
+    // update?
+    if (label != 0) {
+        it->second->setLabel(label);
+        return;
+    }
+    // remove
+    removeItem(it->second);
+    delete it->second;
+    edges.erase(it);
 }
