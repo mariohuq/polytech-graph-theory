@@ -11,6 +11,9 @@ int NodesModel::rowCount(const QModelIndex &parent) const {
 }
 
 QVariant NodesModel::data(const QModelIndex &index, int role) const {
+    if (size == 0) {
+        return {};
+    }
     switch (role) {
         case Qt::DisplayRole:
             return QString{ 'a' + index.row()};

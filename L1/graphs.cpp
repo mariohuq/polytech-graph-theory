@@ -17,9 +17,15 @@ namespace graphs {
 }
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
+    if (nVertices == 0) {
+        return std::vector<size_t> {};
+    }
+    if (nVertices == 1) {
+        return std::vector<size_t>{ 0 };
+    }
     // степень вершины может быть в диапазоне [1 .. n-1]
     // распределение выдает числа в диапазоне [0 .. n-2]
-    auto dis = polya_1<size_t>(2, 20, 1, nVertices - 3);
+    auto dis = polya_1<int>(2, 20, 1, static_cast<int>(nVertices) - 3);
     std::vector<size_t> result(nVertices);
     for (size_t& x : result) {
         x = dis(gen) + 1;

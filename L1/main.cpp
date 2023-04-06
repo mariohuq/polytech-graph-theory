@@ -11,6 +11,8 @@
 
 using namespace graphs;
 
+std::mt19937 gen{std::random_device{}()};
+
 //Д. 1.3. Алгоритм построения случайного ориентированного бесконтурного графа, Хаг
 adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) {
     auto dis = polya_1<int>(20, 20, 1, nVertices * (nVertices - 1) / 2 - 1);
@@ -19,8 +21,6 @@ adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) 
         return {k - i*(i+1)/2, i+1};
     };
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
     adjacency_matrix<bool> result{nVertices, std::vector<bool>(nVertices)};
 
     for (int k = 0; k < nEdges; k++) {
@@ -38,8 +38,25 @@ adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) 
 }
 
 int main() {
+    return 0;
+}
+
+void test_1_vertex() {
+    auto g = generate(1, gen);
+}
+
+void test_2_vertexes() {
+    auto g = generate(2, gen);
+    for (const auto& row : g) {
+        for (const auto& elem: row) {
+            std::cout << elem << ' ';
+        }
+        std::cout << '\n';
+    }
+}
+
+void sample_usage() {
     size_t n = 10;
-    std::mt19937 gen(std::random_device{}());
     auto degs = out_degrees(n, gen);
     for (auto d: degs) {
         std::cout << d << ' ';
@@ -65,5 +82,4 @@ int main() {
     while (std::cin >> to) {
         std::cout << count(to);
     }
-    return 0;
 }
