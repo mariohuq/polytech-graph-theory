@@ -22,6 +22,7 @@ secnumdepth: 3
 bibliography: config/references.bib
 # https://github.com/Darxor/CSL-GOST
 citation-style: config/GOST_R_7011_numeric.csl
+link-citations: true
 links-as-notes: true
 hyperrefoptions:
 - bookmarksdepth=10
