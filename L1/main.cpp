@@ -17,7 +17,7 @@ std::mt19937 gen{std::random_device{}()};
 adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) {
     auto dis = polya_1<int>(20, 20, 1, nVertices * (nVertices - 1) / 2 - 1);
     auto split = [](int k) -> div_t {
-        int i = (-1 + sqrt(8 * k + 1)) / 2;
+        int i = static_cast<int>((-1 + sqrt(8 * k + 1)) / 2);
         return {k - i*(i+1)/2, i+1};
     };
 
