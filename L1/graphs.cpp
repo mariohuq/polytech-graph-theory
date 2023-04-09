@@ -9,25 +9,26 @@ using adjacency_matrix = graphs::adjacency_matrix<size_t>;
 
 namespace graphs {
     template<typename Func>
-    adjacency_matrix<size_t> matrix_multiply(const adjacency_matrix<size_t>& lhs, const adjacency_matrix<size_t>& rhs, Func extrem);
+    adjacency_matrix<size_t>
+    matrix_multiply(const adjacency_matrix<size_t> &lhs, const adjacency_matrix<size_t> &rhs, Func extrem);
 
     // матрица m[i][j] из длин минимальных (или максимальных) путей от вершины i до j
     template<typename Func>
-    adjacency_matrix<size_t> matrix_power_shimbell(const adjacency_matrix<size_t>& that, size_t power, Func extrem);
+    adjacency_matrix<size_t> matrix_power_shimbell(const adjacency_matrix<size_t> &that, size_t power, Func extrem);
 }
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
-        return std::vector<size_t> {};
+        return std::vector<size_t>{};
     }
     if (nVertices == 1) {
-        return std::vector<size_t>{ 0 };
+        return std::vector<size_t>{0};
     }
     // степень вершины может быть в диапазоне [1 .. n-1]
     // распределение выдает числа в диапазоне [0 .. n-2]
     auto dis = polya_1<int>(2, 20, 1, static_cast<int>(nVertices) - 3);
     std::vector<size_t> result(nVertices);
-    for (size_t& x : result) {
+    for (size_t &x: result) {
         x = dis(gen) + 1;
     }
     std::sort(result.rbegin(), result.rend());
@@ -62,7 +63,7 @@ adjacency_matrix graphs::min_path_lengths(const adjacency_matrix<> &that, size_t
     if (that.empty()) {
         return {};
     }
-    const size_t & (*fn)(const unsigned long &,const unsigned long &)  = &std::min<size_t>;
+    const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
 
@@ -70,12 +71,59 @@ adjacency_matrix graphs::max_path_lengths(const adjacency_matrix<> &that, size_t
     if (that.empty()) {
         return {};
     }
-    const size_t & (*fn)(const unsigned long &,const unsigned long &)  = &std::max<size_t>;
+    const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
 
 adjacency_matrix graphs::generate(size_t nVertices, std::mt19937 &gen) {
     return from_degrees(out_degrees(nVertices, gen), gen);
+}
+
+graphs::dijkstra_result_t
+graphs::min_path_distances_dijkstra(const adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
+    std::vector<bool> visited(g.size(), false);
+    std::vector<int> distances = g[start_vertex];
+    std::vector<Vertex> precedents(g.size(), 0);
+    size_t iterations{};
+
+    constexpr auto inf = INT32_MAX;
+
+    for (int i = 0; i < g.size(); i++) {
+        if (g[start_vertex][i] == 0) {
+            distances[i] = inf;
+        }
+    }
+    distances[start_vertex] = 0;
+    visited[start_vertex] = true;
+
+    int index = 0;
+    int dop_index = 0;
+    for (int i = 0; i < g.size(); i++) {
+        int min = inf;
+        for (int j = 0; j < g.size(); j++) {
+            if (!visited[j] && distances[j] < min) {
+                min = distances[j];
+                index = j;
+            }
+            iterations++;
+        }
+        dop_index = index;
+        visited.at(dop_index) = true;
+
+        for (int k = 0; k < g.size(); k++) {
+            if (!visited[k]
+                && g[dop_index][k] != 0
+                && distances[dop_index] != inf
+                && (distances[dop_index] + g[dop_index][k] < distances[k])) {
+                distances[k] = distances[dop_index] + g[dop_index][k];
+            }
+        }
+    }
+    return {
+            .distances = distances,
+            .precedents = precedents,
+            .iterations = iterations
+    };
 }
 
 template<typename Func>
@@ -98,7 +146,7 @@ graphs::matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> 
     adjacency_matrix<size_t> result = lhs;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            auto& res = result[i][j];
+            auto &res = result[i][j];
             res = 0;
             for (int k = 0; k < n; ++k) {
                 if (lhs[i][k] == 0 || rhs[k][j] == 0) {
