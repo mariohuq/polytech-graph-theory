@@ -52,4 +52,6 @@ namespace graphs {
         size_t iterations;
     };
     dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<int>& g, Vertex start_vertex);
+
+    dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<int>& g, Vertex start_vertex);
 }

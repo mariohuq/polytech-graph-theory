@@ -4,8 +4,9 @@
 #include "graphs.h"
 #include <algorithm>
 #include <cassert>
+#include <queue>
 
-using adjacency_matrix = graphs::adjacency_matrix<size_t>;
+//using adjacency_matrix = graphs::adjacency_matrix;
 
 namespace graphs {
     template<typename Func>
@@ -40,7 +41,7 @@ std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     return result;
 }
 
-adjacency_matrix graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
+graphs::adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
     auto nVertices = vertex_degrees.size();
     adjacency_matrix<size_t> result(nVertices, std::vector<size_t>(nVertices));
     auto dis = polya_1<size_t>(4, 8, 3, 50 - 1);
@@ -59,64 +60,58 @@ adjacency_matrix graphs::from_degrees(std::vector<size_t> vertex_degrees, std::m
     return result;
 }
 
-adjacency_matrix graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+graphs::adjacency_matrix<size_t> graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-
-adjacency_matrix graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+graphs::adjacency_matrix<size_t> graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-
-adjacency_matrix graphs::generate(size_t nVertices, std::mt19937 &gen) {
+graphs::adjacency_matrix<size_t> graphs::generate(size_t nVertices, std::mt19937 &gen) {
     return from_degrees(out_degrees(nVertices, gen), gen);
 }
 
 graphs::dijkstra_result_t
-graphs::min_path_distances_dijkstra(const adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
+graphs::min_path_distances_dijkstra(const graphs::adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
+// https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
+    std::vector<Vertex> precedents(g.size(), -1u);
     std::vector<bool> visited(g.size(), false);
-    std::vector<int> distances = g[start_vertex];
-    std::vector<Vertex> precedents(g.size(), 0);
     size_t iterations{};
 
-    constexpr auto inf = INT32_MAX;
-
-    for (int i = 0; i < g.size(); i++) {
-        if (g[start_vertex][i] == 0) {
-            distances[i] = inf;
-        }
-    }
+    constexpr auto INF = INT32_MAX;
+    std::vector<int> distances(g.size(), INF);
+    auto cmp = [&](graphs::Vertex i, graphs::Vertex j) {
+        return distances[i] > distances[j];
+    };
+    std::priority_queue<graphs::Vertex, std::vector<graphs::Vertex>, decltype(cmp)> qu(cmp);
     distances[start_vertex] = 0;
-    visited[start_vertex] = true;
-
-    int index = 0;
-    int dop_index = 0;
-    for (int i = 0; i < g.size(); i++) {
-        int min = inf;
-        for (int j = 0; j < g.size(); j++) {
-            if (!visited[j] && distances[j] < min) {
-                min = distances[j];
-                index = j;
+    qu.push(start_vertex);
+    while(!qu.empty()) {
+        auto nearest_vertex = qu.top();
+        qu.pop();
+        if (visited[nearest_vertex]) {
+            continue;
+        }
+        visited[nearest_vertex] = true;
+        for (int i = 0; i < g.size(); ++i) {
+            if (g[nearest_vertex][i] == 0) {
+                continue;
+            }
+            auto distance_via_nearest = distances[nearest_vertex] + g[nearest_vertex][i];
+            if (distance_via_nearest < distances[i]) {
+                distances[i] = distance_via_nearest;
+                qu.push(i);
+                visited[i] = false;
+                precedents[i] = nearest_vertex;
             }
             iterations++;
-        }
-        dop_index = index;
-        visited.at(dop_index) = true;
-
-        for (int k = 0; k < g.size(); k++) {
-            if (!visited[k]
-                && g[dop_index][k] != 0
-                && distances[dop_index] != inf
-                && (distances[dop_index] + g[dop_index][k] < distances[k])) {
-                distances[k] = distances[dop_index] + g[dop_index][k];
-            }
         }
     }
     return {
@@ -126,8 +121,25 @@ graphs::min_path_distances_dijkstra(const adjacency_matrix<int> &g, graphs::Vert
     };
 }
 
+graphs::dijkstra_result_t
+graphs::min_path_distances_bellman_ford(const graphs::adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
+    std::vector<Vertex> precedents(g.size(), -1u);
+    size_t iterations{};
+    constexpr auto INF = INT32_MAX;
+    std::vector<int> distances(g.size(), INF);
+
+
+    return {
+            .distances = distances,
+            .precedents = precedents,
+            .iterations = iterations
+    };
+}
+
+
 template<typename Func>
-adjacency_matrix graphs::matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
+graphs::adjacency_matrix<size_t>
+graphs::matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
     assert(power > 0);
     adjacency_matrix<size_t> result = that;
     for (int i = 1; i < power; ++i) {
@@ -137,7 +149,7 @@ adjacency_matrix graphs::matrix_power_shimbell(const adjacency_matrix<> &that, s
 }
 
 template<typename Func>
-adjacency_matrix
+graphs::adjacency_matrix<size_t>
 graphs::matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
     assert(lhs.size() == lhs[0].size()); // квадратная
     assert(rhs.size() == rhs[0].size()); // квадратная
