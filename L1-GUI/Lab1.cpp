@@ -107,6 +107,9 @@ Lab1::Lab1(QWidget *parent)
         connect(ui->bellman,&QPushButton::pressed, f(graphs::min_path_distances_bellman_ford));
     }
     connect(ui->floyd, &QPushButton::pressed, [=]{
+        if (matrixModel->rowCount({}) == 0) {
+            return;
+        }
         graphs::Vertex start = ui->startBox_2->currentData(Qt::UserRole).toUInt();
         graphs::Vertex end = ui->finishBox_2->currentData(Qt::UserRole).toUInt();
 

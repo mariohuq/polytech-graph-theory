@@ -126,14 +126,14 @@ graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex star
     std::vector<int> distances(g.size(), INF);
     distances[start_vertex] = 0;
 
-    for (int _{}; _ < g.size(); ++_) {
+    for (int _ = 1; _ < g.size(); ++_) {
         for (Vertex u{}; u < g.size(); ++u) {
             for (Vertex v{}; v < g.size(); ++v) {
                 if (g[u][v] == 0) {
                     continue;
                 }
                 auto candidate = distances[u] + g[u][v];
-                if (candidate < distances[v]) {
+                if (distances[u] != INF && candidate < distances[v]) {
                     // новый путь короче
                     distances[v] = candidate;
                     precedents[v] = u;
@@ -149,7 +149,7 @@ graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex star
                 continue;
             }
             // найден контур отрицательного веса
-            if (distances[v] > distances[u] + g[u][v]) {
+            if (distances[u] != INF && distances[v] > distances[u] + g[u][v]) {
                 return {
                     .iterations = iterations
                 };
@@ -172,30 +172,31 @@ graphs::min_path_distances_floyd_warshall(const adjacency_matrix<> &g) {
 
     for (Vertex i{}; i < g.size(); ++i) {
         for (Vertex j{}; j < g.size(); ++j) {
+            if (i == j) {
+                distances[i][j] = 0;
+            }
             if (g[i][j] == 0) {
                 continue;
             }
             distances[i][j] = g[i][j];
-            precedents[i][j] = j;
+            precedents[i][j] = i;
         }
     }
 
     for (Vertex i{}; i < g.size(); ++i) {
         for (Vertex j{}; j < g.size(); ++j) {
-            if (g[i][j] == 0) {
-                continue;
-            }
-            if (i == j || distances[j][i] == INF) {
+            if (j == i || distances[j][i] == INF) {
                 continue;
             }
             for (Vertex k{}; k < g.size(); ++k) {
-                if (i == k || distances[i][k] == INF) {
+                iterations++;
+                if (k == i || distances[i][k] == INF) {
                     continue;
                 }
-                if (distances[j][k] == INF
-                 || distances[j][k] > distances[j][i] + distances[i][k]) {
-                    distances[j][k] = distances[j][i] + distances[i][k];
-                    precedents[j][k] = precedents[j][i];
+                auto candidate = distances[j][i] + distances[i][k];
+                if (distances[j][k] == INF || distances[j][k] > candidate) {
+                    distances[j][k] = candidate;
+                    precedents[j][k] = i;
                 }
             }
         }
