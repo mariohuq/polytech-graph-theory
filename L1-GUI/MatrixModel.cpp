@@ -11,7 +11,11 @@ MatrixModel::MatrixModel(QObject *parent, graphs::adjacency_matrix<> underlying)
 
 QVariant MatrixModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::DisplayRole) {
-        return (uint)underlying[index.row()][index.column()];
+        auto data = underlying[index.row()][index.column()];
+        if (data == graphs::INF) {
+            return "∞";
+        }
+        return data;
     }
     return {};
 }

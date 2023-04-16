@@ -11,6 +11,7 @@
 #include "ResizeFilter.h"
 #include "MatrixModel.h"
 #include "NodesModel.h"
+#include "VectorModel.h"
 
 Lab1::Lab1(QWidget *parent)
         : QWidget(parent), ui{new Ui::Lab1}, gen{std::random_device{}()} {
@@ -18,6 +19,9 @@ Lab1::Lab1(QWidget *parent)
 
     auto matrixModel = new MatrixModel{this};
     auto shimbelModel = new MatrixModel{this};
+    auto distances2dModel = new MatrixModel{this};
+    auto distances1dModel = new VectorModel{this};
+
     auto graphScene = new GraphScene{{}, ui->graphicsView};
     auto nodesModel = new NodesModel{this, 10};
 
@@ -62,8 +66,8 @@ Lab1::Lab1(QWidget *parent)
         if (matrixModel->rowCount({}) == 0) {
             return;
         }
-        size_t start = ui->startBox->currentData(Qt::UserRole).toUInt();
-        size_t end = ui->finishBox->currentData(Qt::UserRole).toUInt();
+        graphs::Vertex start = ui->startBox->currentData(Qt::UserRole).toUInt();
+        graphs::Vertex end = ui->finishBox->currentData(Qt::UserRole).toUInt();
         auto res = graphs::count_paths{matrixModel->matrix(), start}(end);
         ui->pathsCountOut->setText(QString::number(res));
     });
@@ -74,16 +78,68 @@ Lab1::Lab1(QWidget *parent)
         int j = topLeft.column();
         graphScene->updateEdge(i, j, topLeft.data().toUInt());
     });
+    {
+        auto f = [=](decltype(graphs::min_path_distances_dijkstra) method) {
+            return [=]() {
+                if (matrixModel->rowCount({}) == 0) {
+                    return;
+                }
+                graphs::Vertex start = ui->startBox_2->currentData(Qt::UserRole).toUInt();
+                graphs::Vertex end = ui->finishBox_2->currentData(Qt::UserRole).toUInt();
+                auto [
+                        distances,
+                        precedents,
+                        iterations
+                ] = method(matrixModel->matrix(), start);
+                distances1dModel->setFrom(start);
+                distances1dModel->setVector(distances);
+                if (ui->distMatrix->model() != distances1dModel) {
+                    ui->distMatrix->setModel(distances1dModel);
+                }
+                QStringList list;
+                for (auto v: graphs::reconstruct_path(precedents, start, end)) {
+                    list.append(QString{static_cast<char>('a' + v)});
+                }
+                ui->pathOut->setText(list.join("→"));
+            };
+        };
+        connect(ui->dijkstra, &QPushButton::pressed, f(graphs::min_path_distances_dijkstra));
+        connect(ui->bellman,&QPushButton::pressed, f(graphs::min_path_distances_bellman_ford));
+    }
+    connect(ui->floyd, &QPushButton::pressed, [=]{
+        graphs::Vertex start = ui->startBox_2->currentData(Qt::UserRole).toUInt();
+        graphs::Vertex end = ui->finishBox_2->currentData(Qt::UserRole).toUInt();
+
+        auto [
+                distances,
+                precedents,
+                iterations
+        ] = graphs::min_path_distances_floyd_warshall(matrixModel->matrix());
+        distances2dModel->setMatrix(distances);
+        if (ui->distMatrix->model() != distances2dModel) {
+            ui->distMatrix->setModel(distances2dModel);
+        }
+        QStringList list;
+        for (auto v: graphs::reconstruct_path(precedents[start], start, end)) {
+            list.append(QString{static_cast<char>('a' + v)});
+        }
+        ui->pathOut->setText(list.join("→"));
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
     ui->graphicsView->installEventFilter(new ResizeFilter);
     ui->adjMatrix->setModel(matrixModel);
-    ui->adjMatrix->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->shimbellMatrix->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->shimbellMatrix->setModel(shimbelModel);
-    ui->startBox->setModel(nodesModel);
-    ui->finishBox->setModel(nodesModel);
+    for (auto m : {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix}) {
+        m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    }
+    for (auto box : {ui->startBox,
+                     ui->finishBox,
+                     ui->startBox_2,
+                     ui->finishBox_2}) {
+        box->setModel(nodesModel);
+    }
 }
 
 Lab1::~Lab1() {

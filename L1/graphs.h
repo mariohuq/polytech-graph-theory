@@ -7,24 +7,24 @@
 #include <cstddef>
 
 namespace graphs {
-    template<typename T=size_t>
+    template<typename T=int>
     using adjacency_matrix = std::vector<std::vector<T>>;
 
     using Vertex = size_t;
 
-    adjacency_matrix<size_t> generate(size_t nVertices, std::mt19937& gen);
+    adjacency_matrix<> generate(size_t nVertices, std::mt19937& gen);
 
     std::vector<size_t> out_degrees(size_t nVertices, std::mt19937& gen);
 
-    adjacency_matrix<size_t> from_degrees(std::vector<size_t> vertex_degrees, std::mt19937& gen);
+    adjacency_matrix<> from_degrees(std::vector<size_t> vertex_degrees, std::mt19937& gen);
 
-    adjacency_matrix<size_t> min_path_lengths(const adjacency_matrix<size_t>& that, size_t path_length);
+    adjacency_matrix<> min_path_lengths(const adjacency_matrix<>& that, size_t path_length);
 
-    adjacency_matrix<size_t> max_path_lengths(const adjacency_matrix<size_t>& that, size_t path_length);
+    adjacency_matrix<> max_path_lengths(const adjacency_matrix<>& that, size_t path_length);
 
     // https://neerc.ifmo.ru/wiki/index.php?title=Задача_о_числе_путей_в_ациклическом_графе
     struct count_paths {
-        count_paths(const adjacency_matrix<size_t>& graph, Vertex start)
+        count_paths(const adjacency_matrix<>& graph, Vertex start)
             : graph{graph}
             , start{start}
             , visited(graph.size())
@@ -35,7 +35,7 @@ namespace graphs {
         }
         size_t operator()(Vertex v);
     private:
-        adjacency_matrix<size_t> graph;
+        adjacency_matrix<> graph;
         Vertex start; // стартовая вершина
         std::vector<bool> visited; // visited[v] = true, если ответ для вершины v уже посчитан
         std::vector<size_t> d; // d[v] — число путей из вершины `start` до вершины v
@@ -56,9 +56,9 @@ namespace graphs {
     constexpr auto INF = INT32_MAX;
     constexpr Vertex NO_VERTEX = -1u;
 
-    dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<int>& g, Vertex start_vertex);
+    dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<>& g, Vertex start_vertex);
 
-    dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<int>& g, Vertex start_vertex);
+    dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<>& g, Vertex start_vertex);
 
     struct floyd_warshall_result_t {
         // matrix of path lengths: `distances[i][j]` is min path from vertex `i` to `j`
@@ -71,7 +71,7 @@ namespace graphs {
         size_t iterations;
     };
 
-    floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<int>& g);
+    floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<>& g);
 
     std::vector<Vertex> reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
 }

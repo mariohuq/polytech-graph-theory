@@ -6,17 +6,15 @@
 #include <cassert>
 #include <queue>
 
-namespace graphs {
-    template<typename Func>
-    adjacency_matrix<size_t>
-    matrix_multiply(const adjacency_matrix<size_t> &lhs, const adjacency_matrix<size_t> &rhs, Func extrem);
-
-    // матрица m[i][j] из длин минимальных (или максимальных) путей от вершины i до j
-    template<typename Func>
-    adjacency_matrix<size_t> matrix_power_shimbell(const adjacency_matrix<size_t> &that, size_t power, Func extrem);
-}
-
 using namespace graphs;
+
+template<typename Func>
+adjacency_matrix<>
+matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem);
+// матрица m[i][j] из длин минимальных (или максимальных) путей от вершины i до j
+template<typename Func>
+adjacency_matrix<> matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem);
+
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
@@ -41,9 +39,9 @@ std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     return result;
 }
 
-adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
+adjacency_matrix<> graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
     auto nVertices = vertex_degrees.size();
-    adjacency_matrix<size_t> result(nVertices, std::vector<size_t>(nVertices));
+    adjacency_matrix<> result(nVertices, std::vector<int>(nVertices));
     auto dis = polya_1<size_t>(4, 8, 3, 50 - 1);
     for (int i = 0; i < nVertices; ++i) {
         for (int j = i + 1; j < vertex_degrees[i] + i + 1; ++j) {
@@ -60,26 +58,26 @@ adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex_degrees
     return result;
 }
 
-adjacency_matrix<size_t> min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+adjacency_matrix<> graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-adjacency_matrix<size_t> max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+adjacency_matrix<> graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-adjacency_matrix<size_t> generate(size_t nVertices, std::mt19937 &gen) {
+adjacency_matrix<> graphs::generate(size_t nVertices, std::mt19937 &gen) {
     return from_degrees(out_degrees(nVertices, gen), gen);
 }
 
 dijkstra_result_t
-min_path_distances_dijkstra(const adjacency_matrix<int> &g, Vertex start_vertex) {
+graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_vertex) {
     // https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
     std::vector<Vertex> precedents(g.size(), NO_VERTEX);
     std::vector<bool> visited(g.size(), false);
@@ -121,7 +119,7 @@ min_path_distances_dijkstra(const adjacency_matrix<int> &g, Vertex start_vertex)
 }
 
 dijkstra_result_t
-min_path_distances_bellman_ford(const adjacency_matrix<int> &g, Vertex start_vertex) {
+graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex start_vertex) {
     std::vector<Vertex> precedents(g.size(), NO_VERTEX);
     size_t iterations{};
 
@@ -166,7 +164,8 @@ min_path_distances_bellman_ford(const adjacency_matrix<int> &g, Vertex start_ver
     };
 }
 
-floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<int> &g) {
+floyd_warshall_result_t
+graphs::min_path_distances_floyd_warshall(const adjacency_matrix<> &g) {
     std::vector<std::vector<Vertex>> precedents(g.size(), std::vector<Vertex>(g.size(), NO_VERTEX));
     size_t iterations{};
     std::vector<std::vector<int>> distances(g.size(), std::vector<int>(g.size(), INF));
@@ -217,7 +216,8 @@ floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix
     };
 }
 
-std::vector<Vertex> reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
+std::vector<Vertex>
+graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
     std::vector<Vertex> result;
     result.reserve(precedents.size());
     result.push_back(to);
@@ -233,10 +233,10 @@ std::vector<Vertex> reconstruct_path(const std::vector<Vertex> &precedents, Vert
 }
 
 template<typename Func>
-adjacency_matrix<size_t>
+adjacency_matrix<>
 matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
     assert(power > 0);
-    adjacency_matrix<size_t> result = that;
+    adjacency_matrix<> result = that;
     for (int i = 1; i < power; ++i) {
         result = matrix_multiply<>(result, that, extrem);
     }
@@ -244,13 +244,13 @@ matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem)
 }
 
 template<typename Func>
-adjacency_matrix<size_t>
+adjacency_matrix<>
 matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
     assert(lhs.size() == lhs[0].size()); // квадратная
     assert(rhs.size() == rhs[0].size()); // квадратная
     assert(lhs.size() == rhs.size());
     size_t n = lhs.size();
-    adjacency_matrix<size_t> result = lhs;
+    adjacency_matrix<> result = lhs;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             auto &res = result[i][j];
@@ -266,7 +266,7 @@ matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Fu
     return result;
 }
 
-size_t count_paths::operator()(size_t v) {
+size_t graphs::count_paths::operator()(size_t v) {
     if (visited[v]) {
         return d[v];
     }
