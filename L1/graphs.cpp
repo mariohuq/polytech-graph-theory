@@ -166,6 +166,57 @@ min_path_distances_bellman_ford(const adjacency_matrix<int> &g, Vertex start_ver
     };
 }
 
+floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<int> &g) {
+    std::vector<std::vector<Vertex>> precedents(g.size(), std::vector<Vertex>(g.size(), NO_VERTEX));
+    size_t iterations{};
+    std::vector<std::vector<int>> distances(g.size(), std::vector<int>(g.size(), INF));
+
+    for (Vertex i{}; i < g.size(); ++i) {
+        for (Vertex j{}; j < g.size(); ++j) {
+            if (g[i][j] == 0) {
+                continue;
+            }
+            distances[i][j] = g[i][j];
+            precedents[i][j] = j;
+        }
+    }
+
+    for (Vertex i{}; i < g.size(); ++i) {
+        for (Vertex j{}; j < g.size(); ++j) {
+            if (g[i][j] == 0) {
+                continue;
+            }
+            if (i == j || distances[j][i] == INF) {
+                continue;
+            }
+            for (Vertex k{}; k < g.size(); ++k) {
+                if (i == k || distances[i][k] == INF) {
+                    continue;
+                }
+                if (distances[j][k] == INF
+                 || distances[j][k] > distances[j][i] + distances[i][k]) {
+                    distances[j][k] = distances[j][i] + distances[i][k];
+                    precedents[j][k] = precedents[j][i];
+                }
+            }
+        }
+        for (Vertex j{}; j < g.size(); ++j) {
+            if (distances[j][j] < 0) {
+                // Узел `j` входит в отрицательный контур
+                return {
+                    .iterations = iterations
+                };
+            }
+        }
+    }
+
+    return {
+        .distances = distances,
+        .precedents = precedents,
+        .iterations = iterations
+    };
+}
+
 std::vector<Vertex> reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
     std::vector<Vertex> result;
     result.reserve(precedents.size());

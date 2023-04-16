@@ -46,7 +46,8 @@ namespace graphs {
         // array of path lengths from given vertex to all other
         std::vector<int> distances;
         // array of vertexes,
-        // precedents[i] is immediately before vertex `i` in the shortest path from start vertex to `i`
+        // precedents[i] is immediately before vertex `i` in the shortest path from start vertex to `i`;
+        //               is NO_VERTEX if no path exists
         std::vector<Vertex> precedents;
         // iterations count
         size_t iterations;
@@ -58,6 +59,19 @@ namespace graphs {
     dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<int>& g, Vertex start_vertex);
 
     dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<int>& g, Vertex start_vertex);
+
+    struct floyd_warshall_result_t {
+        // matrix of path lengths: `distances[i][j]` is min path from vertex `i` to `j`
+        std::vector<std::vector<int>> distances;
+        // matrix of vertexes,
+        // precedents[i][j] is immediately before vertex `j` in the shortest path from `i` to `j`;
+        //                  is NO_VERTEX if no path exists
+        std::vector<std::vector<Vertex>> precedents;
+        // iterations count
+        size_t iterations;
+    };
+
+    floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<int>& g);
 
     std::vector<Vertex> reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
 }
