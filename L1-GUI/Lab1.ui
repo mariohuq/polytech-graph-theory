@@ -385,12 +385,33 @@
           <item>
            <widget class="QLabel" name="label_14">
             <property name="text">
-             <string>Путь</string>
+             <string>Путь:</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="pathOut">
+            <property name="frame">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Итераций:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="iterationsOut">
             <property name="frame">
              <bool>false</bool>
             </property>

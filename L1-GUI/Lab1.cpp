@@ -101,6 +101,7 @@ Lab1::Lab1(QWidget *parent)
                     list.append(QString{static_cast<char>('a' + v)});
                 }
                 ui->pathOut->setText(list.join("→"));
+                ui->iterationsOut->setText(QString::number(iterations));
             };
         };
         connect(ui->dijkstra, &QPushButton::pressed, f(graphs::min_path_distances_dijkstra));
@@ -127,6 +128,7 @@ Lab1::Lab1(QWidget *parent)
             list.append(QString{static_cast<char>('a' + v)});
         }
         ui->pathOut->setText(list.join("→"));
+        ui->iterationsOut->setText(QString::number(iterations));
     });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
