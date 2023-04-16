@@ -51,7 +51,13 @@ namespace graphs {
         // iterations count
         size_t iterations;
     };
+
+    constexpr auto INF = INT32_MAX;
+    constexpr Vertex NO_VERTEX = -1u;
+
     dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<int>& g, Vertex start_vertex);
 
     dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<int>& g, Vertex start_vertex);
+
+    std::vector<Vertex> reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
 }

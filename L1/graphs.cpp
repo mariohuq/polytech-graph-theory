@@ -6,8 +6,6 @@
 #include <cassert>
 #include <queue>
 
-//using adjacency_matrix = graphs::adjacency_matrix;
-
 namespace graphs {
     template<typename Func>
     adjacency_matrix<size_t>
@@ -17,6 +15,8 @@ namespace graphs {
     template<typename Func>
     adjacency_matrix<size_t> matrix_power_shimbell(const adjacency_matrix<size_t> &that, size_t power, Func extrem);
 }
+
+using namespace graphs;
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
@@ -41,7 +41,7 @@ std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     return result;
 }
 
-graphs::adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
+adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex_degrees, std::mt19937 &gen) {
     auto nVertices = vertex_degrees.size();
     adjacency_matrix<size_t> result(nVertices, std::vector<size_t>(nVertices));
     auto dis = polya_1<size_t>(4, 8, 3, 50 - 1);
@@ -60,37 +60,36 @@ graphs::adjacency_matrix<size_t> graphs::from_degrees(std::vector<size_t> vertex
     return result;
 }
 
-graphs::adjacency_matrix<size_t> graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+adjacency_matrix<size_t> min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-graphs::adjacency_matrix<size_t> graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
+adjacency_matrix<size_t> max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
     }
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
-graphs::adjacency_matrix<size_t> graphs::generate(size_t nVertices, std::mt19937 &gen) {
+adjacency_matrix<size_t> generate(size_t nVertices, std::mt19937 &gen) {
     return from_degrees(out_degrees(nVertices, gen), gen);
 }
 
-graphs::dijkstra_result_t
-graphs::min_path_distances_dijkstra(const graphs::adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
-// https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
-    std::vector<Vertex> precedents(g.size(), -1u);
+dijkstra_result_t
+min_path_distances_dijkstra(const adjacency_matrix<int> &g, Vertex start_vertex) {
+    // https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
+    std::vector<Vertex> precedents(g.size(), NO_VERTEX);
     std::vector<bool> visited(g.size(), false);
     size_t iterations{};
 
-    constexpr auto INF = INT32_MAX;
     std::vector<int> distances(g.size(), INF);
-    auto cmp = [&](graphs::Vertex i, graphs::Vertex j) {
+    auto cmp = [&](Vertex i, Vertex j) {
         return distances[i] > distances[j];
     };
-    std::priority_queue<graphs::Vertex, std::vector<graphs::Vertex>, decltype(cmp)> qu(cmp);
+    std::priority_queue<Vertex, std::vector<Vertex>, decltype(cmp)> qu(cmp);
     distances[start_vertex] = 0;
     qu.push(start_vertex);
     while(!qu.empty()) {
@@ -100,16 +99,16 @@ graphs::min_path_distances_dijkstra(const graphs::adjacency_matrix<int> &g, grap
             continue;
         }
         visited[nearest_vertex] = true;
-        for (int i = 0; i < g.size(); ++i) {
-            if (g[nearest_vertex][i] == 0) {
+        for (Vertex v{}; v < g.size(); ++v) {
+            if (g[nearest_vertex][v] == 0) {
                 continue;
             }
-            auto distance_via_nearest = distances[nearest_vertex] + g[nearest_vertex][i];
-            if (distance_via_nearest < distances[i]) {
-                distances[i] = distance_via_nearest;
-                qu.push(i);
-                visited[i] = false;
-                precedents[i] = nearest_vertex;
+            auto distance_via_nearest = distances[nearest_vertex] + g[nearest_vertex][v];
+            if (distance_via_nearest < distances[v]) {
+                distances[v] = distance_via_nearest;
+                qu.push(v);
+                visited[v] = false;
+                precedents[v] = nearest_vertex;
             }
             iterations++;
         }
@@ -121,13 +120,44 @@ graphs::min_path_distances_dijkstra(const graphs::adjacency_matrix<int> &g, grap
     };
 }
 
-graphs::dijkstra_result_t
-graphs::min_path_distances_bellman_ford(const graphs::adjacency_matrix<int> &g, graphs::Vertex start_vertex) {
-    std::vector<Vertex> precedents(g.size(), -1u);
+dijkstra_result_t
+min_path_distances_bellman_ford(const adjacency_matrix<int> &g, Vertex start_vertex) {
+    std::vector<Vertex> precedents(g.size(), NO_VERTEX);
     size_t iterations{};
-    constexpr auto INF = INT32_MAX;
-    std::vector<int> distances(g.size(), INF);
 
+    std::vector<int> distances(g.size(), INF);
+    distances[start_vertex] = 0;
+
+    for (int _{}; _ < g.size(); ++_) {
+        for (Vertex u{}; u < g.size(); ++u) {
+            for (Vertex v{}; v < g.size(); ++v) {
+                if (g[u][v] == 0) {
+                    continue;
+                }
+                auto candidate = distances[u] + g[u][v];
+                if (candidate < distances[v]) {
+                    // новый путь короче
+                    distances[v] = candidate;
+                    precedents[v] = u;
+                }
+                iterations++;
+            }
+        }
+    }
+    // проверка на отрицательные контуры
+    for (Vertex u{}; u < g.size(); ++u) {
+        for (Vertex v{}; v < g.size(); ++v) {
+            if (g[u][v] == 0) {
+                continue;
+            }
+            // найден контур отрицательного веса
+            if (distances[v] > distances[u] + g[u][v]) {
+                return {
+                    .iterations = iterations
+                };
+            }
+        }
+    }
 
     return {
             .distances = distances,
@@ -136,10 +166,24 @@ graphs::min_path_distances_bellman_ford(const graphs::adjacency_matrix<int> &g, 
     };
 }
 
+std::vector<Vertex> reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
+    std::vector<Vertex> result;
+    result.reserve(precedents.size());
+    result.push_back(to);
+    while(to != from && precedents[to] != NO_VERTEX) {
+        to = precedents[to];
+        result.push_back(to);
+    }
+    if (to != from) {
+        return {};
+    }
+    std::reverse(result.begin(), result.end());
+    return result;
+}
 
 template<typename Func>
-graphs::adjacency_matrix<size_t>
-graphs::matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
+adjacency_matrix<size_t>
+matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
     assert(power > 0);
     adjacency_matrix<size_t> result = that;
     for (int i = 1; i < power; ++i) {
@@ -149,8 +193,8 @@ graphs::matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func
 }
 
 template<typename Func>
-graphs::adjacency_matrix<size_t>
-graphs::matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
+adjacency_matrix<size_t>
+matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
     assert(lhs.size() == lhs[0].size()); // квадратная
     assert(rhs.size() == rhs[0].size()); // квадратная
     assert(lhs.size() == rhs.size());
@@ -171,7 +215,7 @@ graphs::matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> 
     return result;
 }
 
-size_t graphs::count_paths::operator()(size_t v) {
+size_t count_paths::operator()(size_t v) {
     if (visited[v]) {
         return d[v];
     }
