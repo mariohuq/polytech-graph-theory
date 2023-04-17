@@ -161,7 +161,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
     if (m_label != 0) {
         auto margin = 8.;
         auto center = (sourcePoint + destPoint) / 2;
-        auto rect = QRectF{center, center}.marginsAdded({margin, margin, margin, margin});
+        auto rect = QRectF{center, center}.marginsAdded({margin*1.2, margin, margin*1.2, margin});
         QColor bg_color = Qt::white;
         bg_color.setAlphaF(0.85);
         painter->setPen(bg_color);

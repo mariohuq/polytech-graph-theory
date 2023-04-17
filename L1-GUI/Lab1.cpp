@@ -133,10 +133,14 @@ Lab1::Lab1(QWidget *parent)
     connect(ui->addMinuses, &QPushButton::pressed, [=](){
         auto m = matrixModel->matrix();
         std::uniform_int_distribution<int> dis{0, 1};
-        for (auto& row : m) {
-            for (auto& e : row) {
+        for (graphs::Vertex i{}; i < m.size(); ++i) {
+            for (graphs::Vertex j{}; j < m.size(); ++j) {
                 if (dis(gen)) {
-                    e *= -1;
+                    m[i][j] *= -1;
+                    if (m[i][j] == 0) {
+                        continue;
+                    }
+                    graphScene->updateEdge(i, j, m[i][j]);
                 }
             }
         }

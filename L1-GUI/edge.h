@@ -67,6 +67,9 @@ public:
     int destNodeId() const;
 
     void setLabel(int label) {
+        if (m_label != label) {
+            update();
+        }
         m_label = label;
     }
 
