@@ -48,7 +48,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_gen">
        <attribute name="title">
@@ -77,11 +77,22 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="generate">
-          <property name="text">
-           <string>Генерировать граф</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_99">
+          <item>
+           <widget class="QPushButton" name="generate">
+            <property name="text">
+             <string>Генерировать граф</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addMinuses">
+            <property name="text">
+             <string>Добавить минусы</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QLabel" name="label_2">

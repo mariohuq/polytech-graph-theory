@@ -130,6 +130,18 @@ Lab1::Lab1(QWidget *parent)
         ui->pathOut->setText(list.join("→"));
         ui->iterationsOut->setText(QString::number(iterations));
     });
+    connect(ui->addMinuses, &QPushButton::pressed, [=](){
+        auto m = matrixModel->matrix();
+        std::uniform_int_distribution<int> dis{0, 1};
+        for (auto& row : m) {
+            for (auto& e : row) {
+                if (dis(gen)) {
+                    e *= -1;
+                }
+            }
+        }
+        matrixModel->setMatrix(m);
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
