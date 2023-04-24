@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cassert>
 #include <queue>
+#include <utility>
 
 using namespace graphs;
 
@@ -321,20 +322,16 @@ flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &cost, c
 flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     const auto s = g.source;
     const auto t = g.sink;
-    flow_result_t result = {
-        .max_flow = 0,
-        .flow = adjacency_matrix<>(g.capacity.size(), std::vector<int>(g.capacity.size()))
-    };
 
     auto capacity = g.capacity;
     const auto n = g.capacity.size();
     auto parent = std::vector<Vertex>(g.capacity.size(), -1u);
 
-    const auto bfs = [&]() {
+    const auto bfs = [n,s,t,&parent,&capacity = std::as_const(capacity)]() -> bool {
         std::vector<bool> visited(n, false);
         std::deque<Vertex> queue{s};
         visited[s] = true;
-        parent[s] = -1u;
+        parent[s] = s;
         while (!(queue.empty())) {
             Vertex u = queue.front();
             queue.pop_front();
@@ -350,6 +347,10 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
         return visited[t];
     };
 
+    flow_result_t result = {
+        .max_flow = 0,
+        .flow = adjacency_matrix<>(g.capacity.size(), std::vector<int>(g.capacity.size()))
+    };
     while (bfs()) {
         int path_flow = INF;
         for (Vertex v = t; v != s; v = parent[v]) {

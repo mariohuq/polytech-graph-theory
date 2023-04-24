@@ -88,10 +88,45 @@ void sample_usage() {
 }
 
 void max_flow_test() {
-    auto cost = generate(6, gen);
-    auto capacity = generate_capacities(cost, gen);
-    auto g = add_supersource_supersink(cost, capacity);
-    auto [max_flow, flow] = max_flow_ford_fulkerson(g);
-    std::cout << max_flow << '\n';
-    std::cout << flow[g.source][1] << '\n';
+    {
+        auto g = flow_graph_t{
+            .capacity{
+                {0, 4},
+                {0, 0},
+            },
+            .source=0,
+            .sink=1
+        };
+        auto [max_flow, _] = max_flow_ford_fulkerson(g);
+        assert(4 == max_flow);
+    }
+    {
+        auto g = flow_graph_t{
+            .capacity{
+                {0,5,6,0,0},
+                {0,0,0,4,1},
+                {0,0,0,1,5},
+                {0,0,0,0,1},
+                {0,0,0,0,0},
+            },
+            .source=0,
+            .sink=4,
+        };
+        auto [max_flow, _] = max_flow_ford_fulkerson(g);
+        assert(7 == max_flow);
+    }
+    {
+        auto cost = generate(6, gen);
+        auto capacity = generate_capacities(cost, gen);
+        auto g = add_supersource_supersink(cost, capacity);
+        auto [max_flow, flow] = max_flow_ford_fulkerson(g);
+        std::cout << max_flow << '\n';
+        std::cout << "Flow:\n";
+        for (const auto& row : flow) {
+            for (auto x: row) {
+                std::cout << x << ' ';
+            }
+            std::cout << '\n';
+        }
+    }
 }
