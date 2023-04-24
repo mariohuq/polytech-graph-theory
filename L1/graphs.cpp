@@ -11,6 +11,7 @@ using namespace graphs;
 template<typename Func>
 adjacency_matrix<>
 matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem);
+
 // матрица m[i][j] из длин минимальных (или максимальных) путей от вершины i до j
 template<typename Func>
 adjacency_matrix<> matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem);
@@ -65,6 +66,7 @@ adjacency_matrix<> graphs::min_path_lengths(const adjacency_matrix<> &that, size
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::min<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
+
 adjacency_matrix<> graphs::max_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
@@ -72,6 +74,7 @@ adjacency_matrix<> graphs::max_path_lengths(const adjacency_matrix<> &that, size
     const size_t &(*fn)(const unsigned long &, const unsigned long &) = &std::max<size_t>;
     return matrix_power_shimbell(that, path_length, fn);
 }
+
 adjacency_matrix<> graphs::generate(size_t nVertices, std::mt19937 &gen) {
     return from_degrees(out_degrees(nVertices, gen), gen);
 }
@@ -90,7 +93,7 @@ graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_ve
     std::priority_queue<Vertex, std::vector<Vertex>, decltype(cmp)> qu(cmp);
     distances[start_vertex] = 0;
     qu.push(start_vertex);
-    while(!qu.empty()) {
+    while (!qu.empty()) {
         auto nearest_vertex = qu.top();
         qu.pop();
         if (visited[nearest_vertex]) {
@@ -112,9 +115,9 @@ graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_ve
         }
     }
     return {
-            .distances = distances,
-            .precedents = precedents,
-            .iterations = iterations
+        .distances = distances,
+        .precedents = precedents,
+        .iterations = iterations
     };
 }
 
@@ -158,9 +161,9 @@ graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex star
     }
 
     return {
-            .distances = distances,
-            .precedents = precedents,
-            .iterations = iterations
+        .distances = distances,
+        .precedents = precedents,
+        .iterations = iterations
     };
 }
 
@@ -222,7 +225,7 @@ graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Ver
     std::vector<Vertex> result;
     result.reserve(precedents.size());
     result.push_back(to);
-    while(to != from && precedents[to] != NO_VERTEX) {
+    while (to != from && precedents[to] != NO_VERTEX) {
         to = precedents[to];
         result.push_back(to);
     }
@@ -230,6 +233,136 @@ graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Ver
         return {};
     }
     std::reverse(result.begin(), result.end());
+    return result;
+}
+
+adjacency_matrix<> graphs::generate_capacities(const adjacency_matrix<> &g, std::mt19937 &gen) {
+    auto dis = polya_1<int>(4, 8, 3, 30 - 1);
+    auto copy = g;
+    for (auto &row: copy) {
+        for (auto &item: row) {
+            if (item == 0) {
+                continue;
+            }
+            item = 1 + dis(gen);
+            assert(item > 0);
+        }
+    }
+    return copy;
+}
+
+flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &cost, const adjacency_matrix<> &capacity) {
+    // identify sources and sinks
+    std::vector<bool> is_source(capacity.size(), true);
+    std::vector<bool> is_sink(capacity.size(), true);
+    for (Vertex i{}; i < capacity.size(); ++i) {
+        for (Vertex j = i + 1; j < capacity.size(); ++j) {
+            if (capacity[i][j] != 0) {
+                is_source[j] = false;
+                is_sink[i] = false;
+            }
+        }
+    }
+    std::vector<Vertex> sources;
+    std::vector<Vertex> sinks;
+    for (Vertex i{}; i < capacity.size(); ++i) {
+        if (is_sink[i]) {
+            sinks.push_back(i);
+            continue;
+        }
+        if (is_source[i]) {
+            sources.push_back(i);
+        }
+    }
+    // fix matrices if needed
+    flow_graph_t result{
+        .cost = cost,
+        .capacity = capacity,
+    };
+
+    assert(!sources.empty());
+    if (sources.size() == 1) {
+        result.source = sources.front();
+    } else {
+        result.source = capacity.size();
+        for (auto &row: result.cost) {
+            row.emplace_back();
+        }
+        for (auto &row: result.capacity) {
+            row.emplace_back();
+        }
+        result.cost.emplace_back(result.source + 1, 0u);
+        result.capacity.emplace_back(result.source + 1, 0u);
+        for (auto v: sources) {
+            result.capacity[result.source][v] = INF;
+        }
+    }
+
+    assert(!sinks.empty());
+    if (sinks.size() == 1) {
+        result.sink = sinks.front();
+    } else {
+        result.sink = capacity.size() + (sources.size() > 1);
+        for (auto &row: result.cost) {
+            row.emplace_back();
+        }
+        for (auto &row: result.capacity) {
+            row.emplace_back();
+        }
+        result.cost.emplace_back(result.sink + 1, 0u);
+        result.capacity.emplace_back(result.sink + 1, 0u);
+        for (auto v: sinks) {
+            result.capacity[v][result.sink] = INF;
+        }
+    }
+    return result;
+}
+
+flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
+    const auto s = g.source;
+    const auto t = g.sink;
+    flow_result_t result = {
+        .max_flow = 0,
+        .flow = adjacency_matrix<>(g.capacity.size(), std::vector<int>(g.capacity.size()))
+    };
+
+    auto capacity = g.capacity;
+    const auto n = g.capacity.size();
+    auto parent = std::vector<Vertex>(g.capacity.size(), -1u);
+
+    const auto bfs = [&]() {
+        std::vector<bool> visited(n, false);
+        std::deque<Vertex> queue{s};
+        visited[s] = true;
+        parent[s] = -1u;
+        while (!(queue.empty())) {
+            Vertex u = queue.front();
+            queue.pop_front();
+            for (Vertex v{}; v < n; v++) {
+                if (visited[v] || capacity[u][v] <= 0) {
+                    continue;
+                }
+                queue.push_back(v);
+                parent[v] = u;
+                visited[v] = true;
+            }
+        }
+        return visited[t];
+    };
+
+    while (bfs()) {
+        int path_flow = INF;
+        for (Vertex v = t; v != s; v = parent[v]) {
+            path_flow = std::min(path_flow, capacity[parent[v]][v]);
+        }
+        for (Vertex v = t; v != s; v = parent[v]) {
+            Vertex u = parent[v];
+            capacity[u][v] -= path_flow;
+            capacity[v][u] += path_flow;
+            result.flow[u][v] += path_flow;
+        }
+        result.max_flow += path_flow;
+    }
     return result;
 }
 

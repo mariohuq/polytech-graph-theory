@@ -74,4 +74,30 @@ namespace graphs {
     floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<>& g);
 
     std::vector<Vertex> reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
+
+    // lab3
+
+    struct flow_graph_t {
+        adjacency_matrix<> cost; // 0 means ∞ cost
+        adjacency_matrix<> capacity;
+        Vertex source;
+        Vertex sink;
+    };
+
+    // g: weight edge matrix
+    // returns: random capacities matrix y, such that
+    // g[i][j] == 0 ⇔ y[i][j] == 0 ∀i,j
+    adjacency_matrix<> generate_capacities(const adjacency_matrix<>& g, std::mt19937& gen);
+
+    // adds to the graph supersource and supersink with ∞ edge capacities if needed,
+    // returns new matrix and supersource & supersink vertexes
+    flow_graph_t add_supersource_supersink(const adjacency_matrix<>& cost, const adjacency_matrix<>& capacity);
+
+    struct flow_result_t {
+        int max_flow;
+        adjacency_matrix<> flow;
+    };
+
+    // find maximim flow of given capacities matrix. Ignores g.cost.
+    flow_result_t max_flow_ford_fulkerson(const flow_graph_t& g);
 }

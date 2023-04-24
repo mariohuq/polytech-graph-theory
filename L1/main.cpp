@@ -37,7 +37,10 @@ adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) 
     return result;
 }
 
+void max_flow_test();
+
 int main() {
+    max_flow_test();
     return 0;
 }
 
@@ -82,4 +85,13 @@ void sample_usage() {
     while (std::cin >> to) {
         std::cout << count(to);
     }
+}
+
+void max_flow_test() {
+    auto cost = generate(6, gen);
+    auto capacity = generate_capacities(cost, gen);
+    auto g = add_supersource_supersink(cost, capacity);
+    auto [max_flow, flow] = max_flow_ford_fulkerson(g);
+    std::cout << max_flow << '\n';
+    std::cout << flow[g.source][1] << '\n';
 }
