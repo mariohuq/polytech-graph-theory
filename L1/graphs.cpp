@@ -257,7 +257,7 @@ flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &cost, c
     std::vector<bool> is_source(capacity.size(), true);
     std::vector<bool> is_sink(capacity.size(), true);
     for (Vertex i{}; i < capacity.size(); ++i) {
-        for (Vertex j = i + 1; j < capacity.size(); ++j) {
+        for (Vertex j{}; j < capacity.size(); ++j) {
             if (capacity[i][j] != 0) {
                 is_source[j] = false;
                 is_sink[i] = false;
