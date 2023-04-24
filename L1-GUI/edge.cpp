@@ -169,6 +169,6 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         painter->setBrush(bg_color);
         painter->drawEllipse(rect);
         painter->setPen(Qt::SolidLine);
-        painter->drawText(rect, m_label == graphs::INF ? "∞" : QString::number(m_label), {Qt::AlignCenter});
+        painter->drawText(rect, m_label == graphs::INF ? "∞" : m_label == -graphs::INF ? "-∞" : QString::number(m_label), {Qt::AlignCenter});
     }
 }

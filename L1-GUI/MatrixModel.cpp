@@ -14,6 +14,8 @@ QVariant MatrixModel::data(const QModelIndex &index, int role) const {
         auto data = underlying[index.row()][index.column()];
         if (data == graphs::INF) {
             return "∞";
+        } else if (data == -graphs::INF) {
+            return "-∞";
         }
         return data;
     }

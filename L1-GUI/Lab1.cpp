@@ -203,7 +203,7 @@ Lab1::Lab1(QWidget *parent)
     ui->shimbellMatrix->setModel(shimbelModel);
     ui->costsMatrix->setModel(costMatrixModel);
     ui->flowMatrix->setModel(flowModel);
-    for (auto m : {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix}) {
+    for (auto m : {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix}) {
         m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
     for (auto box : {ui->startBox,
