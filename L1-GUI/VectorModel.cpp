@@ -25,10 +25,10 @@ QVariant VectorModel::headerData(int section, Qt::Orientation orientation, int r
         return {};
     }
     switch (orientation) {
-        case Qt::Horizontal:
-            return QString {'a' + section};
         case Qt::Vertical:
             return QString {static_cast<char>('a' + m_from)};
+        default:
+            return QString {'a' + section};
     }
 }
 

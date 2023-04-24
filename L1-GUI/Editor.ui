@@ -258,7 +258,7 @@
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
       <property name="renderHints">
-       <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform</set>
+       <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform</set>
       </property>
       <property name="cacheMode">
        <set>QGraphicsView::CacheBackground</set>
