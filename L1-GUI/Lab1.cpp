@@ -100,7 +100,10 @@ Lab1::Lab1(QWidget *parent)
                 for (auto v: graphs::reconstruct_path(precedents, start, end)) {
                     list.append(QString{static_cast<char>('a' + v)});
                 }
-                ui->pathOut->setText(list.join("→"));
+                ui->pathOut->setText(list.empty()
+                                     ? "Такого пути нет"
+                                     : list.join("→")
+                );
                 ui->iterationsOut->setText(QString::number(iterations));
             };
         };
@@ -127,7 +130,10 @@ Lab1::Lab1(QWidget *parent)
         for (auto v: graphs::reconstruct_path(precedents[start], start, end)) {
             list.append(QString{static_cast<char>('a' + v)});
         }
-        ui->pathOut->setText(list.join("→"));
+        ui->pathOut->setText(list.empty()
+                             ? "Такого пути нет"
+                             : list.join("→")
+        );
         ui->iterationsOut->setText(QString::number(iterations));
     });
     connect(ui->addMinuses, &QPushButton::pressed, [=](){
