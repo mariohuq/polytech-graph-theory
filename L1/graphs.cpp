@@ -237,7 +237,7 @@ graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Ver
     return result;
 }
 
-adjacency_matrix<> graphs::generate_capacities(const adjacency_matrix<> &g, std::mt19937 &gen) {
+adjacency_matrix<> graphs::generate_costs(const adjacency_matrix<> &g, std::mt19937 &gen) {
     auto dis = polya_1<int>(4, 8, 3, 30 - 1);
     auto copy = g;
     for (auto &row: copy) {
@@ -252,7 +252,7 @@ adjacency_matrix<> graphs::generate_capacities(const adjacency_matrix<> &g, std:
     return copy;
 }
 
-flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &cost, const adjacency_matrix<> &capacity) {
+flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &capacity, const adjacency_matrix<> &cost) {
     // identify sources and sinks
     std::vector<bool> is_source(capacity.size(), true);
     std::vector<bool> is_sink(capacity.size(), true);
@@ -277,8 +277,8 @@ flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &cost, c
     }
     // fix matrices if needed
     flow_graph_t result{
-        .cost = cost,
         .capacity = capacity,
+        .cost = cost,
     };
 
     assert(!sources.empty());

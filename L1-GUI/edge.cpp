@@ -50,6 +50,7 @@
 
 #include "edge.h"
 #include "node.h"
+#include "../L1/graphs.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -168,6 +169,6 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         painter->setBrush(bg_color);
         painter->drawEllipse(rect);
         painter->setPen(Qt::SolidLine);
-        painter->drawText(rect, QString::number(m_label), {Qt::AlignCenter});
+        painter->drawText(rect, m_label == graphs::INF ? "∞" : QString::number(m_label), {Qt::AlignCenter});
     }
 }

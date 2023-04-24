@@ -18,8 +18,10 @@ Lab1::Lab1(QWidget *parent)
     ui->setupUi(this);
 
     auto matrixModel = new MatrixModel{this};
+    auto costMatrixModel = new MatrixModel{this};
     auto shimbelModel = new MatrixModel{this};
     auto distances2dModel = new MatrixModel{this};
+    auto flowModel = new MatrixModel{this};
     auto distances1dModel = new VectorModel{this};
 
     auto graphScene = new GraphScene{{}, ui->graphicsView};
@@ -31,6 +33,7 @@ Lab1::Lab1(QWidget *parent)
         auto adjacency = graphs::generate(ui->nVertices->value(), gen);
         matrixModel->setMatrix(adjacency);
         shimbelModel->setMatrix({});
+        costMatrixModel->setMatrix({});
         graphScene->reset();
         for (int i = 0; i < adjacency.size(); ++i) {
             graphScene->updateNode(i, "ellipse");
@@ -152,12 +155,54 @@ Lab1::Lab1(QWidget *parent)
         }
         matrixModel->setMatrix(m);
     });
+    // Lab 3
+    connect(ui->generate_costs, &QPushButton::pressed, [=](){
+        costMatrixModel->setMatrix(graphs::generate_costs(matrixModel->matrix(), gen));
+    });
+    connect(ui->identify_source_sink, &QPushButton::pressed, [=](){
+        auto g = graphs::add_supersource_supersink(matrixModel->matrix(), costMatrixModel->matrix());
+        ui->sourceText->setText({static_cast<char>('a' + g.source)});
+        m_flow_source = g.source;
+        ui->sinkText->setText({static_cast<char>('a' + g.sink)});
+        m_flow_sink = g.sink;
+        if (matrixModel->matrix().size() == g.capacity.size()) {
+            return;
+        }
+        ui->nVertices->setValue(g.capacity.size());
+        matrixModel->setMatrix(g.capacity);
+        for (graphs::Vertex i = std::min(g.source, g.sink); i < g.capacity.size(); ++i) {
+            graphScene->updateNode(i, "ellipse");
+        }
+        for (graphs::Vertex i{}; i < g.capacity.size(); i++) {
+            if (g.capacity[g.source][i]) {
+                graphScene->addEdge(g.source, i, g.capacity[g.source][i]);
+            }
+            if (g.capacity[i][g.sink]) {
+                graphScene->addEdge(i, g.sink, g.capacity[i][g.sink]);
+            }
+        }
+        if (costMatrixModel->matrix().empty()) {
+            return;
+        }
+        costMatrixModel->setMatrix(g.cost);
+    });
+    connect(ui->fulkerson, &QPushButton::pressed, [=](){
+        auto [max_flow, flow_matrix] = graphs::max_flow_ford_fulkerson({
+            .capacity = matrixModel->matrix(),
+            .source = m_flow_source,
+            .sink = m_flow_sink
+        });
+        ui->flowText->setText(QString::number(max_flow));
+        flowModel->setMatrix(flow_matrix);
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
     ui->graphicsView->installEventFilter(new ResizeFilter);
     ui->adjMatrix->setModel(matrixModel);
     ui->shimbellMatrix->setModel(shimbelModel);
+    ui->costsMatrix->setModel(costMatrixModel);
+    ui->flowMatrix->setModel(flowModel);
     for (auto m : {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix}) {
         m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }

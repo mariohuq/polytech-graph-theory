@@ -23,5 +23,6 @@ public:
 private:
     Ui::Lab1 *ui;
     std::mt19937 gen;
+    graphs::Vertex m_flow_source, m_flow_sink;
 };
 

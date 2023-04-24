@@ -78,20 +78,20 @@ namespace graphs {
     // lab3
 
     struct flow_graph_t {
-        adjacency_matrix<> cost; // 0 means ∞ cost
         adjacency_matrix<> capacity;
+        adjacency_matrix<> cost; // 0 means ∞ cost
         Vertex source;
         Vertex sink;
     };
 
     // g: weight edge matrix
-    // returns: random capacities matrix y, such that
+    // returns: random costs matrix y, such that
     // g[i][j] == 0 ⇔ y[i][j] == 0 ∀i,j
-    adjacency_matrix<> generate_capacities(const adjacency_matrix<>& g, std::mt19937& gen);
+    adjacency_matrix<> generate_costs(const adjacency_matrix<>& g, std::mt19937& gen);
 
     // adds to the graph supersource and supersink with ∞ edge capacities if needed,
     // returns new matrix and supersource & supersink vertexes
-    flow_graph_t add_supersource_supersink(const adjacency_matrix<>& cost, const adjacency_matrix<>& capacity);
+    flow_graph_t add_supersource_supersink(const adjacency_matrix<>& capacity, const adjacency_matrix<>& cost);
 
     struct flow_result_t {
         int max_flow;
