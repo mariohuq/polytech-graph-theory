@@ -10,13 +10,15 @@ MatrixModel::MatrixModel(QObject *parent, graphs::adjacency_matrix<> underlying)
         : QAbstractTableModel(parent), underlying(std::move(underlying)) {}
 
 QVariant MatrixModel::data(const QModelIndex &index, int role) const {
+    auto data = underlying[index.row()][index.column()];
     if (role == Qt::DisplayRole) {
-        auto data = underlying[index.row()][index.column()];
         if (data == graphs::INF) {
             return "∞";
         } else if (data == -graphs::INF) {
             return "-∞";
         }
+        return data;
+    } else if (role == Qt::EditRole) {
         return data;
     }
     return {};
