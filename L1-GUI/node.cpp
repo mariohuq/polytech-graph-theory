@@ -88,6 +88,7 @@ void Node::calculateForces()
         m_new_pos = pos();
         return;
     }
+
     // Sum up all forces pushing this item away
     QPointF velocity{0, 0};
     for (const auto& [_, node] : scene()->nodes) {
@@ -102,7 +103,7 @@ void Node::calculateForces()
     }
 
     // Now subtract all forces pulling items together
-    double weight = static_cast<double>(m_edges.size() + 1) * 10;
+    double weight = static_cast<double>(m_edges.size() + 1) * 50.0;
     for (Edge *edge : m_edges) {
         if (!edge->m_source->isVisible() || !edge->m_source->isVisible()) {
             continue;
