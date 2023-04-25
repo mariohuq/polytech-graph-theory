@@ -6,6 +6,8 @@
 #include <cassert>
 #include <queue>
 #include <utility>
+#include <map>
+#include <set>
 
 using namespace graphs;
 
@@ -365,6 +367,135 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
         result.max_flow += path_flow;
     }
     return result;
+}
+
+min_cost_flow_result_t min_cost_flow(const flow_graph_t &g, int desired_flow) {
+
+    int maxFlow = 0;
+    int flow = 0;
+    int sigma = INFINITY;
+    int result = 0;
+    int** modifiedCostArr;
+
+    auto numberVert = g.capacity.size();
+
+    std::map<int, std::pair<std::vector<int>, int>> tempMap;
+    std::map<std::vector<int>, std::pair<int, int>> temporary;
+    std::set<std::pair<int, int>> resultVert;
+    std::vector<std::vector<int>> f(numberVert);
+    std::vector<int> k;
+
+    //auto& AdjacencyMatrixInf = g.capacity;
+    auto& CostMatrix = g.cost;
+    auto& CapacityMatrix = g.capacity;
+    auto b = desired_flow;
+
+    modifiedCostArr = new int* [numberVert];
+    for (int i = 0; i < numberVert; i++)
+    {
+        modifiedCostArr[i] = new int[numberVert];
+        for (int j = 0; j < numberVert; j++)
+        {
+            f.at(i).push_back(0);
+            modifiedCostArr[i][j] = CostMatrix[i][j];
+        }
+    }
+
+    while (maxFlow < b)
+    {
+        std::vector<int> path = BellmanFordPath(modifiedCostArr);
+        for (int i = 0; i < path.size() - 1; i++)
+        {
+            sigma = std::min(sigma, CapacityMatrix[path.at(i)][path.at(i + 1)]);
+            if (resultVert.find({path.at(i), path.at(i + 1)}) == resultVert.end())
+            {
+                resultVert.insert({path.at(i), path.at(i + 1)});
+            }
+        }
+
+        flow = std::min(sigma, b - maxFlow);
+        k.push_back(flow);
+        int tempCost = 0;
+
+        for (int i = 0; i < path.size() - 1; i++)
+        {
+            tempCost += CostMatrix[path.at(i)][path.at(i + 1)];
+        }
+
+        if (temporary.find(path) == temporary.end())
+        {
+            temporary[path] = {flow, tempCost};
+        }
+        else
+        {
+            temporary[path].first += flow;
+        }
+
+        for (int i = 0; i < path.size() - 1; i++)
+        {
+            f.at(path[i]).at(path[i + 1]) += flow;
+            if (f.at(path[i]).at(path[i + 1]) == CapacityMatrix[path[i]][path[i + 1]])
+            {
+                modifiedCostArr[path[i]][path[i + 1]] = INFINITY;
+                modifiedCostArr[path[i + 1]][path[i]] = INFINITY;
+            }
+            else
+            {
+                if (f.at(path[i]).at(path[i + 1]) >= 0)
+                {
+                    modifiedCostArr[path[i]][path[i + 1]] = CostMatrix[path[i]][path[i + 1]];
+                    modifiedCostArr[path[i + 1]][path[i]] = -modifiedCostArr[path[i]][path[i + 1]];
+                }
+            }
+        }
+        maxFlow += flow;
+    }
+    int min = INFINITY;
+    std::vector<std::pair<int, std::pair<std::vector<int>, int>>> tempVect;
+
+    for (auto & i : temporary)
+    {
+        tempVect.push_back({i.second.second, {i.first, i.second.first}});
+    }
+
+    for (int i = 0; i < tempVect.size() - 1; i++)
+    {
+        for (int j = 0; j < tempVect.size() - 1; j++)
+        {
+            if (tempVect[j].first > tempVect[j + 1].first)
+                swap(tempVect[j], tempVect[j + 1]);
+        }
+    }
+
+    std::vector<int> vecPotok;
+    std::vector<int> vecMatr;
+    int ur = 0;
+
+    for (int i = 0; i < tempVect.size(); i++)
+    {
+    //	printf("\n\nFlow path: ");
+        for (int j = 0; j < tempVect[i].second.first.size() - 1; j++)
+        {
+            //printf("%d - ", tempVect[i].second.first[j] + 1);
+            vecMatr.push_back(tempVect[i].second.first[j]);
+        }
+
+        //printf("%d", tempVect[i].second.first[tempVect[i].second.first.size() - 1] + 1);
+        vecMatr.push_back(tempVect[i].second.first[tempVect[i].second.first.size() - 1]);
+
+        //printf("\n\nFlow throught the path found: %d\n", tempVect[i].second.second);
+        for (int l = 0; l < vecMatr.size() - 1; l++)
+        {
+            if (vecMatr[l] < vecMatr[l + 1] && matrPotok[vecMatr[l]][vecMatr[l + 1]] == 0)
+                matrPotok[vecMatr[l]][vecMatr[l + 1]] = tempVect[i].second.second;
+        }
+        vecPotok.push_back(tempVect[i].second.second);
+    }
+
+    for_each(resultVert.begin(), resultVert.end(), [&result, &f](pair<int, int>x) {result += f.at(x.first).at(x.second) * CostMatrix[x.first][x.second]; });
+
+
+    return {};
 }
 
 template<typename Func>

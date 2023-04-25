@@ -100,4 +100,12 @@ namespace graphs {
 
     // find maximim flow of given capacities matrix. Ignores g.cost.
     flow_result_t max_flow_ford_fulkerson(const flow_graph_t& g);
+
+    struct min_cost_flow_result_t {
+        int cost;
+        adjacency_matrix<> flow;
+    };
+
+    min_cost_flow_result_t
+    min_cost_flow(const flow_graph_t& g, int desired_flow);
 }
