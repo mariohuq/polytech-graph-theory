@@ -102,6 +102,7 @@ namespace graphs {
     flow_result_t max_flow_ford_fulkerson(const flow_graph_t& g);
 
     struct min_cost_flow_result_t {
+        int flow_sum;
         int cost;
         adjacency_matrix<> flow;
     };

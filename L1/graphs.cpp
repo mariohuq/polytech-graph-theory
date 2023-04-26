@@ -370,6 +370,47 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
 }
 
 min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_flow) {
+
+    constexpr auto custom_dijkstra = [](const adjacency_matrix<>& capacity, const adjacency_matrix<>& cost,Vertex start_vertex) -> dijkstra_result_t {
+        std::vector<Vertex> precedents(capacity.size(), NO_VERTEX);
+        std::vector<bool> visited(capacity.size(), false);
+        size_t iterations{};
+
+        std::vector<int> distances(capacity.size(), INF);
+        auto cmp = [&](Vertex i, Vertex j) {
+            return distances[i] > distances[j];
+        };
+        std::priority_queue<Vertex, std::vector<Vertex>, decltype(cmp)> qu(cmp);
+        distances[start_vertex] = 0;
+        qu.push(start_vertex);
+        while (!qu.empty()) {
+            auto nearest_vertex = qu.top();
+            qu.pop();
+            if (visited[nearest_vertex]) {
+                continue;
+            }
+            visited[nearest_vertex] = true;
+            for (Vertex v{}; v < capacity.size(); ++v) {
+                if (capacity[nearest_vertex][v] == 0) {
+                    continue;
+                }
+                auto distance_via_nearest = distances[nearest_vertex] + cost[nearest_vertex][v];
+                if (distance_via_nearest < distances[v]) {
+                    distances[v] = distance_via_nearest;
+                    qu.push(v);
+                    visited[v] = false;
+                    precedents[v] = nearest_vertex;
+                }
+                iterations++;
+            }
+        }
+        return {
+            .distances = distances,
+            .precedents = precedents,
+            .iterations = iterations
+        };
+    };
+
     auto my_cost = g.cost;
     for (Vertex i{}; i < g.capacity.size(); ++i) {
         for (Vertex j{}; j < g.capacity.size(); ++j) {
@@ -385,7 +426,7 @@ min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_
     int cost = 0;
     adjacency_matrix<> flows(g.capacity.size(), std::vector<int>(g.capacity.size()));
     while (flow < desired_flow) {
-        auto [cost_to_reach, precedent, _] = min_path_distances_dijkstra(g.cost, g.source);
+        auto [cost_to_reach, precedent, _] = custom_dijkstra(my_capacity, my_cost, g.source);
         if (cost_to_reach[g.sink] == INF) {
             break;
         }
@@ -406,6 +447,7 @@ min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_
         }
     }
     return {
+        .flow_sum = flow,
         .cost = flow < desired_flow ? -1 : cost,
         .flow = flows
     };

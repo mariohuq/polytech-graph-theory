@@ -46,6 +46,8 @@ Lab1::Lab1(QWidget *parent)
                 graphScene->addEdge(i, j, adjacency[i][j]);
             }
         }
+        m_flow_sink = 0;
+        m_flow_source = 0;
     });
     // Shimbel method
     {
@@ -187,12 +189,29 @@ Lab1::Lab1(QWidget *parent)
         costMatrixModel->setMatrix(g.cost);
     });
     connect(ui->fulkerson, &QPushButton::pressed, [=](){
+        if (m_flow_source == m_flow_sink) {
+            return;
+        }
         auto [max_flow, flow_matrix] = graphs::max_flow_ford_fulkerson({
             .capacity = matrixModel->matrix(),
             .source = m_flow_source,
             .sink = m_flow_sink
         });
         ui->flowText->setText(QString::number(max_flow));
+        flowModel->setMatrix(flow_matrix);
+    });
+    connect(ui->minFlow, &QPushButton::pressed, [=](){
+        if (ui->flowText->text().isEmpty() || m_flow_source == m_flow_sink) {
+            return;
+        }
+        auto [flow_sum, cost, flow_matrix] = graphs::min_cost_flow({
+            .capacity = matrixModel->matrix(),
+            .cost = costMatrixModel->matrix(),
+            .source = m_flow_source,
+            .sink = m_flow_sink
+        }, ui->flowText->text().toInt() * 2 / 3);
+        ui->costText->setText(cost != -1 ? QString::number(cost) : "—");
+        ui->minFlowText->setText(QString::number(flow_sum));
         flowModel->setMatrix(flow_matrix);
     });
 
