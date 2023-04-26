@@ -13,6 +13,17 @@ using namespace graphs;
 
 std::mt19937 gen{std::random_device{}()};
 
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<T>>& g) {
+    for (const auto& row : g) {
+        for (const auto &elem: row) {
+            os << elem << ' ';
+        }
+        os << '\n';
+    }
+    return os;
+}
+
 //Д. 1.3. Алгоритм построения случайного ориентированного бесконтурного графа, Хаг
 adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) {
     auto dis = polya_1<int>(20, 20, 1, nVertices * (nVertices - 1) / 2 - 1);
@@ -38,9 +49,11 @@ adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) 
 }
 
 void max_flow_test();
+void min_max_flow_test();
 
 int main() {
-    max_flow_test();
+//    max_flow_test();
+min_max_flow_test();
     return 0;
 }
 
@@ -50,12 +63,7 @@ void test_1_vertex() {
 
 void test_2_vertexes() {
     auto g = generate(2, gen);
-    for (const auto& row : g) {
-        for (const auto& elem: row) {
-            std::cout << elem << ' ';
-        }
-        std::cout << '\n';
-    }
+    std::cout << g;
 }
 
 void sample_usage() {
@@ -66,20 +74,9 @@ void sample_usage() {
     }
     std::cout << '\n';
     auto g = from_degrees(degs, gen);
-    for (const auto& row : g) {
-        for (const auto& elem: row) {
-            std::cout << elem << ',';
-        }
-        std::cout << '\n';
-    }
-    std::cout << '\n';
+    std::cout << g << '\n';
     auto g3 = min_path_lengths(g, 3);
-    for (const auto& row : g3) {
-        for (const auto& elem: row) {
-            std::cout << elem << ',';
-        }
-        std::cout << '\n';
-    }
+    std::cout << g3;
     auto count = count_paths(g,0);
     size_t to;
     while (std::cin >> to) {
@@ -116,17 +113,32 @@ void max_flow_test() {
         assert(7 == max_flow);
     }
     {
-        auto cost = generate(6, gen);
-        auto capacity = generate_capacities(cost, gen);
-        auto g = add_supersource_supersink(cost, capacity);
+        auto capacity = generate(6, gen);
+        auto cost = generate_costs(capacity, gen);
+        auto g = add_supersource_supersink(capacity, cost);
         auto [max_flow, flow] = max_flow_ford_fulkerson(g);
         std::cout << max_flow << '\n';
         std::cout << "Flow:\n";
-        for (const auto& row : flow) {
-            for (auto x: row) {
-                std::cout << x << ' ';
-            }
-            std::cout << '\n';
-        }
+        std::cout << flow;
     }
+}
+
+void min_max_flow_test() {
+    auto g = flow_graph_t{
+        .capacity{
+            {0,5,6,0,0},
+            {0,0,0,4,1},
+            {0,0,0,1,5},
+            {0,0,0,0,1},
+            {0,0,0,0,0},
+        },
+        .source=0,
+        .sink=4,
+    };
+    g.cost = generate_costs(g.capacity, gen);
+    std::cout << "Capacities:\n" << g.capacity << '\n';
+    std::cout << "Costs:\n" << g.cost << '\n';
+    auto [cost, flow] = min_cost_flow(g, 7 * 2 / 3);
+    std::cout << "Cost = "<< cost << '\n';
+    std::cout << "Flow:\n" << flow << '\n';
 }

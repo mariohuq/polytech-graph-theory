@@ -329,7 +329,7 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     const auto n = g.capacity.size();
     auto parent = std::vector<Vertex>(g.capacity.size(), -1u);
 
-    const auto bfs = [n,s,t,&parent,&capacity = std::as_const(capacity)]() -> bool {
+    const auto bfs = [n, s, t, &parent, &capacity = std::as_const(capacity)]() -> bool {
         std::vector<bool> visited(n, false);
         std::deque<Vertex> queue{s};
         visited[s] = true;
@@ -369,133 +369,46 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     return result;
 }
 
-min_cost_flow_result_t min_cost_flow(const flow_graph_t &g, int desired_flow) {
+min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_flow) {
+    auto my_cost = g.cost;
+    for (Vertex i{}; i < g.capacity.size(); ++i) {
+        for (Vertex j{}; j < g.capacity.size(); ++j) {
+            if (g.capacity[i][j] == 0) {
+                continue;
+            }
+            my_cost[j][i] = -my_cost[i][j];
+        }
+    }
+    auto my_capacity = g.capacity;
 
-    int maxFlow = 0;
     int flow = 0;
-    int sigma = INFINITY;
-    int result = 0;
-    int** modifiedCostArr;
+    int cost = 0;
+    adjacency_matrix<> flows(g.capacity.size(), std::vector<int>(g.capacity.size()));
+    while (flow < desired_flow) {
+        auto [cost_to_reach, precedent, _] = min_path_distances_dijkstra(g.cost, g.source);
+        if (cost_to_reach[g.sink] == INF) {
+            break;
+        }
+        // find max flow on that path
+        int f = desired_flow - flow;
+        for (auto cur = g.sink; cur != g.source; cur = precedent[cur]) {
+            f = std::min(f, my_capacity[precedent[cur]][cur]);
+        }
 
-    auto numberVert = g.capacity.size();
+        // apply flow
+        flow += f;
+        cost += f * cost_to_reach[g.sink];
 
-    std::map<int, std::pair<std::vector<int>, int>> tempMap;
-    std::map<std::vector<int>, std::pair<int, int>> temporary;
-    std::set<std::pair<int, int>> resultVert;
-    std::vector<std::vector<int>> f(numberVert);
-    std::vector<int> k;
-
-    //auto& AdjacencyMatrixInf = g.capacity;
-    auto& CostMatrix = g.cost;
-    auto& CapacityMatrix = g.capacity;
-    auto b = desired_flow;
-
-    modifiedCostArr = new int* [numberVert];
-    for (int i = 0; i < numberVert; i++)
-    {
-        modifiedCostArr[i] = new int[numberVert];
-        for (int j = 0; j < numberVert; j++)
-        {
-            f.at(i).push_back(0);
-            modifiedCostArr[i][j] = CostMatrix[i][j];
+        for (auto cur = g.sink; cur != g.source; cur = precedent[cur]) {
+            my_capacity[precedent[cur]][cur] -= f;
+            my_capacity[cur][precedent[cur]] += f;
+            flows[precedent[cur]][cur] += f;
         }
     }
-
-    while (maxFlow < b)
-    {
-        std::vector<int> path = BellmanFordPath(modifiedCostArr);
-        for (int i = 0; i < path.size() - 1; i++)
-        {
-            sigma = std::min(sigma, CapacityMatrix[path.at(i)][path.at(i + 1)]);
-            if (resultVert.find({path.at(i), path.at(i + 1)}) == resultVert.end())
-            {
-                resultVert.insert({path.at(i), path.at(i + 1)});
-            }
-        }
-
-        flow = std::min(sigma, b - maxFlow);
-        k.push_back(flow);
-        int tempCost = 0;
-
-        for (int i = 0; i < path.size() - 1; i++)
-        {
-            tempCost += CostMatrix[path.at(i)][path.at(i + 1)];
-        }
-
-        if (temporary.find(path) == temporary.end())
-        {
-            temporary[path] = {flow, tempCost};
-        }
-        else
-        {
-            temporary[path].first += flow;
-        }
-
-        for (int i = 0; i < path.size() - 1; i++)
-        {
-            f.at(path[i]).at(path[i + 1]) += flow;
-            if (f.at(path[i]).at(path[i + 1]) == CapacityMatrix[path[i]][path[i + 1]])
-            {
-                modifiedCostArr[path[i]][path[i + 1]] = INFINITY;
-                modifiedCostArr[path[i + 1]][path[i]] = INFINITY;
-            }
-            else
-            {
-                if (f.at(path[i]).at(path[i + 1]) >= 0)
-                {
-                    modifiedCostArr[path[i]][path[i + 1]] = CostMatrix[path[i]][path[i + 1]];
-                    modifiedCostArr[path[i + 1]][path[i]] = -modifiedCostArr[path[i]][path[i + 1]];
-                }
-            }
-        }
-        maxFlow += flow;
-    }
-    int min = INFINITY;
-    std::vector<std::pair<int, std::pair<std::vector<int>, int>>> tempVect;
-
-    for (auto & i : temporary)
-    {
-        tempVect.push_back({i.second.second, {i.first, i.second.first}});
-    }
-
-    for (int i = 0; i < tempVect.size() - 1; i++)
-    {
-        for (int j = 0; j < tempVect.size() - 1; j++)
-        {
-            if (tempVect[j].first > tempVect[j + 1].first)
-                swap(tempVect[j], tempVect[j + 1]);
-        }
-    }
-
-    std::vector<int> vecPotok;
-    std::vector<int> vecMatr;
-    int ur = 0;
-
-    for (int i = 0; i < tempVect.size(); i++)
-    {
-    //	printf("\n\nFlow path: ");
-        for (int j = 0; j < tempVect[i].second.first.size() - 1; j++)
-        {
-            //printf("%d - ", tempVect[i].second.first[j] + 1);
-            vecMatr.push_back(tempVect[i].second.first[j]);
-        }
-
-        //printf("%d", tempVect[i].second.first[tempVect[i].second.first.size() - 1] + 1);
-        vecMatr.push_back(tempVect[i].second.first[tempVect[i].second.first.size() - 1]);
-
-        //printf("\n\nFlow throught the path found: %d\n", tempVect[i].second.second);
-        for (int l = 0; l < vecMatr.size() - 1; l++)
-        {
-            if (vecMatr[l] < vecMatr[l + 1] && matrPotok[vecMatr[l]][vecMatr[l + 1]] == 0)
-                matrPotok[vecMatr[l]][vecMatr[l + 1]] = tempVect[i].second.second;
-        }
-        vecPotok.push_back(tempVect[i].second.second);
-    }
-
-    for_each(resultVert.begin(), resultVert.end(), [&result, &f](pair<int, int>x) {result += f.at(x.first).at(x.second) * CostMatrix[x.first][x.second]; });
-
-
-    return {};
+    return {
+        .cost = flow < desired_flow ? -1 : cost,
+        .flow = flows
+    };
 }
 
 template<typename Func>
