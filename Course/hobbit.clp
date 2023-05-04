@@ -50,7 +50,9 @@
     (eq ?tag ?tag-1)))
   =>
   (if (= (length ?valid-answers) 0)
-    then (assert (end-of-story))
+    then
+      (assert (end-of-story))
+      (printout t ?the-question)
     else (assert (response
       (question-id ?question-id)
       (tag (ask-question ?the-question ?valid-answers))))))
