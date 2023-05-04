@@ -14,7 +14,11 @@
 #include "VectorModel.h"
 
 Lab1::Lab1(QWidget *parent)
-        : QWidget(parent), ui{new Ui::Lab1}, gen{std::random_device{}()} {
+        : QWidget(parent)
+        , ui{new Ui::Lab1}
+        , gen{std::random_device{}()}
+        , m_flow_source{}
+        , m_flow_sink{} {
     ui->setupUi(this);
 
     auto matrixModel = new MatrixModel{this};
@@ -162,6 +166,9 @@ Lab1::Lab1(QWidget *parent)
         costMatrixModel->setMatrix(graphs::generate_costs(matrixModel->matrix(), gen));
     });
     connect(ui->identify_source_sink, &QPushButton::pressed, [=](){
+        if (matrixModel->matrix().empty()) {
+            return;
+        }
         auto g = graphs::add_supersource_supersink(matrixModel->matrix(), costMatrixModel->matrix());
         ui->sourceText->setText({static_cast<char>('a' + g.source)});
         m_flow_source = g.source;
