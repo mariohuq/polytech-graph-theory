@@ -109,4 +109,14 @@ namespace graphs {
 
     min_cost_flow_result_t
     min_cost_flow(const flow_graph_t& g, int desired_flow);
+
+    // lab4
+
+    struct edge_t {
+        Vertex from;
+        Vertex to;
+        int weight;
+    };
+
+    void kruskal_min_sst(const adjacency_matrix<>& g);
 }

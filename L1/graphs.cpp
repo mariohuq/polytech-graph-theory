@@ -19,6 +19,8 @@ matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Fu
 template<typename Func>
 adjacency_matrix<> matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem);
 
+std::vector<edge_t> edges(const adjacency_matrix<>& g);
+
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
