@@ -19,8 +19,7 @@ matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Fu
 template<typename Func>
 adjacency_matrix<> matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem);
 
-std::vector<edge_t> edges(const adjacency_matrix<>& g);
-
+std::vector<edge_t> edges_of(const adjacency_matrix<> &g);
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
@@ -373,7 +372,8 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
 
 min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_flow) {
 
-    constexpr auto custom_dijkstra = [](const adjacency_matrix<>& capacity, const adjacency_matrix<>& cost,Vertex start_vertex) -> dijkstra_result_t {
+    constexpr auto custom_dijkstra = [](const adjacency_matrix<> &capacity, const adjacency_matrix<> &cost,
+                                        Vertex start_vertex) -> dijkstra_result_t {
         std::vector<Vertex> precedents(capacity.size(), NO_VERTEX);
         std::vector<bool> visited(capacity.size(), false);
         size_t iterations{};
@@ -455,6 +455,74 @@ min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_
     };
 }
 
+min_sst_result_t
+graphs::kruskal_sst(const adjacency_matrix<> &g) {
+    std::set<edge_t> result;
+    auto edges = edges_of(g);
+    std::sort(edges.begin(), edges.end());
+    size_t iterations;
+
+    // disjoint set union
+    //  сжатие пути плюс ранговая эвристика
+    // http://e-maxx.ru/algo/dsu
+    struct dsu_t {
+        // сжатый массив предков, т.е. для каждой вершины там может храниться
+        // не непосредственный предок, а предок предка, предок предка предка, и т.д.
+        std::vector<Vertex> parent;
+        std::vector<size_t> rank;
+
+        explicit dsu_t(size_t nVertices)
+            : parent(nVertices), rank(nVertices) {
+            for (int i = 0; i < nVertices; ++i) {
+                parent[i] = i;
+            }
+        }
+
+        Vertex operator()(Vertex v) {
+            return v == parent[v] ? v : parent[v] = operator()(parent[v]);
+        }
+
+        void unite(Vertex a, Vertex b) {
+            a = operator()(a);
+            b = operator()(b);
+            if (a == b) {
+                return;
+            }
+            if (rank[a] < rank[b]) {
+                std::swap(a, b);
+            }
+            parent[b] = a;
+            if (rank[a] == rank[b]) {
+                ++rank[a];
+            }
+        }
+    };
+
+    dsu_t dsu{g.size()};
+    auto it = edges.begin();
+    size_t cost = 0;
+    for (int _ = 1; _ < g.size(); ++_) {
+        while (dsu(it->from) == dsu(it->to)) {
+            iterations++;
+            it++;
+        }
+        dsu.unite(it->from, it->to);
+        result.insert(*it);
+        cost += it->weight;
+        it++;
+    }
+    return {
+        .spanning_tree = result,
+        .cost = cost,
+        .iterations = iterations
+    };
+}
+
+min_sst_result_t
+graphs::prim_sst(const adjacency_matrix<> &g) {
+    return {};
+}
+
 template<typename Func>
 adjacency_matrix<>
 matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
@@ -503,4 +571,17 @@ size_t graphs::count_paths::operator()(size_t v) {
         result += operator()(i);
     }
     return d[v] = result;
+}
+
+std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
+    std::vector<edge_t> result;
+    for (Vertex i{}; i < g.size(); ++i) {
+        for (Vertex j{}; j < g.size(); ++j) {
+            if (g[i][j] == 0) {
+                continue;
+            }
+            result.push_back({.from = i, .to = j, .weight = g[i][j]});
+        }
+    }
+    return result;
 }

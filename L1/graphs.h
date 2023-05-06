@@ -116,7 +116,21 @@ namespace graphs {
         Vertex from;
         Vertex to;
         int weight;
+
+        bool operator<(const edge_t& rhs) const {
+            return std::tie(weight, from, to) < std::tie(rhs.weight, rhs.from, rhs.to);
+        }
     };
 
-    void kruskal_min_sst(const adjacency_matrix<>& g);
+    struct min_sst_result_t {
+        std::set<edge_t> spanning_tree;
+        // sum of costs of edges
+        size_t cost;
+        // iterations count
+        size_t iterations;
+    };
+
+    min_sst_result_t kruskal_sst(const adjacency_matrix<>& g);
+
+    min_sst_result_t prim_sst(const adjacency_matrix<>& g);
 }
