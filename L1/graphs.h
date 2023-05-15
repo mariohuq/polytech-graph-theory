@@ -123,7 +123,7 @@ namespace graphs {
         }
     };
 
-    struct min_sst_result_t {
+    struct min_st_result_t {
         std::set<edge_t> spanning_tree;
         // sum of costs of edges
         size_t cost;
@@ -131,7 +131,7 @@ namespace graphs {
         size_t iterations;
     };
 
-    min_sst_result_t kruskal_sst(const adjacency_matrix<>& g);
+    min_st_result_t kruskal_mst(const adjacency_matrix<>& g);
 
-    min_sst_result_t prim_sst(const adjacency_matrix<>& g);
+    min_st_result_t prim_mst(const adjacency_matrix<>& g);
 }

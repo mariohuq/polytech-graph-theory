@@ -233,8 +233,8 @@ Lab1::Lab1(QWidget *parent)
                 graphScene->highlightEdge(from, to);
             }
         };
-        connect(ui->prim, &QPushButton::pressed, [=] { return f(graphs::prim_sst, ui->iter_prim); });
-        connect(ui->kruskal, &QPushButton::pressed, [=] { return f(graphs::kruskal_sst, ui->iter_kruskal); });
+        connect(ui->prim, &QPushButton::pressed, [=] { return f(graphs::prim_mst, ui->iter_prim); });
+        connect(ui->kruskal, &QPushButton::pressed, [=] { return f(graphs::kruskal_mst, ui->iter_kruskal); });
     }
 
     ui->graphicsView->setViewport(new QOpenGLWidget);

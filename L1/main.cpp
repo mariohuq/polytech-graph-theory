@@ -167,14 +167,14 @@ void mst_test() {
     };
     std::cout << "Kruskal.\n";
     {
-        auto [spanning_tree, cost, iterations] = kruskal_sst(g);
+        auto [spanning_tree, cost, iterations] = kruskal_mst(g);
         std::cout << "tree: " << spanning_tree << "\n"
             << "cost: " << cost << "\n"
             << "it: " << iterations;
     }
     std::cout << "Prim.\n";
     {
-        auto [spanning_tree, cost, iterations] = prim_sst(g);
+        auto [spanning_tree, cost, iterations] = prim_mst(g);
         std::cout << "tree: " << spanning_tree << "\n"
             << "cost: " << cost << "\n"
             << "it: " << iterations;
@@ -190,14 +190,14 @@ void mst2_test() {
     };
     std::cout << "Kruskal.\n";
     {
-        auto [spanning_tree, cost, iterations] = kruskal_sst(g);
+        auto [spanning_tree, cost, iterations] = kruskal_mst(g);
         std::cout << "tree: " << spanning_tree << "\n"
             << "cost: " << cost << "\n"
             << "it: " << iterations;
     }
     std::cout << "Prim.\n";
     {
-        auto [spanning_tree, cost, iterations] = prim_sst(g);
+        auto [spanning_tree, cost, iterations] = prim_mst(g);
         std::cout << "tree: " << spanning_tree << "\n"
             << "cost: " << cost << "\n"
             << "it: " << iterations;

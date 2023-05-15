@@ -455,8 +455,8 @@ min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_
     };
 }
 
-min_sst_result_t
-graphs::kruskal_sst(const adjacency_matrix<> &g) {
+min_st_result_t
+graphs::kruskal_mst(const adjacency_matrix<> &g) {
     std::set<edge_t> result;
     auto edges = edges_of(g);
     std::sort(edges.begin(), edges.end());
@@ -520,8 +520,8 @@ graphs::kruskal_sst(const adjacency_matrix<> &g) {
     };
 }
 
-min_sst_result_t
-graphs::prim_sst(const adjacency_matrix<> &g) {
+min_st_result_t
+graphs::prim_mst(const adjacency_matrix<> &g) {
     size_t iterations = 0;
     size_t cost = 0;
     std::set<Vertex> vertexes; // V ⧵ S
