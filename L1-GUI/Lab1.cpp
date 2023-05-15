@@ -14,11 +14,11 @@
 #include "VectorModel.h"
 
 Lab1::Lab1(QWidget *parent)
-        : QWidget(parent)
-        , ui{new Ui::Lab1}
-        , gen{std::random_device{}()}
-        , m_flow_source{}
-        , m_flow_sink{} {
+    : QWidget(parent)
+    , ui{new Ui::Lab1}
+    , gen{std::random_device{}()}
+    , m_flow_source{}
+    , m_flow_sink{} {
     ui->setupUi(this);
 
     auto matrixModel = new MatrixModel{this};
@@ -60,8 +60,8 @@ Lab1::Lab1(QWidget *parent)
                 return;
             }
             shimbelModel->setMatrix(
-                    (minChosen ? graphs::min_path_lengths : graphs::max_path_lengths)
-                            (matrixModel->matrix(), edgesCount)
+                (minChosen ? graphs::min_path_lengths : graphs::max_path_lengths)
+                    (matrixModel->matrix(), edgesCount)
             );
         };
         connect(ui->edgesCountInPath, qOverload<int>(&QSpinBox::valueChanged), [=](int value) {
@@ -81,7 +81,7 @@ Lab1::Lab1(QWidget *parent)
         ui->pathsCountOut->setText(QString::number(res));
     });
     // allow edit adjMatrix -> that changes graph
-    connect(matrixModel, &MatrixModel::dataChanged, [=](const QModelIndex &topLeft, const QModelIndex &bottomRight){
+    connect(matrixModel, &MatrixModel::dataChanged, [=](const QModelIndex &topLeft, const QModelIndex &bottomRight) {
         Q_ASSERT(topLeft == bottomRight);
         int i = topLeft.row();
         int j = topLeft.column();
@@ -96,9 +96,9 @@ Lab1::Lab1(QWidget *parent)
                 graphs::Vertex start = ui->startBox_2->currentData(Qt::UserRole).toUInt();
                 graphs::Vertex end = ui->finishBox_2->currentData(Qt::UserRole).toUInt();
                 auto [
-                        distances,
-                        precedents,
-                        iterations
+                    distances,
+                    precedents,
+                    iterations
                 ] = method(matrixModel->matrix(), start);
                 distances1dModel->setFrom(start);
                 distances1dModel->setVector(distances);
@@ -117,9 +117,9 @@ Lab1::Lab1(QWidget *parent)
             };
         };
         connect(ui->dijkstra, &QPushButton::pressed, f(graphs::min_path_distances_dijkstra));
-        connect(ui->bellman,&QPushButton::pressed, f(graphs::min_path_distances_bellman_ford));
+        connect(ui->bellman, &QPushButton::pressed, f(graphs::min_path_distances_bellman_ford));
     }
-    connect(ui->floyd, &QPushButton::pressed, [=]{
+    connect(ui->floyd, &QPushButton::pressed, [=] {
         if (matrixModel->rowCount({}) == 0) {
             return;
         }
@@ -127,9 +127,9 @@ Lab1::Lab1(QWidget *parent)
         graphs::Vertex end = ui->finishBox_2->currentData(Qt::UserRole).toUInt();
 
         auto [
-                distances,
-                precedents,
-                iterations
+            distances,
+            precedents,
+            iterations
         ] = graphs::min_path_distances_floyd_warshall(matrixModel->matrix());
         distances2dModel->setMatrix(distances);
         if (ui->distMatrix->model() != distances2dModel) {
@@ -145,7 +145,7 @@ Lab1::Lab1(QWidget *parent)
         );
         ui->iterationsOut->setText(QString::number(iterations));
     });
-    connect(ui->addMinuses, &QPushButton::pressed, [=](){
+    connect(ui->addMinuses, &QPushButton::pressed, [=]() {
         auto m = matrixModel->matrix();
         std::uniform_int_distribution<int> dis{0, 1};
         for (graphs::Vertex i{}; i < m.size(); ++i) {
@@ -162,10 +162,10 @@ Lab1::Lab1(QWidget *parent)
         matrixModel->setMatrix(m);
     });
     // Lab 3
-    connect(ui->generate_costs, &QPushButton::pressed, [=](){
+    connect(ui->generate_costs, &QPushButton::pressed, [=]() {
         costMatrixModel->setMatrix(graphs::generate_costs(matrixModel->matrix(), gen));
     });
-    connect(ui->identify_source_sink, &QPushButton::pressed, [=](){
+    connect(ui->identify_source_sink, &QPushButton::pressed, [=]() {
         if (matrixModel->matrix().empty()) {
             return;
         }
@@ -195,7 +195,7 @@ Lab1::Lab1(QWidget *parent)
         }
         costMatrixModel->setMatrix(g.cost);
     });
-    connect(ui->fulkerson, &QPushButton::pressed, [=](){
+    connect(ui->fulkerson, &QPushButton::pressed, [=]() {
         if (m_flow_source == m_flow_sink) {
             return;
         }
@@ -207,7 +207,7 @@ Lab1::Lab1(QWidget *parent)
         ui->flowText->setText(QString::number(max_flow));
         flowModel->setMatrix(flow_matrix);
     });
-    connect(ui->minFlow, &QPushButton::pressed, [=](){
+    connect(ui->minFlow, &QPushButton::pressed, [=]() {
         if (ui->flowText->text().isEmpty() || m_flow_source == m_flow_sink) {
             return;
         }
@@ -222,7 +222,7 @@ Lab1::Lab1(QWidget *parent)
         flowModel->setMatrix(flow_matrix);
     });
     {
-        auto f = [=](auto&& sst_algo, QLineEdit* iters) {
+        auto f = [=](auto &&sst_algo, QLineEdit *iters) {
             if (matrixModel->matrix().empty()) {
                 return;
             }
@@ -233,9 +233,37 @@ Lab1::Lab1(QWidget *parent)
                 graphScene->highlightEdge(from, to);
             }
         };
-        connect(ui->prim, &QPushButton::pressed, [=] { return f(graphs::prim_mst, ui->iter_prim); });
-        connect(ui->kruskal, &QPushButton::pressed, [=] { return f(graphs::kruskal_mst, ui->iter_kruskal); });
+        connect(ui->prim, &QPushButton::pressed,
+                [=] { return f(graphs::prim_mst, ui->iter_prim); });
+        connect(ui->kruskal, &QPushButton::pressed,
+                [=] { return f(graphs::kruskal_mst, ui->iter_kruskal); });
     }
+    connect(ui->kirchhoff, &QPushButton::pressed, [=]() {
+        ui->count_sts->setText(
+            QString::number(graphs::spanning_trees_count(
+                matrixModel->matrix())));
+    });
+    connect(ui->prufer_encode, &QPushButton::pressed, [=]() {
+        QStringList list;
+
+        std::vector<int> data = {
+
+        };
+        for (auto x: data) {
+            list.append(QString::number(x));
+        }
+        ui->prufer_code->setText(list.join(' '));
+    });
+    connect(ui->prufer_decode, &QPushButton::pressed, [=]() {
+        auto list = ui->prufer_code->toPlainText().trimmed().split(' ');
+        std::vector<int> data(list.size());
+        for (int i = 0; i < list.size(); ++i) {
+            bool ok = false;
+            data[i] = list[i].toInt(&ok);
+            Q_ASSERT(ok);
+        }
+        data;
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
@@ -244,13 +272,13 @@ Lab1::Lab1(QWidget *parent)
     ui->shimbellMatrix->setModel(shimbelModel);
     ui->costsMatrix->setModel(costMatrixModel);
     ui->flowMatrix->setModel(flowModel);
-    for (auto m : {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix}) {
+    for (auto m: {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix}) {
         m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
-    for (auto box : {ui->startBox,
-                     ui->finishBox,
-                     ui->startBox_2,
-                     ui->finishBox_2}) {
+    for (auto box: {ui->startBox,
+                    ui->finishBox,
+                    ui->startBox_2,
+                    ui->finishBox_2}) {
         box->setModel(nodesModel);
     }
 }
