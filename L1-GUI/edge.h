@@ -72,6 +72,9 @@ public:
         }
         m_label = label;
     }
+    void highlight(bool value = true) {
+        m_highlighted = value;
+    }
 
     ~Edge() override;
 
@@ -93,4 +96,5 @@ private:
     QPointF destPoint;
     qreal arrowSize;
     int m_label;
+    bool m_highlighted;
 };

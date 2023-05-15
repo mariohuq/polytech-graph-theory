@@ -210,3 +210,12 @@ void GraphScene::updateEdge(int startId, int finishId, int label) {
     delete it->second;
     edges.erase(it);
 }
+
+void GraphScene::highlightEdge(int startId, int finishId) {
+    auto it = edges.find({startId, finishId});
+    if (it == edges.end()) {
+        it = edges.find({finishId, startId});
+    }
+    Q_ASSERT(it != edges.end());
+    (*it).second->highlight();
+}

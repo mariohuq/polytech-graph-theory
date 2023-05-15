@@ -60,6 +60,7 @@ Edge::Edge(Node *sourceNode, Node *destNode, int label)
     , m_source{ sourceNode }
     , m_destination{ destNode }
     , m_label{label}
+    , m_highlighted{false}
 {
     setAcceptedMouseButtons(Qt::NoButton);
     m_source->m_edges.insert(this);
@@ -144,13 +145,13 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         return;
 
     // Draw the line itself
-    painter->setPen({ Qt::black, 1.4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin });
+    painter->setPen({ m_highlighted ? Qt::red : Qt::black, 1.4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin });
     painter->drawLine(line);
     // Draw arrow head (namely stealth arrow)
     {
         auto base = line.pointAt(1 - arrowSize / segmentLength);
         auto d = (destPoint - base) / 2;
-        painter->setBrush(Qt::BrushStyle::SolidPattern);
+        painter->setBrush(m_highlighted ? Qt::red : Qt::black);
         painter->drawPolygon(QVector<QPointF> {
             destPoint,
             base + QPointF{ -d.y(), d.x() },

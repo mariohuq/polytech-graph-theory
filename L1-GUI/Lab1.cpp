@@ -221,6 +221,18 @@ Lab1::Lab1(QWidget *parent)
         ui->minFlowText->setText(QString::number(flow_sum));
         flowModel->setMatrix(flow_matrix);
     });
+    {
+        auto f = [=](auto&& sst_algo, QLineEdit* iters) {
+            auto [spanning_tree, cost, iterations] = sst_algo(matrixModel->matrix());
+            iters->setText(QString::number(iterations));
+            ui->cost_mst->setText(QString::number(cost));
+            for (auto [from, to, _]: spanning_tree) {
+                graphScene->highlightEdge(from, to);
+            }
+        };
+        connect(ui->prim, &QPushButton::pressed, [=] { return f(graphs::prim_sst, ui->iter_prim); });
+        connect(ui->kruskal, &QPushButton::pressed, [=] { return f(graphs::kruskal_sst, ui->iter_kruskal); });
+    }
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);

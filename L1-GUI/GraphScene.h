@@ -16,6 +16,7 @@ public:
 	void updateNode(int id, const QString& type);
     void addEdge(int startId, int finishId, int label = 0);
     void updateEdge(int startId, int finishId, int label);
+    void highlightEdge(int startId, int finishId);
 	void hideNode(int id);
 	void showNode(int id);
 	void setSelectedNode(int id, bool selected);
