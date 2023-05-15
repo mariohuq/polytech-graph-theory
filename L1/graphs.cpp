@@ -538,7 +538,7 @@ graphs::prim_sst(const adjacency_matrix<> &g) {
                 v = j;
             }
         }
-		if (min_e[i] == INF) {
+		if (min_e[v] == INF) {
 			return {};
 		}
         vertexes.erase(v); // означает, что вершина включена в остов
