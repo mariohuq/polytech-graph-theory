@@ -223,6 +223,9 @@ Lab1::Lab1(QWidget *parent)
     });
     {
         auto f = [=](auto&& sst_algo, QLineEdit* iters) {
+            if (matrixModel->matrix().empty()) {
+                return;
+            }
             auto [spanning_tree, cost, iterations] = sst_algo(matrixModel->matrix());
             iters->setText(QString::number(iterations));
             ui->cost_mst->setText(QString::number(cost));

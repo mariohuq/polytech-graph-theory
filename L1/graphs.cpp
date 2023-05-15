@@ -470,16 +470,17 @@ graphs::kruskal_sst(const adjacency_matrix<> &g) {
         // не непосредственный предок, а предок предка, предок предка предка, и т.д.
         std::vector<Vertex> parent;
         std::vector<size_t> rank;
+        size_t& m_iterations;
 
-        explicit dsu_t(size_t nVertices)
-            : parent(nVertices), rank(nVertices) {
+        explicit dsu_t(size_t nVertices, size_t& iterations)
+            : parent(nVertices), rank(nVertices), m_iterations{iterations}{
             for (int i = 0; i < nVertices; ++i) {
                 parent[i] = i;
             }
         }
 
         Vertex operator()(Vertex v) {
-            return v == parent[v] ? v : parent[v] = operator()(parent[v]);
+            return v == parent[v] ? v : (++m_iterations, parent[v] = operator()(parent[v]));
         }
 
         void unite(Vertex a, Vertex b) {
@@ -492,13 +493,14 @@ graphs::kruskal_sst(const adjacency_matrix<> &g) {
                 std::swap(a, b);
             }
             parent[b] = a;
+            ++m_iterations;
             if (rank[a] == rank[b]) {
                 ++rank[a];
             }
         }
     };
 
-    dsu_t dsu{g.size()};
+    dsu_t dsu{g.size(), iterations};
     auto it = edges.begin();
     size_t cost = 0;
     for (int _ = 1; _ < g.size(); ++_) {
@@ -539,7 +541,8 @@ graphs::prim_sst(const adjacency_matrix<> &g) {
             }
         }
 		if (min_e[v] == INF) {
-			return {};
+            // No minimum spanning tree
+			return {{}, INF, iterations};
 		}
         vertexes.erase(v); // означает, что вершина включена в остов
 
