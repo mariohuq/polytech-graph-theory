@@ -50,10 +50,13 @@ adjacency_matrix<bool> generate_acyclic_convex(size_t nVertices, size_t nEdges) 
 
 void max_flow_test();
 void min_max_flow_test();
+void mst_test();
+void mst2_test();
 
 int main() {
 //    max_flow_test();
-min_max_flow_test();
+//min_max_flow_test();
+    mst2_test();
     return 0;
 }
 
@@ -138,7 +141,65 @@ void min_max_flow_test() {
     g.cost = generate_costs(g.capacity, gen);
     std::cout << "Capacities:\n" << g.capacity << '\n';
     std::cout << "Costs:\n" << g.cost << '\n';
-    auto [cost, flow] = min_cost_flow(g, 7 * 2 / 3);
+    auto [flow_sum, cost, flow] = min_cost_flow(g, 7 * 2 / 3);
     std::cout << "Cost = "<< cost << '\n';
     std::cout << "Flow:\n" << flow << '\n';
+}
+
+std::ostream& operator<<(std::ostream& os, const graphs::edge_t& e) {
+    return os << "{" << e.from << " → " << e.to << ": " << e.weight << "}";
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::set<T>& s) {
+    for (const auto &elem: s) {
+        os << elem << ' ';
+    }
+    return os;
+}
+
+void mst_test() {
+    auto g = adjacency_matrix<>{
+        {0, 9, 3, 4},
+        {9, 0, 2, 0},
+        {3, 2, 0, 1},
+        {4, 0, 1, 0},
+    };
+    std::cout << "Kruskal.\n";
+    {
+        auto [spanning_tree, cost, iterations] = kruskal_sst(g);
+        std::cout << "tree: " << spanning_tree << "\n"
+            << "cost: " << cost << "\n"
+            << "it: " << iterations;
+    }
+    std::cout << "Prim.\n";
+    {
+        auto [spanning_tree, cost, iterations] = prim_sst(g);
+        std::cout << "tree: " << spanning_tree << "\n"
+            << "cost: " << cost << "\n"
+            << "it: " << iterations;
+    }
+}
+
+void mst2_test() {
+    auto g = adjacency_matrix<>{
+        {0, 9, 3, 4},
+        {0, 0, 2, 0},
+        {0, 0, 0, 1},
+        {0, 0, 0, 0},
+    };
+    std::cout << "Kruskal.\n";
+    {
+        auto [spanning_tree, cost, iterations] = kruskal_sst(g);
+        std::cout << "tree: " << spanning_tree << "\n"
+            << "cost: " << cost << "\n"
+            << "it: " << iterations;
+    }
+    std::cout << "Prim.\n";
+    {
+        auto [spanning_tree, cost, iterations] = prim_sst(g);
+        std::cout << "tree: " << spanning_tree << "\n"
+            << "cost: " << cost << "\n"
+            << "it: " << iterations;
+    }
 }

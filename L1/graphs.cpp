@@ -460,10 +460,10 @@ graphs::kruskal_sst(const adjacency_matrix<> &g) {
     std::set<edge_t> result;
     auto edges = edges_of(g);
     std::sort(edges.begin(), edges.end());
-    size_t iterations;
+    size_t iterations = 0;
 
     // disjoint set union
-    //  сжатие пути плюс ранговая эвристика
+    //   сжатие пути + ранговая эвристика
     // http://e-maxx.ru/algo/dsu
     struct dsu_t {
         // сжатый массив предков, т.е. для каждой вершины там может храниться
@@ -520,7 +520,51 @@ graphs::kruskal_sst(const adjacency_matrix<> &g) {
 
 min_sst_result_t
 graphs::prim_sst(const adjacency_matrix<> &g) {
-    return {};
+    size_t iterations = 0;
+    size_t cost = 0;
+    std::set<Vertex> vertexes; // V ⧵ S
+    for (Vertex i = 0; i < g.size(); ++i) {
+        vertexes.insert(i);
+    }
+	std::vector<int> min_e(g.size(), INF); // вес наименьшего допустимого ребра из вершины β
+	std::vector<Vertex> sel_e(g.size(), NO_VERTEX); // конец этого наименьшего ребра α
+	min_e[0] = 0;
+	auto spanning_tree = std::set<edge_t>{};
+	for (Vertex i = 0; i < g.size(); ++i)
+	{
+		Vertex v = NO_VERTEX;
+        for (Vertex j : vertexes) {
+            if (v == NO_VERTEX || min_e[j] < min_e[v]) {
+                v = j;
+            }
+        }
+		if (min_e[i] == INF) {
+			return {};
+		}
+        vertexes.erase(v); // означает, что вершина включена в остов
+
+		for (Vertex to{}; to < g.size(); ++to) {
+            if (g[v][to] != 0 && g[v][to] < min_e[to]) {
+				min_e[to] = g[v][to];
+				sel_e[to] = v;
+            } else if (g[to][v] != 0 && g[to][v] < min_e[to]) {
+				min_e[to] = g[to][v];
+				sel_e[to] = v;
+            }
+			iterations++;
+		}
+
+        if (sel_e[v] == NO_VERTEX) {
+            continue;
+        }
+        spanning_tree.insert(edge_t{v, sel_e[v], min_e[v]});
+        cost += min_e[v];
+    }
+    return {
+        .spanning_tree = spanning_tree,
+        .cost = cost,
+        .iterations = iterations,
+    };
 }
 
 template<typename Func>

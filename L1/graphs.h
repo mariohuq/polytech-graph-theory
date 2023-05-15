@@ -4,6 +4,7 @@
 #pragma once
 #include "polya_dist.h"
 #include <vector>
+#include <set>
 #include <cstddef>
 
 namespace graphs {
