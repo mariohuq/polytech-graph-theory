@@ -134,4 +134,6 @@ namespace graphs {
     min_st_result_t kruskal_mst(const adjacency_matrix<>& g);
 
     min_st_result_t prim_mst(const adjacency_matrix<>& g);
+
+    size_t spanning_trees_count(const adjacency_matrix<>& g);
 }

@@ -52,11 +52,13 @@ void max_flow_test();
 void min_max_flow_test();
 void mst_test();
 void mst2_test();
+void spanning_trees_count_test();
 
 int main() {
 //    max_flow_test();
 //min_max_flow_test();
-    mst2_test();
+//    mst2_test();
+    spanning_trees_count_test();
     return 0;
 }
 
@@ -202,4 +204,14 @@ void mst2_test() {
             << "cost: " << cost << "\n"
             << "it: " << iterations;
     }
+}
+
+void spanning_trees_count_test() {
+    auto g = adjacency_matrix<>{
+        {0, 9, 3, 4},
+        {0, 0, 2, 0},
+        {0, 0, 0, 1},
+        {0, 0, 0, 0},
+    };
+    std::cout << "STC = " << spanning_trees_count(g) << "\n";
 }

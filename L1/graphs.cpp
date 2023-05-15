@@ -21,6 +21,10 @@ adjacency_matrix<> matrix_power_shimbell(const adjacency_matrix<> &that, size_t 
 
 std::vector<edge_t> edges_of(const adjacency_matrix<> &g);
 
+size_t determinant(std::vector<std::vector<int>> a);
+
+adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g);
+
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
         return std::vector<size_t>{};
@@ -568,6 +572,82 @@ graphs::prim_mst(const adjacency_matrix<> &g) {
         .cost = cost,
         .iterations = iterations,
     };
+}
+
+size_t determinant(std::vector<std::vector<int>> a) {
+    size_t n = a.size();
+    // error condition, should never get here
+    if (n < 1) {
+        return 0;
+    }
+    // should not get here
+    if (n == 1) {
+        return a[0][0];
+    }
+    if (n == 2) {
+        // basic 2x2 sub-matrix determinate
+        // definition. When n==2, this ends the
+        // the recursion series
+        return a[0][0] * a[1][1] - a[1][0] * a[0][1];
+    }
+
+    // recursion continues, solve next sub-matrix
+    // solve the next minor by building a
+    // sub matrix
+    // initialize determinant of sub-matrix
+    size_t det = 0;
+    size_t j2 = 0;
+
+    // for each column in sub-matrix
+    for (size_t j1 = 0; j1 < n; j1++) {
+        // get space for the pointer list
+        auto m = std::vector<std::vector<int>>(n - 1, std::vector<int>(n - 1));
+        // build sub-matrix with minor elements excluded
+        for (size_t i = 1; i < n; i++) {
+            // start at first sum-matrix column position
+            j2 = 0;
+            // loop to copy source matrix less one column
+            for (size_t j = 0; j < n; j++) {
+                // don't copy the minor column element
+                if (j == j1) continue;
+
+                // copy source element into new sub-matrix
+                m[i - 1][j2] = a[i][j];
+                // i-1 because new sub-matrix is one row
+                // (and column) smaller with excluded minors
+                j2++; // move to next sub-matrix column position
+            }
+        }
+        det += (j1 % 2 == 0 ? 1 : -1) * a[0][j1] * determinant(m);
+        // sum x raised to y power
+        // recursively get determinant of next
+        // sub-matrix which is now one
+        // row & column smaller
+    }
+    return det;
+}
+adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
+    for (int i = 0; i < g.size(); ++i) {
+        int deg = 0;
+        for (int j = 0; j < g.size(); ++j) {
+            if (i == j) {
+                continue;
+            }
+            g[j][i] = g[i][j] = g[i][j] != 0 ? (++deg, -1) : 0;
+        }
+        g[i][i] = deg;
+    }
+    return g;
+}
+size_t graphs::spanning_trees_count(const adjacency_matrix<> &g) {
+    auto b_matrix = kirchhoff_matrixify(g);
+    // minor of i = 0, j = g.size() - 1
+    adjacency_matrix<> m(++b_matrix.begin(), b_matrix.end());
+    for (auto& row: m) {
+        row.pop_back();
+    }
+    // (-1)^{i+j}
+    return (b_matrix.size() % 2 == 0 ? -1 : 1) * determinant(m);
 }
 
 template<typename Func>
