@@ -254,7 +254,7 @@ Lab1::Lab1(QWidget *parent)
         if (matrixModel->matrix().size() <= 1) {
             return;
         }
-        auto [code, weights] = graphs::prufer::encode(matrixModel->matrix());
+        auto [code, weights] = graphs::pruefer::encode(matrixModel->matrix());
         QStringList list;
         for (auto x : code) {
             list.append({static_cast<char>('a' + x)});
@@ -286,7 +286,7 @@ Lab1::Lab1(QWidget *parent)
             weights[i] = list[i + (n - 2)].toInt(&ok);
             Q_ASSERT(ok);
         }
-        auto g = graphs::prufer::decode(code, weights);
+        auto g = graphs::pruefer::decode(code, weights);
         matrixModel->setMatrix(g);
         graphScene->reset();
         reset_outputs();

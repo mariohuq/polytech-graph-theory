@@ -233,8 +233,8 @@ void prufer_test() {
         {0, 0, 0, 1},
         {0, 0, 0, 0},
     };
-    auto [code, w] = prufer::encode(g);
-    auto g1 = prufer::decode(code, w);
+    auto [code, w] = pruefer::encode(g);
+    auto g1 = pruefer::decode(code, w);
     std::cout << "code: " << code << "\n"
     << "weights: " << w << "\n"
     << "decoded:\n " << g1;

@@ -726,7 +726,7 @@ adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
 }
 
 std::pair<std::vector<Vertex>, std::vector<int>>
-graphs::prufer::encode(const adjacency_matrix<> &g) {
+graphs::pruefer::encode(const adjacency_matrix<> &g) {
     // https://cp-algorithms.com/graph/pruefer_code.html#building-the-prufer-code-for-a-given-tree
     auto adj = list_from(kruskal_mst(g).spanning_tree, g.size());
     size_t n = adj.size();
@@ -769,7 +769,7 @@ graphs::prufer::encode(const adjacency_matrix<> &g) {
 }
 
 adjacency_matrix<>
-graphs::prufer::decode(const std::vector<Vertex>& code, const std::vector<int>& weights) {
+graphs::pruefer::decode(const std::vector<Vertex>& code, const std::vector<int>& weights) {
     // https://cp-algorithms.com/graph/pruefer_code.html#restoring-the-tree-using-the-prufer-code
     size_t nVertices = weights.size() + 1;
     assert(code.size() == nVertices - 2);
