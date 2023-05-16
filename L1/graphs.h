@@ -138,8 +138,12 @@ namespace graphs {
     size_t spanning_trees_count(const adjacency_matrix<>& g);
 
     namespace pruefer {
+        // g -> min spanning tree -> pruefer code with weights
         std::pair<std::vector<Vertex>, std::vector<int>>
         encode(const adjacency_matrix<>& g);
-        adjacency_matrix<> decode(const std::vector<Vertex>& code, const std::vector<int>& weights);
+
+        // generates upper triangular matrix. Each edge appears once in the matrix
+        adjacency_matrix<>
+        decode(const std::vector<Vertex>& code, const std::vector<int>& weights);
     }
 }
