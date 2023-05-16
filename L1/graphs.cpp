@@ -10,6 +10,7 @@
 #include <set>
 
 using namespace graphs;
+using adjacency_list = std::vector<std::map<Vertex, int>>;
 
 template<typename Func>
 adjacency_matrix<>
@@ -24,6 +25,8 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g);
 size_t determinant(std::vector<std::vector<int>> a);
 
 adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g);
+
+adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices);
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
@@ -626,6 +629,7 @@ size_t determinant(std::vector<std::vector<int>> a) {
     }
     return det;
 }
+
 adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
     for (int i = 0; i < g.size(); ++i) {
         int deg = 0;
@@ -639,6 +643,7 @@ adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
     }
     return g;
 }
+
 size_t graphs::spanning_trees_count(const adjacency_matrix<> &g) {
     auto b_matrix = kirchhoff_matrixify(g);
     // minor of i = 0, j = g.size() - 1
@@ -712,8 +717,6 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
     }
     return result;
 }
-
-using adjacency_list = std::vector<std::map<Vertex, int>>;
 
 // forgets orientation!
 adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
