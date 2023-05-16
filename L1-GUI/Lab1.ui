@@ -895,7 +895,7 @@
             <item>
              <widget class="QPushButton" name="prufer_encode">
               <property name="toolTip">
-               <string>Кодировать остов</string>
+               <string>Кодировать остов (неориентированный)</string>
               </property>
               <property name="text">
                <string>←</string>
@@ -905,7 +905,7 @@
             <item>
              <widget class="QPushButton" name="prufer_decode">
               <property name="toolTip">
-               <string>Декодировать числа в дерево</string>
+               <string>Декодировать числа в дерево (неориентированное)</string>
               </property>
               <property name="text">
                <string>→</string>

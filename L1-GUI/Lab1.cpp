@@ -31,13 +31,19 @@ Lab1::Lab1(QWidget *parent)
     auto graphScene = new GraphScene{{}, ui->graphicsView};
     auto nodesModel = new NodesModel{this, 10};
 
+    auto reset_outputs = [=]() {
+        shimbelModel->setMatrix({});
+        costMatrixModel->setMatrix({});
+        m_flow_sink = 0;
+        m_flow_source = 0;
+    };
+
     connect(ui->nVertices, qOverload<int>(&QSpinBox::valueChanged), nodesModel, &NodesModel::setSize);
 
     connect(ui->generate, &QPushButton::pressed, [=]() {
         auto adjacency = graphs::generate(ui->nVertices->value(), gen);
         matrixModel->setMatrix(adjacency);
-        shimbelModel->setMatrix({});
-        costMatrixModel->setMatrix({});
+        reset_outputs();
         graphScene->reset();
         for (int i = 0; i < adjacency.size(); ++i) {
             graphScene->updateNode(i, "ellipse");
@@ -50,8 +56,6 @@ Lab1::Lab1(QWidget *parent)
                 graphScene->addEdge(i, j, adjacency[i][j]);
             }
         }
-        m_flow_sink = 0;
-        m_flow_source = 0;
     });
     // Shimbel method
     {
@@ -239,30 +243,67 @@ Lab1::Lab1(QWidget *parent)
                 [=] { return f(graphs::kruskal_mst, ui->iter_kruskal); });
     }
     connect(ui->kirchhoff, &QPushButton::pressed, [=]() {
+        if (matrixModel->matrix().empty()) {
+            return;
+        }
         ui->count_sts->setText(
             QString::number(graphs::spanning_trees_count(
                 matrixModel->matrix())));
     });
     connect(ui->prufer_encode, &QPushButton::pressed, [=]() {
+        if (matrixModel->matrix().size() <= 1) {
+            return;
+        }
+        auto [code, weights] = graphs::prufer::encode(matrixModel->matrix());
         QStringList list;
-
-        std::vector<int> data = {
-
-        };
-        for (auto x: data) {
-            list.append(QString::number(x));
+        for (auto x : code) {
+            list.append({static_cast<char>('a' + x)});
+        }
+        for (auto w : weights) {
+            list.append(QString::number(w));
         }
         ui->prufer_code->setText(list.join(' '));
     });
     connect(ui->prufer_decode, &QPushButton::pressed, [=]() {
-        auto list = ui->prufer_code->toPlainText().trimmed().split(' ');
-        std::vector<int> data(list.size());
-        for (int i = 0; i < list.size(); ++i) {
+        auto list = ui->prufer_code->toPlainText().trimmed().split(' ', Qt::SkipEmptyParts);
+        if (list.empty()) {
+            return;
+        }
+        Q_ASSERT(list.size() % 2 != 0);
+        size_t n = (list.size() + 3) / 2;
+        if (n <= 1) {
+            return;
+        }
+        std::vector<graphs::Vertex> code(n - 2);
+        for (int i = 0; i < code.size(); ++i) {
+            auto ch = list[i].at(0);
+            Q_ASSERT('a' <= ch && ch <= 'z' && list[i].size() == 1);
+            code[i] = ch.toLatin1() - 'a';
+        }
+        std::vector<int> weights(n - 1);
+        for (int i = 0; i < weights.size(); ++i) {
             bool ok = false;
-            data[i] = list[i].toInt(&ok);
+            weights[i] = list[i + (n - 2)].toInt(&ok);
             Q_ASSERT(ok);
         }
-        data;
+        auto g = graphs::prufer::decode(code, weights);
+        matrixModel->setMatrix(g);
+        graphScene->reset();
+        reset_outputs();
+        for (int i = 0; i < g.size(); ++i) {
+            graphScene->updateNode(i, "ellipse");
+        }
+        for (int i = 0; i < g.size(); ++i) {
+            for (int j = 0; j < g.size(); ++j) {
+                if (!g[i][j]) {
+                    continue;
+                }
+                graphScene->addEdge(i, j, g[i][j]);
+            }
+        }
+    });
+    connect(graphScene, &GraphScene::edgeRemoved, [=](int from, int to) {
+        matrixModel->setData(matrixModel->index(from, to), 0, Qt::EditRole);
     });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);

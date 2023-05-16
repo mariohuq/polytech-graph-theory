@@ -53,12 +53,14 @@ void min_max_flow_test();
 void mst_test();
 void mst2_test();
 void spanning_trees_count_test();
+void prufer_test();
 
 int main() {
 //    max_flow_test();
 //min_max_flow_test();
 //    mst2_test();
-    spanning_trees_count_test();
+//    spanning_trees_count_test();
+    prufer_test();
     return 0;
 }
 
@@ -160,6 +162,14 @@ std::ostream& operator<<(std::ostream& os, const std::set<T>& s) {
     return os;
 }
 
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& s) {
+    for (const auto &elem: s) {
+        os << elem << ' ';
+    }
+    return os;
+}
+
 void mst_test() {
     auto g = adjacency_matrix<>{
         {0, 9, 3, 4},
@@ -214,4 +224,18 @@ void spanning_trees_count_test() {
         {0, 0, 0, 0},
     };
     std::cout << "STC = " << spanning_trees_count(g) << "\n";
+}
+
+void prufer_test() {
+    auto g = adjacency_matrix<>{
+        {0, 9, 3, 4},
+        {0, 0, 2, 0},
+        {0, 0, 0, 1},
+        {0, 0, 0, 0},
+    };
+    auto [code, w] = prufer::encode(g);
+    auto g1 = prufer::decode(code, w);
+    std::cout << "code: " << code << "\n"
+    << "weights: " << w << "\n"
+    << "decoded:\n " << g1;
 }

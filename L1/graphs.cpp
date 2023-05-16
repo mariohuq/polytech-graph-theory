@@ -712,3 +712,89 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
     }
     return result;
 }
+
+using adjacency_list = std::vector<std::map<Vertex, int>>;
+
+// forgets orientation!
+adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
+    adjacency_list result(nVertices);
+    for (auto e : edges) {
+        result[e.from][e.to] = e.weight;
+        result[e.to][e.from] = e.weight;
+    }
+    return result;
+}
+
+std::pair<std::vector<Vertex>, std::vector<int>>
+graphs::prufer::encode(const adjacency_matrix<> &g) {
+    // https://cp-algorithms.com/graph/pruefer_code.html#building-the-prufer-code-for-a-given-tree
+    auto adj = list_from(kruskal_mst(g).spanning_tree, g.size());
+    size_t n = adj.size();
+    std::set<Vertex> leafs;
+    std::vector<size_t> degree(n);
+    std::vector<bool> killed(n, false);
+    for (int i = 0; i < n; i++) {
+        degree[i] = adj[i].size();
+        if (degree[i] == 1)
+            leafs.insert(i);
+    }
+    std::vector<Vertex> code(n - 2);
+    std::vector<int> weights(n - 1);
+    for (int i = 0; i < n - 1; i++) {
+        Vertex leaf = *leafs.begin();
+        leafs.erase(leafs.begin());
+        killed[leaf] = true;
+        Vertex v;
+        int weight;
+        bool check_me = false;
+        for (auto [u, u_weight] : adj[leaf]) {
+            if (killed[u]) {
+                continue;
+            }
+            v = u;
+            weight = u_weight;
+            check_me = true;
+            break;
+        }
+        assert(check_me);
+        if (i != n - 2) {
+            code[i] = v;
+        }
+        weights[i] = weight;
+        if (--degree[v] == 1) {
+            leafs.insert(v);
+        }
+    }
+    return {code, weights};
+}
+
+adjacency_matrix<>
+graphs::prufer::decode(const std::vector<Vertex>& code, const std::vector<int>& weights) {
+    // https://cp-algorithms.com/graph/pruefer_code.html#restoring-the-tree-using-the-prufer-code
+    size_t nVertices = weights.size() + 1;
+    assert(code.size() == nVertices - 2);
+    adjacency_matrix<> g(nVertices, std::vector<int>(nVertices));
+    std::vector<size_t> degree(nVertices, 1);
+    for (Vertex i : code) {
+        degree[i]++;
+    }
+    std::set<Vertex> leaves;
+    for (int i = 0; i < nVertices; i++) {
+        if (degree[i] == 1)
+            leaves.insert(i);
+    }
+    for (size_t i = 0; i < code.size(); ++i) {
+        Vertex v = code[i];
+        Vertex leaf = *leaves.begin();
+        leaves.erase(leaves.begin());
+        if (--degree[v] == 1)
+            leaves.insert(v);
+        if (leaf > v) {
+            std::swap(leaf, v);
+        }
+        g[leaf][v] = weights[i];
+    }
+    auto [a, b] = std::minmax(*leaves.begin(), nVertices - 1);
+    g[a][b] = weights.back();
+    return g;
+}

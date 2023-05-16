@@ -151,8 +151,10 @@ void GraphScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
             prepared_remove_edge.bindValue(":start_id", edge->startNodeId());
             prepared_remove_edge.bindValue(":end_id", edge->destNodeId());
             prepared_remove_edge.exec();
-            removeItem(edge);
-            delete edge;
+            auto from = edge->startNodeId();
+            auto to = edge->destNodeId();
+            emit edgeRemoved(from, to);
+            //updateEdge(from, to, 0);
         }
     };
     if ((mouseEvent->buttons() & Qt::MouseButton::RightButton)) {
@@ -196,7 +198,7 @@ void GraphScene::updateEdge(int startId, int finishId, int label) {
     Q_ASSERT(nodes.find(startId) != nodes.end() && nodes.find(finishId) != nodes.end());
     auto it = edges.find({startId, finishId});
     // add?
-    if (it == edges.end()) {
+    if (it == edges.end() && label != 0) {
         addEdge(startId, finishId, label);
         return;
     }

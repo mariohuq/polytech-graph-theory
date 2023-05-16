@@ -136,4 +136,10 @@ namespace graphs {
     min_st_result_t prim_mst(const adjacency_matrix<>& g);
 
     size_t spanning_trees_count(const adjacency_matrix<>& g);
+
+    namespace prufer {
+        std::pair<std::vector<Vertex>, std::vector<int>>
+        encode(const adjacency_matrix<>& g);
+        adjacency_matrix<> decode(const std::vector<Vertex>& code, const std::vector<int>& weights);
+    }
 }

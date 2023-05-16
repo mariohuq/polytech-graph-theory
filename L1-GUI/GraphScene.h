@@ -23,6 +23,8 @@ public:
 	void reset(const QString& filter = "");
 
 	~GraphScene() override = default;
+signals:
+    void edgeRemoved(int startId, int finishId);
 protected:
 	void keyPressEvent(QKeyEvent* event) override;
 	void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) override;
