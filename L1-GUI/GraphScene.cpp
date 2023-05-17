@@ -138,10 +138,13 @@ void GraphScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
             }
             else {
                 nodes[startNodeId]->setSelected(false);
-                addItem(new Edge(nodes[startNodeId], node));
-                prepared_add_edge.bindValue(":start_id", startNodeId);
-                prepared_add_edge.bindValue(":end_id", node->id());
-                prepared_add_edge.exec();
+                if (edges.find(std::pair<int, int>{startNodeId, node->id()}) == edges.end()) {
+                    //addItem(new Edge(nodes[startNodeId], node));
+                    prepared_add_edge.bindValue(":start_id", startNodeId);
+                    prepared_add_edge.bindValue(":end_id", node->id());
+                    prepared_add_edge.exec();
+                    emit edgeAdded(startNodeId, node->id());
+                }
                 startNodeId = NoNode;
             }
             return;

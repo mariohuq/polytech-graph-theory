@@ -25,6 +25,7 @@ public:
 	~GraphScene() override = default;
 signals:
     void edgeRemoved(int startId, int finishId);
+    void edgeAdded(int startId, int finishId);
 protected:
 	void keyPressEvent(QKeyEvent* event) override;
 	void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) override;

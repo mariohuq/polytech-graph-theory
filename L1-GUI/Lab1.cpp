@@ -305,6 +305,9 @@ Lab1::Lab1(QWidget *parent)
     connect(graphScene, &GraphScene::edgeRemoved, [=](int from, int to) {
         matrixModel->setData(matrixModel->index(from, to), 0, Qt::EditRole);
     });
+    connect(graphScene, &GraphScene::edgeAdded, [=](int from, int to) {
+        matrixModel->setData(matrixModel->index(from, to), 1, Qt::EditRole);
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
