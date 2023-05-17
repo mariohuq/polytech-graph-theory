@@ -54,13 +54,15 @@ void mst_test();
 void mst2_test();
 void spanning_trees_count_test();
 void prufer_test();
+void eulerize_test();
 
 int main() {
 //    max_flow_test();
 //min_max_flow_test();
 //    mst2_test();
 //    spanning_trees_count_test();
-    prufer_test();
+//    prufer_test();
+    eulerize_test();
     return 0;
 }
 
@@ -238,4 +240,37 @@ void prufer_test() {
     std::cout << "code: " << code << "\n"
     << "weights: " << w << "\n"
     << "decoded:\n " << g1;
+}
+
+void eulerize_test() {
+    auto trivial = adjacency_matrix<>{
+        {0, 1, 1},
+        {0, 0, 1},
+        {0, 0, 0}
+    };
+    auto full = adjacency_matrix<>{
+        {0, 1, 1, 1},
+        {0, 0, 1, 1},
+        {0, 0, 0, 1},
+        {0, 0, 0, 0}
+    };
+    auto t = adjacency_matrix<>{
+        {0, 1, 0, 0}, // a──b
+        {0, 0, 1, 1}, //   /│
+        {0, 0, 0, 1}, //  / │
+        {0, 0, 0, 0}, // c──d
+    };
+    auto gs = {
+        t,
+        full,
+        trivial,
+    };
+    for (auto g:gs) {
+        auto [eulerian, added, removed, euler_cycle] = eulerize(g);
+        std::cout << "g:\n" << g
+        << "eulerian:\n" << eulerian << "\n"
+        << "added: " << added << "\n"
+        << "removed: " << removed << "\n"
+        << "euler_cycle" << euler_cycle << "\n";
+    }
 }

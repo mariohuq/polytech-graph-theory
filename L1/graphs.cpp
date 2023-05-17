@@ -714,7 +714,7 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
             if (g[i][j] == 0) {
                 continue;
             }
-            result.push_back({.from = i, .to = j, .weight = g[i][j]});
+            result.emplace_back(i, j, g[i][j]);
         }
     }
     return result;

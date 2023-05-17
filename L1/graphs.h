@@ -121,6 +121,8 @@ namespace graphs {
         bool operator<(const edge_t& rhs) const {
             return std::tie(weight, from, to) < std::tie(rhs.weight, rhs.from, rhs.to);
         }
+
+        edge_t(Vertex from, Vertex to, int weight) : from(from), to(to), weight(weight) {}
     };
 
     struct min_st_result_t {
@@ -150,4 +152,14 @@ namespace graphs {
     // lab5
 
     bool is_eulerian(const adjacency_matrix<>& g);
+
+    struct euler_change_t {
+        adjacency_matrix<> eulerian;
+        std::vector<edge_t> added;
+        std::vector<edge_t> removed;
+        std::vector<Vertex> euler_cycle;
+        bool has_changed() const { return !added.empty() && !removed.empty(); }
+    };
+
+    euler_change_t eulerize(adjacency_matrix<> g);
 }
