@@ -262,7 +262,7 @@ Lab1::Lab1(QWidget *parent)
         for (auto w : weights) {
             list.append(QString::number(w));
         }
-        ui->prufer_code->setText(list.join(' '));
+        ui->prufer_code->setPlainText(list.join(' '));
     });
     connect(ui->prufer_decode, &QPushButton::pressed, [=]() {
         auto list = ui->prufer_code->toPlainText().trimmed().split(' ', Qt::SkipEmptyParts);
