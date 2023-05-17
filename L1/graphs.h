@@ -157,9 +157,11 @@ namespace graphs {
         adjacency_matrix<> eulerian;
         std::vector<edge_t> added;
         std::vector<edge_t> removed;
-        std::vector<Vertex> euler_cycle;
-        bool has_changed() const { return !added.empty() && !removed.empty(); }
+        bool has_changed() const { return !added.empty() || !removed.empty(); }
     };
 
     euler_change_t eulerize(adjacency_matrix<> g);
+
+    // makes euler cycle assuming graph is eulerian
+    std::vector<Vertex> euler_cycle(adjacency_matrix<> g);
 }

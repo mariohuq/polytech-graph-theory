@@ -19,6 +19,24 @@ adjacency_matrix<> unoriented(adjacency_matrix<> g) {
     return g;
 }
 
+// ensures upper triangular matrix
+adjacency_matrix<> oriented(adjacency_matrix<> g) {
+    for (Vertex i = 0; i < g.size(); ++i) {
+        for (Vertex j = i + 1; j < g.size(); ++j) {
+            if (g[i][j] != 0) {
+                g[j][i] = 0;
+                continue;
+            }
+            // under diagonal
+            if (g[j][i] != 0) {
+                g[i][j] = g[j][i];
+                g[j][i] = 0;
+            }
+        }
+    }
+    return g;
+}
+
 std::vector<int> degrees_of(const adjacency_matrix<>& g) {
     std::vector<int> result;
     result.reserve(g.size());
@@ -38,11 +56,12 @@ bool graphs::is_eulerian(const adjacency_matrix<>& g) {
     assert(nVertices > 2);
     auto degree = degrees_of(unoriented(g));
     return std::all_of(degree.begin(), degree.end(),
-                       [](int d) { return !(d == 0 || d % 2 != 0);});
+                       [](int d) { return d % 2 == 0;});
 }
 
-std::vector<Vertex> euler_cycle(adjacency_matrix<> g) {
+std::vector<Vertex> graphs::euler_cycle(adjacency_matrix<> g) {
     size_t nVertices = g.size();
+    g = unoriented(g);
     std::vector<Vertex> result;
     result.reserve(nVertices);
     std::stack<Vertex> s;
@@ -155,9 +174,8 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
         try_change();
     }
     return {
-        .eulerian = g,
+        .eulerian = oriented(g),
         .added = added,
-        .removed = removed,
-        .euler_cycle = euler_cycle(g)
+        .removed = removed
     };
 }

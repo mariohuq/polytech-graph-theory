@@ -308,6 +308,61 @@ Lab1::Lab1(QWidget *parent)
     connect(graphScene, &GraphScene::edgeAdded, [=](int from, int to) {
         matrixModel->setData(matrixModel->index(from, to), 1, Qt::EditRole);
     });
+    {
+        constexpr auto out = [](const std::vector<graphs::edge_t> &edges, QLineEdit *edit) {
+            if (edges.empty()) {
+                edit->setText("—");
+                return;
+            }
+            QStringList list;
+            for (auto [from, to, _]: edges) {
+                std::tie(from, to) = std::minmax(from, to);
+                list.append(QString(static_cast<char>('a' + from))
+                                .append(static_cast<char>('a' + to)));
+            }
+            edit->setText(list.join(", "));
+        };
+        const auto check_print_cycle = [=]() {
+            bool is = graphs::is_eulerian(matrixModel->matrix());
+            ui->isEulerianAns->setText(is ? "Да!" : "Нет!");
+            if (is) {
+                auto cycle = graphs::euler_cycle(matrixModel->matrix());
+                QStringList list;
+                for (auto x : cycle) {
+                    list.append({static_cast<char>('a' + x)});
+                }
+                ui->eulerCycle->setText(list.join("–"));
+            }
+        };
+
+        connect(ui->eulerize, &QPushButton::pressed, [=]() {
+            const auto &m = matrixModel->matrix();
+            if (m.size() <= 2) {
+                return;
+            }
+            auto res = graphs::eulerize(m);
+            if (!res.has_changed()) {
+                return;
+            }
+            matrixModel->setMatrix(res.eulerian);
+            out(res.removed, ui->removedEdges);
+            for (auto [from, to, _] : res.removed) {
+                graphScene->updateEdge(from, to, 0);
+            }
+            out(res.added, ui->addedEdges);
+            for (auto [from, to, w] : res.added) {
+                graphScene->updateEdge(from, to, w);
+            }
+            check_print_cycle();
+        });
+        connect(ui->isEulerian, &QPushButton::pressed, check_print_cycle);
+    }
+    connect(ui->gamiltonize, &QPushButton::pressed, [=]() {
+
+    });
+    connect(ui->isGamiltonian, &QPushButton::pressed, [=]() {
+
+    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);

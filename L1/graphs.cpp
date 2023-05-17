@@ -633,9 +633,9 @@ size_t determinant(std::vector<std::vector<int>> a) {
 }
 
 adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
-    for (int i = 0; i < g.size(); ++i) {
+    for (Vertex i{}; i < g.size(); ++i) {
         int deg = 0;
-        for (int j = 0; j < g.size(); ++j) {
+        for (Vertex j{}; j < g.size(); ++j) {
             if (i == j) {
                 continue;
             }
