@@ -80,7 +80,7 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
         assert(result.size() % 2 == 0 && "Number of vertices with odd degree should be even");
         return result;
     };
-    int nVertices = g.size();
+    size_t nVertices = g.size();
     if (nVertices <= 2) {
         // There are 1/2 vertices in the graph! Euler cycle is impossible!
         return {};
@@ -90,14 +90,14 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
     std::vector<int> degree;
     std::vector<Vertex> odd_vertices;
 
-    static const auto add = [&](Vertex from, Vertex to, int weight = 1) {
+    constexpr auto add = [](decltype(added)& added, decltype(g)& g, Vertex from, Vertex to, int weight = 1) {
         assert(!g[from][to]);
         assert(from != to);
         g[from][to] = 1;
         g[to][from] = 1;
         added.emplace_back(from, to, weight);
     };
-    static const auto remove = [&](Vertex from, Vertex to) {
+    constexpr auto remove = [](decltype(removed)& removed, decltype(g)& g, Vertex from, Vertex to) {
         removed.emplace_back(from, to, g[from][to]);
         g[from][to] = 0;
         g[to][from] = 0;
@@ -105,22 +105,23 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
     static const auto try_change = [&]() {
         for (Vertex i{}; i < odd_vertices.size(); i++) {
             for (Vertex j = i + 1; j < odd_vertices.size(); j++) {
-                Vertex from = odd_vertices[i], to = odd_vertices[j];
+                Vertex from = odd_vertices[i];
+                Vertex to = odd_vertices[j];
                 if (g[from][to] == 0) {
-                    add(from, to);
+                    add(added, g, from, to);
                     return;
                 }
-                remove(from, to);
+                remove(removed, g, from, to);
                 if (degree[from] == 1 && degree[to] % 2 != 0 && degree[to] != 1) {
                     if (from != nVertices - 1) {
-                        add(from, nVertices - 1);
+                        add(added, g, from, nVertices - 1);
                     } else {
-                        add(0, from);
+                        add(added, g, 0, from);
                     }
                     if (from != nVertices - 2) {
-                        add(from, nVertices - 2);
+                        add(added, g, from, nVertices - 2);
                     } else {
-                        add(0, from);
+                        add(added, g, 0, from);
                     }
                 }
                 assert(!(degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1));
