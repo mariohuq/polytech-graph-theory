@@ -24,8 +24,10 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g);
 
 size_t determinant(std::vector<std::vector<int>> a);
 
+// матрица кирхгофа для соответствующего неорграфа
 adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g);
 
+// список смежности для соответствующего неорграфа
 adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices);
 
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
@@ -718,7 +720,6 @@ std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
     return result;
 }
 
-// forgets orientation!
 adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
     adjacency_list result(nVertices);
     for (auto e : edges) {

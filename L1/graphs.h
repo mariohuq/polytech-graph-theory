@@ -146,4 +146,8 @@ namespace graphs {
         adjacency_matrix<>
         decode(const std::vector<Vertex>& code, const std::vector<int>& weights);
     }
+
+    // lab5
+
+    bool is_eulerian(const adjacency_matrix<>& g);
 }
