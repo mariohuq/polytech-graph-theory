@@ -357,10 +357,10 @@ Lab1::Lab1(QWidget *parent)
         });
         connect(ui->isEulerian, &QPushButton::pressed, check_print_cycle);
     }
-    connect(ui->gamiltonize, &QPushButton::pressed, [=]() {
+    connect(ui->hamiltonize, &QPushButton::pressed, [=]() {
 
     });
-    connect(ui->isGamiltonian, &QPushButton::pressed, [=]() {
+    connect(ui->isHamiltonian, &QPushButton::pressed, [=]() {
 
     });
 

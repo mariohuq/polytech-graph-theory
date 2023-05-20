@@ -999,14 +999,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_21">
           <item alignment="Qt::AlignLeft">
-           <widget class="QPushButton" name="isGamiltonian">
+           <widget class="QPushButton" name="isHamiltonian">
             <property name="text">
              <string>Гамильтонов ли?</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="isGamiltonianAns">
+           <widget class="QLineEdit" name="isHamiltonianAns">
             <property name="minimumSize">
              <size>
               <width>64</width>
@@ -1022,7 +1022,7 @@
            </widget>
           </item>
           <item alignment="Qt::AlignRight">
-           <widget class="QPushButton" name="gamiltonize">
+           <widget class="QPushButton" name="hamiltonize">
             <property name="text">
              <string>Гамильтонизовать</string>
             </property>
