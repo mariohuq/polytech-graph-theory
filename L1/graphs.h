@@ -164,4 +164,6 @@ namespace graphs {
 
     // makes euler cycle assuming graph is eulerian
     std::vector<Vertex> euler_cycle(adjacency_matrix<> g);
+
+    bool is_hamiltonian(const adjacency_matrix<>& g);
 }
