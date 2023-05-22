@@ -5,6 +5,7 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_Lab1.h" resolved
 
 #include <QOpenGLWidget>
+#include <QMessageBox>
 #include "Lab1.h"
 #include "ui_Lab1.h"
 #include "GraphScene.h"
@@ -266,25 +267,39 @@ Lab1::Lab1(QWidget *parent)
     });
     connect(ui->prufer_decode, &QPushButton::pressed, [=]() {
         auto list = ui->prufer_code->toPlainText().trimmed().split(' ', Qt::SkipEmptyParts);
+        auto f = [=]() { QMessageBox::warning(this, "Поправьте ввод", "Введите n-2 вершины и n-1 ребро", QMessageBox::Close); };
         if (list.empty()) {
+            f();
             return;
         }
-        Q_ASSERT(list.size() % 2 != 0);
+        if (list.size() % 2 == 0) {
+            f();
+            return;
+        }
         size_t n = (list.size() + 3) / 2;
         if (n <= 1) {
+            f();
             return;
         }
         std::vector<graphs::Vertex> code(n - 2);
         for (int i = 0; i < code.size(); ++i) {
             auto ch = list[i].at(0);
-            Q_ASSERT('a' <= ch && ch <= 'z' && list[i].size() == 1);
+            if (!(list[i].size() == 1 && 'a' <= ch && ch <= 'z')) {
+                QMessageBox::warning(this, "Поправьте ввод",
+                                     "Вершина на позиции " + QString::number(i+1) + " не a..z.", QMessageBox::Close);
+                return;
+            }
             code[i] = ch.toLatin1() - 'a';
         }
         std::vector<int> weights(n - 1);
-        for (int i = 0; i < weights.size(); ++i) {
+        for (size_t i = 0; i < weights.size(); ++i) {
             bool ok = false;
             weights[i] = list[i + (n - 2)].toInt(&ok);
-            Q_ASSERT(ok);
+            if (!ok) {
+                QMessageBox::warning(this, "Поправьте ввод",
+                                     "Вес на позиции " + QString::number(i+1) + " не число.", QMessageBox::Close);
+                return;
+            }
         }
         auto g = graphs::pruefer::decode(code, weights);
         matrixModel->setMatrix(g);
