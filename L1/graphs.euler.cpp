@@ -131,7 +131,7 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
                     return;
                 }
                 remove(removed, g, from, to);
-                if (degree[from] == 1 && degree[to] % 2 != 0 && degree[to] != 1) {
+                if (degree[from] == 1 && degree[to] != 1) {
                     if (from != nVertices - 1) {
                         add(added, g, from, nVertices - 1);
                     } else {
