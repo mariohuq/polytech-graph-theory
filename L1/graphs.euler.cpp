@@ -1,10 +1,10 @@
 //
 // Created by mhq on 16/05/23.
 //
+#include "graphs.h"
 #include <stack>
 #include <cassert>
 #include <algorithm>
-#include "graphs.h"
 
 using namespace graphs;
 
@@ -37,7 +37,7 @@ adjacency_matrix<> oriented(adjacency_matrix<> g) {
     return g;
 }
 
-std::vector<int> degrees_of(const adjacency_matrix<>& g) {
+std::vector<int> graphs::degrees_of(const adjacency_matrix<>& g) {
     std::vector<int> result;
     result.reserve(g.size());
     for (const auto& row: g) {
