@@ -160,7 +160,7 @@ namespace graphs {
         bool has_changed() const { return !added.empty() || !removed.empty(); }
     };
 
-    euler_change_t eulerize(adjacency_matrix<> g);
+    euler_change_t eulerize(const adjacency_matrix<>& g_original);
 
     // makes euler cycle assuming graph is eulerian
     std::vector<Vertex> euler_cycle(adjacency_matrix<> g);

@@ -5,8 +5,20 @@
 #include <stack>
 #include <cassert>
 #include <algorithm>
+#include <iostream>
 
 using namespace graphs;
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<T>>& g) {
+    for (const auto& row : g) {
+        for (const auto &elem: row) {
+            os << elem << ' ';
+        }
+        os << '\n';
+    }
+    return os;
+}
 
 adjacency_matrix<> unoriented(adjacency_matrix<> g) {
     for (Vertex i = 0; i < g.size(); ++i) {
@@ -87,7 +99,7 @@ std::vector<Vertex> graphs::euler_cycle(adjacency_matrix<> g) {
     return result;
 }
 
-euler_change_t graphs::eulerize(adjacency_matrix<> g) {
+euler_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
     static const auto odd_only = [](const std::vector<int>& degree){
         std::vector<Vertex> result;
         result.reserve(degree.size() / 2);
@@ -99,12 +111,12 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
         assert(result.size() % 2 == 0 && "Number of vertices with odd degree should be even");
         return result;
     };
-    size_t nVertices = g.size();
+    size_t nVertices = g_original.size();
     if (nVertices <= 2) {
         // There are 1/2 vertices in the graph! Euler cycle is impossible!
         return {};
     }
-    g = unoriented(g);
+    auto g = unoriented(g_original);
     std::vector<edge_t> added, removed;
     std::vector<int> degree;
     std::vector<Vertex> odd_vertices;
@@ -131,6 +143,10 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
                     return;
                 }
                 remove(removed, g, from, to);
+                // восстанавливить связность если она нарушена!!!
+                //         .    .
+                // пример ./\.x./\.
+                //         --  --
                 if (degree[from] == 1 && degree[to] != 1) {
                     if (from != nVertices - 1) {
                         add(added, g, from, nVertices - 1);
@@ -143,9 +159,9 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
                         add(added, g, 0, from);
                     }
                 }
-                assert(!(degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1));
-                /*if (degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1) {
-                    if (to != nVertices - 1 && g[from][to] == 0) {
+
+                if (degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1) {
+                /*    if (to != nVertices - 1 && g[from][to] == 0) {
                         add(to, nVertices - 1);
                     } else {
                         add(0, to);
@@ -155,7 +171,10 @@ euler_change_t graphs::eulerize(adjacency_matrix<> g) {
                     } else {
                         add(0, to);
                     }
-                }*/
+                    */
+                    std::cerr << g_original;
+                }
+                assert(!(degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1));
                 return;
             }
         }
