@@ -226,6 +226,7 @@ Lab1::Lab1(QWidget *parent)
         ui->minFlowText->setText(QString::number(flow_sum));
         flowModel->setMatrix(flow_matrix);
     });
+    // Lab 4
     {
         auto f = [=](auto &&sst_algo, QLineEdit *iters) {
             if (matrixModel->matrix().empty()) {
@@ -323,6 +324,7 @@ Lab1::Lab1(QWidget *parent)
     connect(graphScene, &GraphScene::edgeAdded, [=](int from, int to) {
         matrixModel->setData(matrixModel->index(from, to), 1, Qt::EditRole);
     });
+    // Lab 5
     {
         constexpr auto out = [](const std::vector<graphs::edge_t> &edges, QLineEdit *edit) {
             if (edges.empty()) {
@@ -356,17 +358,18 @@ Lab1::Lab1(QWidget *parent)
                 return;
             }
             auto res = graphs::eulerize(m);
+            reset_outputs();
+            out(res.removed, ui->removedEdges);
+            out(res.added, ui->addedEdges);
             if (!res.has_changed()) {
                 return;
             }
             matrixModel->setMatrix(res.eulerian);
-            out(res.removed, ui->removedEdges);
             for (auto [from, to, _] : res.removed) {
                 graphScene->updateEdge(from, to, 0);
             }
-            out(res.added, ui->addedEdges);
-            for (auto [from, to, w] : res.added) {
-                graphScene->updateEdge(from, to, w);
+            for (auto [from, to, _] : res.added) {
+                graphScene->updateEdge(from, to, 1);
             }
             check_print_cycle();
         });
