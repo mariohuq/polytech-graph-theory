@@ -154,14 +154,14 @@ namespace graphs {
 
     bool is_eulerian(const adjacency_matrix<>& g);
 
-    struct euler_change_t {
-        adjacency_matrix<> eulerian;
+    struct graph_change_t {
+        adjacency_matrix<> changed;
         std::vector<edge_t> added;
         std::vector<edge_t> removed;
         bool has_changed() const { return !added.empty() || !removed.empty(); }
     };
 
-    euler_change_t eulerize(const adjacency_matrix<>& g_original);
+    graph_change_t eulerize(const adjacency_matrix<>& g_original);
 
     adjacency_matrix<> unoriented(adjacency_matrix<> g);
     adjacency_matrix<> oriented(adjacency_matrix<> g);
@@ -202,5 +202,5 @@ namespace graphs {
         std::deque<Vertex> adj(Vertex x);
     };
 
-    euler_change_t hamiltonize(adjacency_matrix<> g);
+    graph_change_t hamiltonize(adjacency_matrix<> g);
 }

@@ -358,7 +358,7 @@ Lab1::Lab1(QWidget *parent)
             if (!res.has_changed()) {
                 return;
             }
-            matrixModel->setMatrix(res.eulerian);
+            matrixModel->setMatrix(res.changed);
             for (auto [from, to, _] : res.removed) {
                 graphScene->updateEdge(from, to, 0);
             }

@@ -102,7 +102,7 @@ std::vector<Vertex> graphs::euler_cycle(adjacency_matrix<> g) {
     return result;
 }
 
-euler_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
+graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
     static const auto odd_only = [](const std::vector<int>& degree){
         std::vector<Vertex> result;
         result.reserve(degree.size() / 2);
@@ -196,7 +196,7 @@ euler_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
         try_change();
     }
     return {
-        .eulerian = oriented(g),
+        .changed = oriented(g),
         .added = added,
         .removed = removed
     };
