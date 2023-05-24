@@ -20,11 +20,14 @@ std::ostream& operator<<(std::ostream& os, const std::vector<std::vector<T>>& g)
     return os;
 }
 
-adjacency_matrix<> unoriented(adjacency_matrix<> g) {
+adjacency_matrix<> graphs::unoriented(adjacency_matrix<> g) {
     for (Vertex i = 0; i < g.size(); ++i) {
         for (Vertex j = i + 1; j < g.size(); ++j) {
             if (g[i][j] != 0) {
                 g[j][i] = g[i][j];
+            }
+            if (g[j][i] != 0) {
+                g[i][j] = g[j][i];
             }
         }
     }
@@ -32,7 +35,7 @@ adjacency_matrix<> unoriented(adjacency_matrix<> g) {
 }
 
 // ensures upper triangular matrix
-adjacency_matrix<> oriented(adjacency_matrix<> g) {
+adjacency_matrix<> graphs::oriented(adjacency_matrix<> g) {
     for (Vertex i = 0; i < g.size(); ++i) {
         for (Vertex j = i + 1; j < g.size(); ++j) {
             if (g[i][j] != 0) {

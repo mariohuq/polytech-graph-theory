@@ -6,6 +6,8 @@
 
 #include <QOpenGLWidget>
 #include <QMessageBox>
+#include <QTextStream>
+#include <QFileDialog>
 #include "Lab1.h"
 #include "ui_Lab1.h"
 #include "GraphScene.h"
@@ -13,6 +15,8 @@
 #include "MatrixModel.h"
 #include "NodesModel.h"
 #include "VectorModel.h"
+#include "PathsModel.h"
+#include "MyString.h"
 
 Lab1::Lab1(QWidget *parent)
     : QWidget(parent)
@@ -28,6 +32,7 @@ Lab1::Lab1(QWidget *parent)
     auto distances2dModel = new MatrixModel{this};
     auto flowModel = new MatrixModel{this};
     auto distances1dModel = new VectorModel{this};
+    auto hamiltonModel = new PathsModel{{}, this};
 
     auto graphScene = new GraphScene{{}, ui->graphicsView};
     auto nodesModel = new NodesModel{this, 10};
@@ -110,13 +115,10 @@ Lab1::Lab1(QWidget *parent)
                 if (ui->distMatrix->model() != distances1dModel) {
                     ui->distMatrix->setModel(distances1dModel);
                 }
-                QStringList list;
-                for (auto v: graphs::reconstruct_path(precedents, start, end)) {
-                    list.append(QString{static_cast<char>('a' + v)});
-                }
-                ui->pathOut->setText(list.empty()
+                auto path = graphs::reconstruct_path(precedents, start, end);
+                ui->pathOut->setText(path.empty()
                                      ? "Такого пути нет"
-                                     : list.join("→")
+                                     : showOriented(path)
                 );
                 ui->iterationsOut->setText(QString::number(iterations));
             };
@@ -140,13 +142,10 @@ Lab1::Lab1(QWidget *parent)
         if (ui->distMatrix->model() != distances2dModel) {
             ui->distMatrix->setModel(distances2dModel);
         }
-        QStringList list;
-        for (auto v: graphs::reconstruct_path(precedents[start], start, end)) {
-            list.append(QString{static_cast<char>('a' + v)});
-        }
-        ui->pathOut->setText(list.empty()
+        auto path = graphs::reconstruct_path(precedents[start], start, end);
+        ui->pathOut->setText(path.empty()
                              ? "Такого пути нет"
-                             : list.join("→")
+                             : showOriented(path)
         );
         ui->iterationsOut->setText(QString::number(iterations));
     });
@@ -343,12 +342,7 @@ Lab1::Lab1(QWidget *parent)
             bool is = graphs::is_eulerian(matrixModel->matrix());
             ui->isEulerianAns->setText(is ? "Да!" : "Нет!");
             if (is) {
-                auto cycle = graphs::euler_cycle(matrixModel->matrix());
-                QStringList list;
-                for (auto x : cycle) {
-                    list.append({static_cast<char>('a' + x)});
-                }
-                ui->eulerCycle->setText(list.join("–"));
+                ui->eulerCycle->setText(showUnoriented(graphs::euler_cycle(matrixModel->matrix())));
             }
         };
 
@@ -374,13 +368,44 @@ Lab1::Lab1(QWidget *parent)
             check_print_cycle();
         });
         connect(ui->isEulerian, &QPushButton::pressed, check_print_cycle);
+
+        connect(ui->hamiltonize, &QPushButton::pressed, [=]() {
+
+        });
+        connect(ui->isHamiltonian, &QPushButton::pressed, [=]() {
+            bool is = graphs::is_hamiltonian(matrixModel->matrix());
+            bool is2 = graphs::is_hamiltonian(matrixModel->matrix());
+            assert(is == is2);
+            ui->isHamiltonianAns->setText(is ? "Да!" : "Нет!");
+            if (!is) return;
+            graphs::hamilton_cycles hc{ matrixModel->matrix() };
+            std::vector<graphs::costed_path_t> paths;
+            for (int i = 0; i < 50; ++i) {
+                auto res = hc();
+                if (!res.exists()) {
+                    break;
+                }
+                paths.push_back(res);
+            }
+            hamiltonModel->setUnderlying(paths);
+            if (!hc.has_next()) {
+                return;
+            }
+            QFile file{QFileDialog::getSaveFileName(this, "Заголовок", "hamilton.txt", "Text files (*.txt)")};
+            if (!file.open(QIODevice::WriteOnly)) {
+                return;
+            }
+            QTextStream os{&file};
+            os << "Путь\tСтоимость\n";
+            for (const auto& [path, cost]: paths) {
+                os << showUnoriented(path) << "\t" << cost << "\n";
+            }
+            while (hc.has_next()) {
+                auto [path, cost] = hc();
+                os << showUnoriented(path) << "\t" << cost << "\n";
+            }
+        });
     }
-    connect(ui->hamiltonize, &QPushButton::pressed, [=]() {
-
-    });
-    connect(ui->isHamiltonian, &QPushButton::pressed, [=]() {
-
-    });
 
     ui->graphicsView->setViewport(new QOpenGLWidget);
     ui->graphicsView->setScene(graphScene);
@@ -389,7 +414,8 @@ Lab1::Lab1(QWidget *parent)
     ui->shimbellMatrix->setModel(shimbelModel);
     ui->costsMatrix->setModel(costMatrixModel);
     ui->flowMatrix->setModel(flowModel);
-    for (auto m: {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix}) {
+    ui->hamiltonCycles->setModel(hamiltonModel);
+    for (auto m: {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix, ui->hamiltonCycles}) {
         m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
     for (auto box: {ui->startBox,

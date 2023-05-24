@@ -6,6 +6,7 @@
 #include <vector>
 #include <set>
 #include <cstddef>
+#include <deque>
 
 namespace graphs {
     template<typename T=int>
@@ -162,10 +163,42 @@ namespace graphs {
 
     euler_change_t eulerize(const adjacency_matrix<>& g_original);
 
+    adjacency_matrix<> unoriented(adjacency_matrix<> g);
+    adjacency_matrix<> oriented(adjacency_matrix<> g);
+
     // makes euler cycle assuming graph is eulerian
     std::vector<Vertex> euler_cycle(adjacency_matrix<> g);
 
     std::vector<int> degrees_of(const adjacency_matrix<>& g);
 
-    bool is_hamiltonian(const adjacency_matrix<>& g);
+    bool is_hamiltonian(adjacency_matrix<> g);
+
+    using path_t = std::vector<Vertex>;
+
+    struct costed_path_t {
+        path_t path;
+        size_t cost;
+        bool exists() const {
+            return !path.empty();
+        }
+    };
+
+    struct hamilton_cycles {
+        hamilton_cycles(const adjacency_matrix<> &g) : g{unoriented(g)}, N(g.size()) {
+            for (Vertex i = 0; i < g.size(); ++i) {
+                N[i] = adj(i);
+            }
+            candidate.push_back(start);
+        }
+        costed_path_t operator()(); // next hamilton cycle
+        bool has_next() {
+            return !candidate.empty();
+        }
+    private:
+        static const Vertex start;
+        adjacency_matrix<> g;
+        std::vector<std::deque<Vertex>> N;
+        path_t candidate;
+        std::deque<Vertex> adj(Vertex x);
+    };
 }

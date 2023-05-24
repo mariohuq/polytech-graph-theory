@@ -39,7 +39,12 @@ add_executable(lab1gui
     MatrixModel.cpp
     MatrixModel.h
     NodesModel.cpp
-    NodesModel.h VectorModel.cpp VectorModel.h)
+    NodesModel.h
+    VectorModel.cpp
+    VectorModel.h
+    PathsModel.cpp
+    PathsModel.h
+    MyString.h)
 target_link_libraries(lab1gui
         Qt5::Core
         Qt5::Gui
