@@ -75,3 +75,12 @@ std::deque<Vertex> graphs::hamilton_cycles::adj(Vertex x) {
     }
     return res;
 }
+
+euler_change_t hamiltonize(adjacency_matrix<> g) {
+    g = unoriented(g);
+    return {
+        .eulerian = oriented(g),
+        .added = {},
+        .removed = {}
+    };
+}

@@ -201,4 +201,6 @@ namespace graphs {
         path_t candidate;
         std::deque<Vertex> adj(Vertex x);
     };
+
+    euler_change_t hamiltonize(adjacency_matrix<> g);
 }
