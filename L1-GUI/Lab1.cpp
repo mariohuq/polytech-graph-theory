@@ -394,22 +394,26 @@ Lab1::Lab1(QWidget *parent)
                 }
                 paths.push_back(res);
             }
+            std::sort(paths.begin(), paths.end());
             hamiltonModel->setUnderlying(paths);
             if (!hc.has_next()) {
                 return;
             }
-            QFile file{QFileDialog::getSaveFileName(this, "Заголовок", "hamilton.txt", "Text files (*.txt)")};
+            QFile file{QFileDialog::getSaveFileName(this, "Гамильтоновы циклы куда сохранить?", "hamilton.tsv", "Tab-Delimited Files (*.tsv)")};
             if (!file.open(QIODevice::WriteOnly)) {
                 return;
             }
             QTextStream os{&file};
-            os << "Путь\tСтоимость\n";
+            os << "Cycle\tCost\n";
             for (const auto& [path, cost]: paths) {
                 os << showUnoriented(path) << "\t" << cost << "\n";
             }
             while (hc.has_next()) {
-                auto [path, cost] = hc();
-                os << showUnoriented(path) << "\t" << cost << "\n";
+                auto x = hc();
+                if (!x.exists()) {
+                    break;
+                }
+                os << showUnoriented(x.path) << "\t" << x.cost << "\n";
             }
         });
     }

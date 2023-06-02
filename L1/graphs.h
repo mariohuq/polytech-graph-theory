@@ -181,6 +181,9 @@ namespace graphs {
         bool exists() const {
             return !path.empty();
         }
+        bool operator<(const costed_path_t& rhs) const {
+            return cost < rhs.cost;
+        }
     };
 
     struct hamilton_cycles {
@@ -191,7 +194,7 @@ namespace graphs {
             candidate.push_back(start);
         }
         costed_path_t operator()(); // next hamilton cycle
-        bool has_next() {
+        bool has_next() { // true for last iteration. What to do?
             return !candidate.empty();
         }
     private:
