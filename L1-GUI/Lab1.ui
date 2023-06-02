@@ -48,7 +48,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_gen">
        <attribute name="title">
@@ -102,7 +102,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableView" name="adjMatrix">
+         <widget class="MyTableView" name="adjMatrix">
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -1162,6 +1162,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyTableView</class>
+   <extends>QTableView</extends>
+   <header>../../../../L1-GUI/MyTableView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

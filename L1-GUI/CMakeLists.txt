@@ -44,7 +44,9 @@ add_executable(lab1gui
     VectorModel.h
     PathsModel.cpp
     PathsModel.h
-    MyString.h)
+    MyString.h
+    MyTableView.cpp
+    MyTableView.h)
 target_link_libraries(lab1gui
         Qt5::Core
         Qt5::Gui
