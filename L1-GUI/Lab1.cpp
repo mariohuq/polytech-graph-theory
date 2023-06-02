@@ -46,10 +46,7 @@ Lab1::Lab1(QWidget *parent)
 
     connect(ui->nVertices, qOverload<int>(&QSpinBox::valueChanged), nodesModel, &NodesModel::setSize);
 
-    connect(ui->generate, &QPushButton::pressed, [=]() {
-        auto adjacency = graphs::generate(ui->nVertices->value(), gen);
-        matrixModel->setMatrix(adjacency);
-        reset_outputs();
+    auto set_graph_image = [=](const auto& adjacency) {
         graphScene->reset();
         for (int i = 0; i < adjacency.size(); ++i) {
             graphScene->updateNode(i, "ellipse");
@@ -62,6 +59,14 @@ Lab1::Lab1(QWidget *parent)
                 graphScene->addEdge(i, j, adjacency[i][j]);
             }
         }
+    };
+
+    connect(ui->generate, &QPushButton::pressed, [=]() {
+        auto adjacency = graphs::generate(ui->nVertices->value(), gen);
+        matrixModel->setMatrix(adjacency);
+        reset_outputs();
+        graphScene->reset();
+        set_graph_image(adjacency);
     });
     // Shimbel method
     {
@@ -361,9 +366,11 @@ Lab1::Lab1(QWidget *parent)
             matrixModel->setMatrix(res.changed);
             for (auto [from, to, _] : res.removed) {
                 graphScene->updateEdge(from, to, 0);
+                graphScene->updateEdge(to, from, 0);
             }
             for (auto [from, to, _] : res.added) {
                 graphScene->updateEdge(from, to, 1);
+                graphScene->updateEdge(to, from, 0);
             }
             check_print_cycle();
         });
@@ -415,7 +422,7 @@ Lab1::Lab1(QWidget *parent)
     ui->costsMatrix->setModel(costMatrixModel);
     ui->flowMatrix->setModel(flowModel);
     ui->hamiltonCycles->setModel(hamiltonModel);
-    for (auto m: {ui->adjMatrix, ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix, ui->hamiltonCycles}) {
+    for (auto m: {static_cast<QTableView*>(ui->adjMatrix), ui->shimbellMatrix, ui->distMatrix, ui->costsMatrix, ui->flowMatrix, ui->hamiltonCycles}) {
         m->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     }
     for (auto box: {ui->startBox,

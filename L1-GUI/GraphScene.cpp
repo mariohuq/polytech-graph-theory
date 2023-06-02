@@ -61,6 +61,7 @@ void GraphScene::reset(const QString& filter)
             removeItem(e);
         }
     }
+    edges.clear();
 
     decltype(nodes) prev_nodes;
     prev_nodes.swap(nodes);
@@ -211,8 +212,10 @@ void GraphScene::updateEdge(int startId, int finishId, int label) {
         return;
     }
     // remove
+    if (it == edges.end()) {
+        return;
+    }
     removeItem(it->second);
-    delete it->second;
     edges.erase(it);
 }
 
