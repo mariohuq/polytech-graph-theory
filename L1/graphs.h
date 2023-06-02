@@ -205,5 +205,5 @@ namespace graphs {
         std::deque<Vertex> adj(Vertex x);
     };
 
-    graph_change_t hamiltonize(adjacency_matrix<> g);
+    graph_change_t hamiltonize(const adjacency_matrix<>& g);
 }

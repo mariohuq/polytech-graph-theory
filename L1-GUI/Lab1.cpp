@@ -376,13 +376,8 @@ Lab1::Lab1(QWidget *parent)
         });
         connect(ui->isEulerian, &QPushButton::pressed, check_print_cycle);
 
-        connect(ui->hamiltonize, &QPushButton::pressed, [=]() {
-
-        });
-        connect(ui->isHamiltonian, &QPushButton::pressed, [=]() {
+        auto check_print_cycle_hamilton = [=]() {
             bool is = graphs::is_hamiltonian(matrixModel->matrix());
-            bool is2 = graphs::is_hamiltonian(matrixModel->matrix());
-            assert(is == is2);
             ui->isHamiltonianAns->setText(is ? "Да!" : "Нет!");
             if (!is) return;
             graphs::hamilton_cycles hc{ matrixModel->matrix() };
@@ -415,7 +410,23 @@ Lab1::Lab1(QWidget *parent)
                 }
                 os << showUnoriented(x.path) << "\t" << x.cost << "\n";
             }
+        };
+
+        connect(ui->hamiltonize, &QPushButton::pressed, [=]() {
+            auto res = graphs::hamiltonize(matrixModel->matrix());
+            reset_outputs();
+            out(res.removed, ui->removedEdges);
+            out(res.added, ui->addedEdges);
+            if (!res.has_changed()) {
+                return;
+            }
+            matrixModel->setMatrix(res.changed);
+            for (auto [from, to, _] : res.added) {
+                graphScene->updateEdge(from, to, 1);
+            }
+            check_print_cycle_hamilton();
         });
+        connect(ui->isHamiltonian, &QPushButton::pressed, check_print_cycle_hamilton);
     }
 
     ui->graphicsView->setViewport(new QOpenGLWidget);

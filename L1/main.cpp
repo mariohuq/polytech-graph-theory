@@ -55,6 +55,7 @@ void mst2_test();
 void spanning_trees_count_test();
 void prufer_test();
 void eulerize_test();
+void gamiltonize_test();
 
 int main() {
 //    max_flow_test();
@@ -62,7 +63,8 @@ int main() {
 //    mst2_test();
 //    spanning_trees_count_test();
 //    prufer_test();
-    eulerize_test();
+//    eulerize_test();
+    gamiltonize_test();
     return 0;
 }
 
@@ -266,11 +268,27 @@ void eulerize_test() {
         trivial,
     };
     for (auto g:gs) {
-        auto [eulerian, added, removed, euler_cycle] = eulerize(g);
+        auto [eulerian, added, removed] = eulerize(g);
+        auto euler_c = euler_cycle(eulerian);
         std::cout << "g:\n" << g
         << "eulerian:\n" << eulerian << "\n"
         << "added: " << added << "\n"
         << "removed: " << removed << "\n"
-        << "euler_cycle" << euler_cycle << "\n";
+        << "euler_cycle" << euler_c << "\n";
+    }
+}
+
+void gamiltonize_test() {
+    for (size_t i = 0; i < 10000; ++i) {
+        auto g = generate(10, gen);
+        auto res = hamiltonize(g);
+        if (!graphs::is_hamiltonian(res.changed)) {
+            std::cout << g;
+            return;
+        }
+        {
+            std::cout << "," << res.added.size();
+            std::cout.flush();
+        }
     }
 }
