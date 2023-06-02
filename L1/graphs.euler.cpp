@@ -122,9 +122,10 @@ graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
     auto g = unoriented(g_original);
     std::vector<edge_t> added, removed;
     std::vector<int> degree;
-    std::vector<Vertex> odd_vertices;
+    std::vector<Vertex> odd_vertices = odd_only(degrees_of(g));
 
     constexpr auto add = [](decltype(added)& added, decltype(g)& g, Vertex from, Vertex to, int weight = 1) {
+        std::tie(from, to) = std::minmax({from, to});
         assert(!g[from][to]);
         assert(from != to);
         g[from][to] = 1;
@@ -132,69 +133,94 @@ graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
         added.emplace_back(from, to, weight);
     };
     constexpr auto remove = [](decltype(removed)& removed, decltype(g)& g, Vertex from, Vertex to) {
+        std::tie(from, to) = std::minmax({from, to}); // {,} -- see https://stackoverflow.com/a/56739991/9385971
         removed.emplace_back(from, to, g[from][to]);
         g[from][to] = 0;
         g[to][from] = 0;
     };
-    static const auto try_change = [&]() {
-        for (Vertex i{}; i < odd_vertices.size(); i++) {
-            for (Vertex j = i + 1; j < odd_vertices.size(); j++) {
-                Vertex from = odd_vertices[i];
-                Vertex to = odd_vertices[j];
-                if (g[from][to] == 0) {
-                    add(added, g, from, to);
-                    return;
-                }
-                remove(removed, g, from, to);
-                // восстанавливить связность если она нарушена!!!
-                //         .    .
-                // пример ./\.x./\.
-                //         --  --
-                if (degree[from] == 1 && degree[to] != 1) {
-                    if (from != nVertices - 1) {
-                        add(added, g, from, nVertices - 1);
-                    } else {
-                        add(added, g, 0, from);
-                    }
-                    if (from != nVertices - 2) {
-                        add(added, g, from, nVertices - 2);
-                    } else {
-                        add(added, g, 0, from);
-                    }
-                }
 
-                if (degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1) {
-                /*    if (to != nVertices - 1 && g[from][to] == 0) {
-                        add(to, nVertices - 1);
-                    } else {
-                        add(0, to);
-                    }
-                    if (to != nVertices - 2 && g[from][to] == 0) {
-                        add(to, nVertices - 2);
-                    } else {
-                        add(0, to);
-                    }
-                    */
-                    std::cerr << g_original;
-                }
-                assert(!(degree[to] == 1 && degree[from] % 2 != 0 && degree[from] != 1));
-                return;
+    // minimal cost matching by cost from given boolean adj matrix
+
+    // step 1. add edges we can add with greed.
+    auto used = std::vector<bool>(odd_vertices.size());
+    for (size_t i = 0; i < odd_vertices.size(); ++i) {
+        if (used[i]) { continue;}
+        for (size_t j = i + 1; j < odd_vertices.size(); ++j) {
+            if (used[j]) { continue;}
+            auto from = odd_vertices[i], to = odd_vertices[j];
+            if (g[from][to] == 0) {
+                used[i] = used[j] = true;
+                add(added, g, from, to);
+                break;
             }
         }
-    };
-    while (!is_eulerian(g)) {
-        degree = degrees_of(g);
-        if (std::any_of(degree.begin(), degree.end(), [](auto x){return x == 0;})){
-            odd_vertices.clear();
-            odd_vertices.reserve(nVertices);
-            for (int i = 0; i < nVertices; ++i) {
-                odd_vertices.push_back(i);
-            }
-        } else {
-            odd_vertices = odd_only(degree);
-        }
-        try_change();
     }
+    // if used all odd vertexes => nothing else needed
+    if (std::all_of(used.begin(), used.end(), [](auto x){return x;})) {
+        return {
+            .changed = oriented(g),
+            .added = added,
+            .removed = removed
+        };
+    }
+    // step 2.1. remove matched vertexes
+    for (int i = odd_vertices.size() - 1; i >= 0; --i) {
+        if (used[i]) {
+            odd_vertices.erase(odd_vertices.begin() + static_cast<decltype(odd_vertices)::difference_type>(i));
+        }
+    }
+    // step 2.2. remove edges
+    used = std::vector<bool>(odd_vertices.size());
+    std::vector<edge_t> cut_edges;
+    for (size_t i = 0; i < odd_vertices.size(); ++i) {
+        if (used[i]) { continue;}
+        for (size_t j = i + 1; j < odd_vertices.size(); ++j) {
+            if (used[j]) { continue;}
+            auto from = odd_vertices[i], to = odd_vertices[j];
+            if (g[from][to] != 0) {
+                used[i] = used[j] = true;
+                remove(removed, g, from, to);
+                // check if there still exists path between `from` and `to`.
+                auto dij = min_path_distances_dijkstra(g, from);
+                // If not, we have cut the bridge and should fix that!
+                if (dij.distances[to] == INF) {
+                    cut_edges.push_back(removed.back());
+                }
+                break; // go to next i iteration
+            }
+        }
+    }
+    if (cut_edges.size() > 1) {
+        // we have >=3 convex components HOORAY!
+        // step 3. choose 1 vertex from each component and join them into cycle.
+        assert(("we found several cut edges and didn't manage to connect them greedily on step 1. Awful.", false)); // need to check
+    }
+    else if (cut_edges.size() == 1) {
+        auto [from, to, _] = cut_edges.front();
+        auto dij = min_path_distances_dijkstra(g, from);
+
+        // recover that edge (undo removing)
+        add(added, g, from, to);
+        added.pop_back();
+        removed.pop_back();
+
+        // find vertex i in first or second component, and use it to recover connection
+        Vertex i;
+        for (i = 0; i < g.size(); ++i) {
+            if (g[from][i] != 0 && i != to) {
+                remove(removed, g, from, i);
+                add(added, g, i, to);
+                break;
+            }
+            if (g[to][i] != 0 && i != from) {
+                remove(removed, g, to, i);
+                add(added, g, i, from);
+                break;
+            }
+        }
+        assert(("we did't found such vertex. Awfuuuuul!", i != g.size()));
+    }
+    assert(is_eulerian(g));
     return {
         .changed = oriented(g),
         .added = added,
