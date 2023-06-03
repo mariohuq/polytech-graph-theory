@@ -74,7 +74,7 @@ bool graphs::is_eulerian(const adjacency_matrix<>& g) {
                        [](int d) { return d % 2 == 0;});
 }
 
-std::vector<Vertex> graphs::euler_cycle(adjacency_matrix<> g) {
+path_t graphs::euler_cycle(adjacency_matrix<> g) {
     size_t nVertices = g.size();
     g = unoriented(g);
     std::vector<Vertex> result;

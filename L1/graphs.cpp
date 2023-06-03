@@ -233,7 +233,7 @@ graphs::min_path_distances_floyd_warshall(const adjacency_matrix<> &g) {
     };
 }
 
-std::vector<Vertex>
+path_t
 graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
     std::vector<Vertex> result;
     result.reserve(precedents.size());

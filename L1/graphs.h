@@ -14,6 +14,8 @@ namespace graphs {
 
     using Vertex = size_t;
 
+    using path_t = std::vector<Vertex>;
+
     adjacency_matrix<> generate(size_t nVertices, std::mt19937& gen);
 
     std::vector<size_t> out_degrees(size_t nVertices, std::mt19937& gen);
@@ -75,7 +77,7 @@ namespace graphs {
 
     floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<>& g);
 
-    std::vector<Vertex> reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
+    path_t reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
 
     // lab3
 
@@ -167,13 +169,11 @@ namespace graphs {
     adjacency_matrix<> oriented(adjacency_matrix<> g);
 
     // makes euler cycle assuming graph is eulerian
-    std::vector<Vertex> euler_cycle(adjacency_matrix<> g);
+    path_t euler_cycle(adjacency_matrix<> g);
 
     std::vector<int> degrees_of(const adjacency_matrix<>& g);
 
     bool is_hamiltonian(adjacency_matrix<> g);
-
-    using path_t = std::vector<Vertex>;
 
     struct costed_path_t {
         path_t path;
