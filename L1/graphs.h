@@ -176,7 +176,7 @@ namespace graphs {
 
     // lab5
 
-    // является ли граф эфлеровым (неориентированный, полученный забыванием направлений дуг)
+    // является ли граф эйлеровым (неориентированный, полученный забыванием направлений дуг)
     bool is_eulerian(const adjacency_matrix<>& g);
 
     struct graph_change_t {
@@ -193,13 +193,12 @@ namespace graphs {
     adjacency_matrix<> unoriented(adjacency_matrix<> g);
     // получить ориентированный граф с верхнетреугольной матрицей смежности из данного
     adjacency_matrix<> oriented(adjacency_matrix<> g);
+    // найти степени вершин графа (выходные степени если ориетированный)
+    std::vector<int> degrees_of(const adjacency_matrix<>& g);
 
     // makes euler cycle assuming graph is eulerian
     // найти эйлеров цикл, в предположении что граф эйлеров
     std::vector<Vertex> euler_cycle(adjacency_matrix<> g);
-
-    // найти степени вершин графа (выходные степени если ориетированный)
-    std::vector<int> degrees_of(const adjacency_matrix<>& g);
 
     // проверить, что граф является гамильтоновым
     bool is_hamiltonian(adjacency_matrix<> g);
