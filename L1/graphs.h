@@ -143,6 +143,7 @@ namespace graphs {
         Vertex to;
         int weight;
 
+        // сравнение ребер по весу
         bool operator<(const edge_t& rhs) const {
             return std::tie(weight, from, to) < std::tie(rhs.weight, rhs.from, rhs.to);
         }
@@ -207,10 +208,13 @@ namespace graphs {
 
     struct costed_path_t {
         path_t path;
+        // суммарный вес пути
         size_t cost;
+        // непустой ли путь
         bool exists() const {
             return !path.empty();
         }
+        // сравнение путей по их весу
         bool operator<(const costed_path_t& rhs) const {
             return cost < rhs.cost;
         }
