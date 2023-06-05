@@ -1,4 +1,4 @@
-from: markdown+tex_math_dollars+raw_attribute+inline_code_attributes+definition_lists+implicit_figures+citations
+from: markdown+tex_math_dollars+raw_attribute+inline_code_attributes+definition_lists+implicit_figures+citations+implicit_header_references
 # yaml_metadata_block +grid_tables+pipe_tables+simple_tables
 to: pdf
 pdf-engine: xelatex
@@ -10,3 +10,5 @@ fail-if-warnings: true
 number-sections: true
 include-in-header: config/preamble.tex
 dpi: 121
+filters:
+- pandoc-include-code

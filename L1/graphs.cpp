@@ -30,6 +30,11 @@ adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g);
 // список смежности для соответствующего неорграфа
 adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices);
 
+// start snippet generate
+adjacency_matrix<> graphs::generate(size_t nVertices, std::mt19937 &gen) {
+    return from_degrees(out_degrees(nVertices, gen), gen);
+}
+
 std::vector<size_t> graphs::out_degrees(size_t nVertices, std::mt19937 &gen) {
     if (nVertices == 0) {
         return std::vector<size_t>{};
@@ -71,7 +76,9 @@ adjacency_matrix<> graphs::from_degrees(std::vector<size_t> vertex_degrees, std:
     }
     return result;
 }
+// end snippet generate
 
+// start snippet shimbell
 adjacency_matrix<> graphs::min_path_lengths(const adjacency_matrix<> &that, size_t path_length) {
     if (that.empty()) {
         return {};
@@ -88,10 +95,42 @@ adjacency_matrix<> graphs::max_path_lengths(const adjacency_matrix<> &that, size
     return matrix_power_shimbell(that, path_length, fn);
 }
 
-adjacency_matrix<> graphs::generate(size_t nVertices, std::mt19937 &gen) {
-    return from_degrees(out_degrees(nVertices, gen), gen);
+template<typename Func>
+adjacency_matrix<>
+matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
+    assert(power > 0);
+    adjacency_matrix<> result = that;
+    for (int i = 1; i < power; ++i) {
+        result = matrix_multiply<>(result, that, extrem);
+    }
+    return result;
 }
 
+template<typename Func>
+adjacency_matrix<>
+matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
+    assert(lhs.size() == lhs[0].size()); // квадратная
+    assert(rhs.size() == rhs[0].size()); // квадратная
+    assert(lhs.size() == rhs.size());
+    size_t n = lhs.size();
+    adjacency_matrix<> result = lhs;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            auto &res = result[i][j];
+            res = 0;
+            for (int k = 0; k < n; ++k) {
+                if (lhs[i][k] == 0 || rhs[k][j] == 0) {
+                    continue;
+                }
+                res = res ? extrem(res, lhs[i][k] + rhs[k][j]) : lhs[i][k] + rhs[k][j];
+            }
+        }
+    }
+    return result;
+}
+// end snippet shimbell
+
+// start snippet dijkstra
 dijkstra_result_t
 graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_vertex) {
     // https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
@@ -133,7 +172,9 @@ graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_ve
         .iterations = iterations
     };
 }
+// end snippet dijkstra
 
+// start snippet bellman_ford
 dijkstra_result_t
 graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex start_vertex) {
     std::vector<Vertex> precedents(g.size(), NO_VERTEX);
@@ -179,7 +220,9 @@ graphs::min_path_distances_bellman_ford(const adjacency_matrix<> &g, Vertex star
         .iterations = iterations
     };
 }
+// end snippet bellman_ford
 
+// start snippet floyd_warshall
 floyd_warshall_result_t
 graphs::min_path_distances_floyd_warshall(const adjacency_matrix<> &g) {
     std::vector<std::vector<Vertex>> precedents(g.size(), std::vector<Vertex>(g.size(), NO_VERTEX));
@@ -232,7 +275,9 @@ graphs::min_path_distances_floyd_warshall(const adjacency_matrix<> &g) {
         .iterations = iterations
     };
 }
+// end snippet floyd_warshall
 
+// start snippet reconstruct_path
 path_t
 graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Vertex to) {
     std::vector<Vertex> result;
@@ -248,7 +293,10 @@ graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Ver
     std::reverse(result.begin(), result.end());
     return result;
 }
+// end snippet reconstruct_path
 
+// start snippet generate_costs
+// end snippet generate_costs
 adjacency_matrix<> graphs::generate_costs(const adjacency_matrix<> &g, std::mt19937 &gen) {
     auto dis = polya_1<int>(4, 8, 3, 30 - 1);
     auto copy = g;
@@ -331,6 +379,7 @@ flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &capacit
     return result;
 }
 
+// start snippet max_flow_ford_fulkerson
 flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     const auto s = g.source;
     const auto t = g.sink;
@@ -378,7 +427,9 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     }
     return result;
 }
+// end snippet max_flow_ford_fulkerson
 
+// start snippet min_cost_flow
 min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_flow) {
 
     constexpr auto custom_dijkstra = [](const adjacency_matrix<> &capacity, const adjacency_matrix<> &cost,
@@ -463,7 +514,9 @@ min_cost_flow_result_t graphs::min_cost_flow(const flow_graph_t &g, int desired_
         .flow = flows
     };
 }
+// end snippet min_cost_flow
 
+// start snippet kruskal_mst
 min_st_result_t
 graphs::kruskal_mst(const adjacency_matrix<> &g) {
     std::set<edge_t> result;
@@ -528,7 +581,9 @@ graphs::kruskal_mst(const adjacency_matrix<> &g) {
         .iterations = iterations
     };
 }
+// end snippet kruskal_mst
 
+// start snippet prim_mst
 min_st_result_t
 graphs::prim_mst(const adjacency_matrix<> &g) {
     size_t iterations = 0;
@@ -577,6 +632,33 @@ graphs::prim_mst(const adjacency_matrix<> &g) {
         .cost = cost,
         .iterations = iterations,
     };
+}
+// end snippet prim_mst
+
+// start snippet spanning_trees_count
+size_t graphs::spanning_trees_count(const adjacency_matrix<> &g) {
+    auto b_matrix = kirchhoff_matrixify(g);
+    // minor of i = 0, j = g.size() - 1
+    adjacency_matrix<> m(++b_matrix.begin(), b_matrix.end());
+    for (auto& row: m) {
+        row.pop_back();
+    }
+    // (-1)^{i+j}
+    return (b_matrix.size() % 2 == 0 ? -1 : 1) * determinant(m);
+}
+
+adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
+    for (Vertex i{}; i < g.size(); ++i) {
+        int deg = 0;
+        for (Vertex j{}; j < g.size(); ++j) {
+            if (i == j) {
+                continue;
+            }
+            g[j][i] = g[i][j] = g[i][j] != 0 ? (++deg, -1) : 0;
+        }
+        g[i][i] = deg;
+    }
+    return g;
 }
 
 size_t determinant(std::vector<std::vector<int>> a) {
@@ -631,66 +713,9 @@ size_t determinant(std::vector<std::vector<int>> a) {
     }
     return det;
 }
+// end snippet spanning_trees_count
 
-adjacency_matrix<> kirchhoff_matrixify(adjacency_matrix<> g) {
-    for (Vertex i{}; i < g.size(); ++i) {
-        int deg = 0;
-        for (Vertex j{}; j < g.size(); ++j) {
-            if (i == j) {
-                continue;
-            }
-            g[j][i] = g[i][j] = g[i][j] != 0 ? (++deg, -1) : 0;
-        }
-        g[i][i] = deg;
-    }
-    return g;
-}
-
-size_t graphs::spanning_trees_count(const adjacency_matrix<> &g) {
-    auto b_matrix = kirchhoff_matrixify(g);
-    // minor of i = 0, j = g.size() - 1
-    adjacency_matrix<> m(++b_matrix.begin(), b_matrix.end());
-    for (auto& row: m) {
-        row.pop_back();
-    }
-    // (-1)^{i+j}
-    return (b_matrix.size() % 2 == 0 ? -1 : 1) * determinant(m);
-}
-
-template<typename Func>
-adjacency_matrix<>
-matrix_power_shimbell(const adjacency_matrix<> &that, size_t power, Func extrem) {
-    assert(power > 0);
-    adjacency_matrix<> result = that;
-    for (int i = 1; i < power; ++i) {
-        result = matrix_multiply<>(result, that, extrem);
-    }
-    return result;
-}
-
-template<typename Func>
-adjacency_matrix<>
-matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Func extrem) {
-    assert(lhs.size() == lhs[0].size()); // квадратная
-    assert(rhs.size() == rhs[0].size()); // квадратная
-    assert(lhs.size() == rhs.size());
-    size_t n = lhs.size();
-    adjacency_matrix<> result = lhs;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            auto &res = result[i][j];
-            res = 0;
-            for (int k = 0; k < n; ++k) {
-                if (lhs[i][k] == 0 || rhs[k][j] == 0) {
-                    continue;
-                }
-                res = res ? extrem(res, lhs[i][k] + rhs[k][j]) : lhs[i][k] + rhs[k][j];
-            }
-        }
-    }
-    return result;
-}
-
+// start snippet count_paths_op
 size_t graphs::count_paths::operator()(size_t v) {
     if (visited[v]) {
         return d[v];
@@ -706,6 +731,7 @@ size_t graphs::count_paths::operator()(size_t v) {
     }
     return d[v] = result;
 }
+// end snippet count_paths_op
 
 std::vector<edge_t> edges_of(const adjacency_matrix<> &g) {
     std::vector<edge_t> result;
@@ -729,6 +755,7 @@ adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
     return result;
 }
 
+// start snippet encode
 std::pair<std::vector<Vertex>, std::vector<int>>
 graphs::pruefer::encode(const adjacency_matrix<> &g) {
     // https://cp-algorithms.com/graph/pruefer_code.html#building-the-prufer-code-for-a-given-tree
@@ -771,7 +798,9 @@ graphs::pruefer::encode(const adjacency_matrix<> &g) {
     }
     return {code, weights};
 }
+// end snippet encode
 
+// start snippet decode
 adjacency_matrix<>
 graphs::pruefer::decode(const std::vector<Vertex>& code, const std::vector<int>& weights) {
     // https://cp-algorithms.com/graph/pruefer_code.html#restoring-the-tree-using-the-prufer-code
@@ -802,3 +831,4 @@ graphs::pruefer::decode(const std::vector<Vertex>& code, const std::vector<int>&
     g[a][b] = weights.back();
     return g;
 }
+// end snippet decode

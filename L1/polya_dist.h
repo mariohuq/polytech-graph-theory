@@ -6,8 +6,10 @@
 #include <random>
 #include <tuple>
 
+// start snippet polya_1
 template <class IntType = int>
-std::discrete_distribution<IntType> polya_1(IntType black_n, IntType red_n, IntType c, IntType size) {
+std::discrete_distribution<IntType>
+polya_1(IntType black_n, IntType red_n, IntType c, IntType size) {
     std::vector<double> probabilities;
     probabilities.reserve(size + 1);
     double p0 = 1;
@@ -24,5 +26,6 @@ std::discrete_distribution<IntType> polya_1(IntType black_n, IntType red_n, IntT
     }
     return { probabilities.begin(), probabilities.end() };
 }
+// end snippet polya_1
 
 void test_polya();

@@ -109,52 +109,52 @@
 
 \DeclareMathOperator{\func}{func}
 
-\newcommand{\va}{\var{a}}
-\newcommand{\vb}{\var{b}}
-\newcommand{\vc}{\var{c}}
-\newcommand{\vd}{\var{d}}
-\newcommand{\ve}{\var{e}}
-\newcommand{\vf}{\var{f}}
-\newcommand{\vg}{\var{g}}
-\newcommand{\vh}{\var{h}}
-\newcommand{\vi}{\var{i}}
-\newcommand{\vj}{\var{j}}
-\newcommand{\vk}{\var{k}}
+% \newcommand{\va}{\var{a}}
+% \newcommand{\vb}{\var{b}}
+% \newcommand{\vc}{\var{c}}
+% \newcommand{\vd}{\var{d}}
+% \newcommand{\ve}{\var{e}}
+% \newcommand{\vf}{\var{f}}
+% \newcommand{\vg}{\var{g}}
+% \newcommand{\vh}{\var{h}}
+% \newcommand{\vi}{\var{i}}
+% \newcommand{\vj}{\var{j}}
+% \newcommand{\vk}{\var{k}}
 
-\usepackage{forest}
-\usetikzlibrary{arrows.meta}
-\tikzset{
-  0 my edge/.style={densely dashed, my edge},
-  my edge/.style={-{Stealth[]}},
-}
-\forestset{
-  BDT/.style={
-    for tree={
-      if n children=0{}{circle},% use a circle unless there are 0 children
-      draw,% draw every node
-      edge={
-        my edge,% use the my edge style for edges (with the arrow)
-      },
-      if n=1{
-        edge+={0 my edge},% if the child is the first one, add the 0 my edge style (dashed)
-      }{},
-      font=\sffamily,% use sans serif for node text
-    }
-  },
-}
-\forestset{
-  SYNT/.style={
-    for tree={
-      if n children=0{}{circle},% use a circle unless there are 0 children
-      draw,% draw every node
-      edge={
-        my edge,% use the my edge style for edges (with the arrow)
-      },
-      font=\sffamily,% use sans serif for node text
-    }
-  },
-}
-\DeclareMathOperator{\pdnf}{\text{СДНФ}}
-\DeclareMathOperator{\pcnf}{\text{СКНФ}}
+% \usepackage{forest}
+% \usetikzlibrary{arrows.meta}
+% \tikzset{
+%   0 my edge/.style={densely dashed, my edge},
+%   my edge/.style={-{Stealth[]}},
+% }
+% \forestset{
+%   BDT/.style={
+%     for tree={
+%       if n children=0{}{circle},% use a circle unless there are 0 children
+%       draw,% draw every node
+%       edge={
+%         my edge,% use the my edge style for edges (with the arrow)
+%       },
+%       if n=1{
+%         edge+={0 my edge},% if the child is the first one, add the 0 my edge style (dashed)
+%       }{},
+%       font=\sffamily,% use sans serif for node text
+%     }
+%   },
+% }
+% \forestset{
+%   SYNT/.style={
+%     for tree={
+%       if n children=0{}{circle},% use a circle unless there are 0 children
+%       draw,% draw every node
+%       edge={
+%         my edge,% use the my edge style for edges (with the arrow)
+%       },
+%       font=\sffamily,% use sans serif for node text
+%     }
+%   },
+% }
+% \DeclareMathOperator{\pdnf}{\text{СДНФ}}
+% \DeclareMathOperator{\pcnf}{\text{СКНФ}}
 
 \AtBeginDocument{\renewcommand{\div}{\operatorname{div}}}

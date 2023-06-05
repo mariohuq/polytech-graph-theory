@@ -66,6 +66,7 @@ std::vector<int> graphs::degrees_of(const adjacency_matrix<>& g) {
     return result;
 }
 
+// start snippet is_eulerian
 bool graphs::is_eulerian(const adjacency_matrix<>& g) {
     size_t nVertices = g.size();
     assert(nVertices > 2);
@@ -73,7 +74,9 @@ bool graphs::is_eulerian(const adjacency_matrix<>& g) {
     return std::all_of(degree.begin(), degree.end(),
                        [](int d) { return d % 2 == 0;});
 }
+// end snippet is_eulerian
 
+// start snippet euler_cycle
 path_t graphs::euler_cycle(adjacency_matrix<> g) {
     size_t nVertices = g.size();
     g = unoriented(g);
@@ -101,7 +104,9 @@ path_t graphs::euler_cycle(adjacency_matrix<> g) {
     }
     return result;
 }
+// end snippet euler_cycle
 
+// start snippet eulerize
 graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
     static const auto odd_only = [](const std::vector<int>& degree){
         std::vector<Vertex> result;
@@ -227,3 +232,4 @@ graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
         .removed = removed
     };
 }
+// end snippet eulerize

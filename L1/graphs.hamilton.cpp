@@ -8,6 +8,7 @@
 
 using namespace graphs;
 
+// start snippet is_hamiltonian
 bool graphs::is_hamiltonian(adjacency_matrix<> g) {
     if (g.size() <= 2) {
         return false;
@@ -27,9 +28,11 @@ bool graphs::is_hamiltonian(adjacency_matrix<> g) {
     hamilton_cycles hc{g};
     return hc().exists();
 }
+// end snippet is_hamiltonian
 
 const Vertex graphs::hamilton_cycles::start = 0;
 
+// start snippet hamilton_cycles_op
 costed_path_t graphs::hamilton_cycles::operator()() {
     static constexpr auto cost = [](decltype(g) &g, decltype(candidate) &candidate) {
         size_t result = 0;
@@ -65,6 +68,7 @@ costed_path_t graphs::hamilton_cycles::operator()() {
     }
     return {};
 }
+// end snippet hamilton_cycles_op
 
 std::deque<Vertex> graphs::hamilton_cycles::adj(Vertex x) {
     std::deque<Vertex> res;
@@ -77,6 +81,7 @@ std::deque<Vertex> graphs::hamilton_cycles::adj(Vertex x) {
     return res;
 }
 
+// start snippet hamiltonize
 graph_change_t graphs::hamiltonize(const adjacency_matrix<> &g_orig) {
     auto g = unoriented(g_orig);
     auto added = std::vector<edge_t>{};
@@ -181,4 +186,4 @@ graph_change_t graphs::hamiltonize(const adjacency_matrix<> &g_orig) {
 //    assert(is_hamiltonian(g));
     return result();
 }
-
+// end snippet hamiltonize
