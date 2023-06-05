@@ -48,35 +48,48 @@ namespace graphs {
     // lab2
     struct dijkstra_result_t {
         // array of path lengths from given vertex to all other
+        // массив длин путей от данной вершины ко всем остальным
         std::vector<int> distances;
         // array of vertexes,
         // precedents[i] is immediately before vertex `i` in the shortest path from start vertex to `i`;
         //               is NO_VERTEX if no path exists
+        // массив вершин, precedents[i] непосредственно перед вершиной i в кратчайшем пути от начальной вершины до i
+        // NO_VERTEX если такого пути нет.
         std::vector<Vertex> precedents;
         // iterations count
+        // количество итераций
         size_t iterations;
     };
 
     constexpr auto INF = INT32_MAX;
     constexpr Vertex NO_VERTEX = -1u;
 
+    // поиск кратчайших путей от данной вершины `start_vertex` ко всем остальным алгоритмом Дейкстры
     dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<>& g, Vertex start_vertex);
 
+    // поиск кратчайших путей от данной вершины `start_vertex` ко всем остальным алгоритмом Беллмана-Форда
     dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<>& g, Vertex start_vertex);
 
     struct floyd_warshall_result_t {
         // matrix of path lengths: `distances[i][j]` is min path from vertex `i` to `j`
+        // матрица длин путей между всеми парами вершин
+        // `distances[i][j]` - длина кратчайшего пути от `i` к `j`
         std::vector<std::vector<int>> distances;
         // matrix of vertexes,
         // precedents[i][j] is immediately before vertex `j` in the shortest path from `i` to `j`;
         //                  is NO_VERTEX if no path exists
+        // матрица вершин,
+        // precedents[i][j] непосредственно предшествует `j` в кратчайшем пути от `i` к `j`;
+        //                  =NO_VERTEX если пути нет
         std::vector<std::vector<Vertex>> precedents;
         // iterations count
+        // количество итераций
         size_t iterations;
     };
-
+    // поиск кратчайших путей от каждой вершины к каждой.
     floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<>& g);
 
+    // восстановление пути по вектору предшествования от вершины от `from` к `to`;
     path_t reconstruct_path(const std::vector<Vertex>& precedents, Vertex from, Vertex to);
 
     // lab3
@@ -91,10 +104,17 @@ namespace graphs {
     // g: weight edge matrix
     // returns: random costs matrix y, such that
     // g[i][j] == 0 ⇔ y[i][j] == 0 ∀i,j
+
+    // случайно генерирует матрицу стоимостей на основе матрицы весов
+    // причем g[i][j] == 0 ⇔ y[i][j] == 0 ∀i,j
     adjacency_matrix<> generate_costs(const adjacency_matrix<>& g, std::mt19937& gen);
 
     // adds to the graph supersource and supersink with ∞ edge capacities if needed,
     // returns new matrix and supersource & supersink vertexes
+
+    // добавить к графу фиктивный исток и сток с бесконечной пропускной способностью
+    // если стоков (истоков) несколько
+    // возвращает новую матрицу и номера вершин истока и стока в новой матрице.
     flow_graph_t add_supersource_supersink(const adjacency_matrix<>& capacity, const adjacency_matrix<>& cost);
 
     struct flow_result_t {
@@ -103,6 +123,7 @@ namespace graphs {
     };
 
     // find maximim flow of given capacities matrix. Ignores g.cost.
+    // найти максимальный поток по данной матрице пропускных способностей (игнорируя стоимости).
     flow_result_t max_flow_ford_fulkerson(const flow_graph_t& g);
 
     struct min_cost_flow_result_t {
@@ -111,6 +132,7 @@ namespace graphs {
         adjacency_matrix<> flow;
     };
 
+    // найти поток заданной стоимости с минимальной стоимостью в графе
     min_cost_flow_result_t
     min_cost_flow(const flow_graph_t& g, int desired_flow);
 
@@ -135,11 +157,13 @@ namespace graphs {
         // iterations count
         size_t iterations;
     };
-
+    // найти минимальное остовное дерево алгоритмом Краскала
     min_st_result_t kruskal_mst(const adjacency_matrix<>& g);
 
+    // найти минимальное остовное дерево алгоритмом Прима
     min_st_result_t prim_mst(const adjacency_matrix<>& g);
 
+    // подсчитать количество остовных деревьев согласно теореме Кирхгофа
     size_t spanning_trees_count(const adjacency_matrix<>& g);
 
     namespace pruefer {
@@ -154,6 +178,7 @@ namespace graphs {
 
     // lab5
 
+    // является ли граф эйлеровым (неориентированный, полученный забыванием направлений дуг)
     bool is_eulerian(const adjacency_matrix<>& g);
 
     struct graph_change_t {
@@ -163,16 +188,21 @@ namespace graphs {
         bool has_changed() const { return !added.empty() || !removed.empty(); }
     };
 
+    // модифицировать граф до эйлерова
     graph_change_t eulerize(const adjacency_matrix<>& g_original);
 
+    // получить неориентированный граф, полученный забыванием направлений дуг графа
     adjacency_matrix<> unoriented(adjacency_matrix<> g);
+    // получить ориентированный граф с верхнетреугольной матрицей смежности из данного
     adjacency_matrix<> oriented(adjacency_matrix<> g);
-
-    // makes euler cycle assuming graph is eulerian
-    path_t euler_cycle(adjacency_matrix<> g);
-
+    // найти степени вершин графа (выходные степени если ориетированный)
     std::vector<int> degrees_of(const adjacency_matrix<>& g);
 
+    // makes euler cycle assuming graph is eulerian
+    // найти эйлеров цикл, в предположении что граф эйлеров
+    path_t euler_cycle(adjacency_matrix<> g);
+
+    // проверить, что граф является гамильтоновым
     bool is_hamiltonian(adjacency_matrix<> g);
 
     struct costed_path_t {
@@ -187,23 +217,29 @@ namespace graphs {
     };
 
     struct hamilton_cycles {
+        // инициализация поиска гамильтоновых циклов
         hamilton_cycles(const adjacency_matrix<> &g) : g{unoriented(g)}, N(g.size()) {
             for (Vertex i = 0; i < g.size(); ++i) {
                 N[i] = adj(i);
             }
             candidate.push_back(start);
         }
+        // найти следующий гамильтонов цикл
         costed_path_t operator()(); // next hamilton cycle
         bool has_next() { // true for last iteration. What to do?
             return !candidate.empty();
         }
     private:
+        // начальная вершина
         static const Vertex start;
+        // матрица смежности
         adjacency_matrix<> g;
         std::vector<std::deque<Vertex>> N;
         path_t candidate;
+        // номера вершин смежных c `x`
         std::deque<Vertex> adj(Vertex x);
     };
 
+    // дополнить граф ребрами до гамильтонова
     graph_change_t hamiltonize(const adjacency_matrix<>& g);
 }
