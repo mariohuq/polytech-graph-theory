@@ -9,3 +9,4 @@ fail-if-warnings: true
 # toc-depth: 2
 number-sections: true
 include-in-header: config/preamble.tex
+dpi: 121
