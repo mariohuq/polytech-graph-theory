@@ -133,7 +133,6 @@ matrix_multiply(const adjacency_matrix<> &lhs, const adjacency_matrix<> &rhs, Fu
 // start snippet dijkstra
 dijkstra_result_t
 graphs::min_path_distances_dijkstra(const adjacency_matrix<> &g, Vertex start_vertex) {
-    // https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
     std::vector<Vertex> precedents(g.size(), NO_VERTEX);
     std::vector<bool> visited(g.size(), false);
     size_t iterations{};
@@ -525,8 +524,6 @@ graphs::kruskal_mst(const adjacency_matrix<> &g) {
     size_t iterations = 0;
 
     // disjoint set union
-    //   сжатие пути + ранговая эвристика
-    // http://e-maxx.ru/algo/dsu
     struct dsu_t {
         // сжатый массив предков, т.е. для каждой вершины там может храниться
         // не непосредственный предок, а предок предка, предок предка предка, и т.д.
@@ -758,7 +755,6 @@ adjacency_list list_from(const std::set<edge_t>& edges, size_t nVertices) {
 // start snippet encode
 std::pair<std::vector<Vertex>, std::vector<int>>
 graphs::pruefer::encode(const adjacency_matrix<> &g) {
-    // https://cp-algorithms.com/graph/pruefer_code.html#building-the-prufer-code-for-a-given-tree
     auto adj = list_from(kruskal_mst(g).spanning_tree, g.size());
     size_t n = adj.size();
     std::set<Vertex> leafs;
@@ -803,7 +799,6 @@ graphs::pruefer::encode(const adjacency_matrix<> &g) {
 // start snippet decode
 adjacency_matrix<>
 graphs::pruefer::decode(const std::vector<Vertex>& code, const std::vector<int>& weights) {
-    // https://cp-algorithms.com/graph/pruefer_code.html#restoring-the-tree-using-the-prufer-code
     size_t nVertices = weights.size() + 1;
     assert(code.size() == nVertices - 2);
     adjacency_matrix<> g(nVertices, std::vector<int>(nVertices));

@@ -64,6 +64,7 @@ namespace graphs {
     constexpr auto INF = INT32_MAX;
     constexpr Vertex NO_VERTEX = -1u;
 
+    // https://github.com/okwedook/olymp/blob/master/code/graph/Dijkstra.hpp
     // поиск кратчайших путей от данной вершины `start_vertex` ко всем остальным алгоритмом Дейкстры
     dijkstra_result_t min_path_distances_dijkstra(const adjacency_matrix<>& g, Vertex start_vertex);
 
@@ -159,6 +160,8 @@ namespace graphs {
         size_t iterations;
     };
     // найти минимальное остовное дерево алгоритмом Краскала
+    // dsu_t: сжатие пути + ранговая эвристика
+    // http://e-maxx.ru/algo/dsu
     min_st_result_t kruskal_mst(const adjacency_matrix<>& g);
 
     // найти минимальное остовное дерево алгоритмом Прима
@@ -168,10 +171,12 @@ namespace graphs {
     size_t spanning_trees_count(const adjacency_matrix<>& g);
 
     namespace pruefer {
+        // https://cp-algorithms.com/graph/pruefer_code.html#building-the-prufer-code-for-a-given-tree
         // g -> min spanning tree -> pruefer code with weights
         std::pair<std::vector<Vertex>, std::vector<int>>
         encode(const adjacency_matrix<>& g);
 
+        // https://cp-algorithms.com/graph/pruefer_code.html#restoring-the-tree-using-the-prufer-code
         // generates upper triangular matrix. Each edge appears once in the matrix
         adjacency_matrix<>
         decode(const std::vector<Vertex>& code, const std::vector<int>& weights);
@@ -190,6 +195,7 @@ namespace graphs {
     };
 
     // модифицировать граф до эйлерова
+    // std::tie = {,}... -- see https://stackoverflow.com/a/56739991/9385971
     graph_change_t eulerize(const adjacency_matrix<>& g_original);
 
     // получить неориентированный граф, полученный забыванием направлений дуг графа

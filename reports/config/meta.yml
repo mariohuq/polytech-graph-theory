@@ -26,3 +26,8 @@ link-citations: true
 links-as-notes: true
 hyperrefoptions:
 - bookmarksdepth=10
+
+colorlinks: true
+linkcolor: blue
+urlcolor: red
+toccolor: gray

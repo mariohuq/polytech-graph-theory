@@ -138,7 +138,7 @@ graph_change_t graphs::eulerize(const adjacency_matrix<>& g_original) {
         added.emplace_back(from, to, weight);
     };
     constexpr auto remove = [](decltype(removed)& removed, decltype(g)& g, Vertex from, Vertex to) {
-        std::tie(from, to) = std::minmax({from, to}); // {,} -- see https://stackoverflow.com/a/56739991/9385971
+        std::tie(from, to) = std::minmax({from, to});
         removed.emplace_back(from, to, g[from][to]);
         g[from][to] = 0;
         g[to][from] = 0;
