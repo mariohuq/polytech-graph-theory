@@ -387,14 +387,24 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
     const auto n = g.capacity.size();
     auto parent = std::vector<Vertex>(g.capacity.size(), -1u);
 
+    // Returns true if there is a path from
+    // source `s` to sink `t` in residual graph.
+    // Also fills parent[] to store the path.
     const auto bfs = [n, s, t, &parent, &capacity = std::as_const(capacity)]() -> bool {
+        // Mark all the vertices as not visited
         std::vector<bool> visited(n, false);
+        // Create a queue for BFS
         std::deque<Vertex> queue{s};
+        // Mark the source node as visited and enqueue it
         visited[s] = true;
         parent[s] = s;
+        // Standard BFS loop
         while (!(queue.empty())) {
             Vertex u = queue.front();
             queue.pop_front();
+            // Get all adjacent vertices of the dequeued vertex u
+            // If an adjacent has not been visited, then mark it
+            // visited and enqueue it
             for (Vertex v{}; v < n; v++) {
                 if (visited[v] || capacity[u][v] <= 0) {
                     continue;
@@ -404,6 +414,8 @@ flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
                 visited[v] = true;
             }
         }
+        // If we reached sink in BFS starting from source, then return
+        // true, else false
         return visited[t];
     };
 
