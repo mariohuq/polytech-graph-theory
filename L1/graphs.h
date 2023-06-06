@@ -27,6 +27,7 @@ namespace graphs {
     adjacency_matrix<> max_path_lengths(const adjacency_matrix<>& that, size_t path_length);
 
     // https://neerc.ifmo.ru/wiki/index.php?title=Задача_о_числе_путей_в_ациклическом_графе
+    // start snippet count_paths
     struct count_paths {
         count_paths(const adjacency_matrix<>& graph, Vertex start)
             : graph{graph}
@@ -44,22 +45,27 @@ namespace graphs {
         std::vector<bool> visited; // visited[v] = true, если ответ для вершины v уже посчитан
         std::vector<size_t> d; // d[v] — число путей из вершины `start` до вершины v
     };
+    // end snippet count_paths
 
     // lab2
+
+    // - array of path lengths from given vertex to all other
+    // - array of vertexes,
+    // precedents[i] is immediately before vertex `i` in the shortest path from start vertex to `i`;
+    //               is NO_VERTEX if no path exists
+    // - iterations count
+
+    // start snippet dijkstra_result_t
     struct dijkstra_result_t {
-        // array of path lengths from given vertex to all other
         // массив длин путей от данной вершины ко всем остальным
         std::vector<int> distances;
-        // array of vertexes,
-        // precedents[i] is immediately before vertex `i` in the shortest path from start vertex to `i`;
-        //               is NO_VERTEX if no path exists
         // массив вершин, precedents[i] непосредственно перед вершиной i в кратчайшем пути от начальной вершины до i
         // NO_VERTEX если такого пути нет.
         std::vector<Vertex> precedents;
-        // iterations count
         // количество итераций
         size_t iterations;
     };
+    // end snippet dijkstra_result_t
 
     constexpr auto INF = INT32_MAX;
     constexpr Vertex NO_VERTEX = -1u;
@@ -71,22 +77,26 @@ namespace graphs {
     // поиск кратчайших путей от данной вершины `start_vertex` ко всем остальным алгоритмом Беллмана-Форда
     dijkstra_result_t min_path_distances_bellman_ford(const adjacency_matrix<>& g, Vertex start_vertex);
 
+    // - matrix of path lengths: `distances[i][j]` is min path from vertex `i` to `j`
+    // - matrix of vertexes,
+    // precedents[i][j] is immediately before vertex `j` in the shortest path from `i` to `j`;
+    //                  is NO_VERTEX if no path exists
+    // - iterations count
+
+    // start snippet floyd_warshall_result_t
     struct floyd_warshall_result_t {
-        // matrix of path lengths: `distances[i][j]` is min path from vertex `i` to `j`
         // матрица длин путей между всеми парами вершин
         // `distances[i][j]` - длина кратчайшего пути от `i` к `j`
         std::vector<std::vector<int>> distances;
-        // matrix of vertexes,
-        // precedents[i][j] is immediately before vertex `j` in the shortest path from `i` to `j`;
-        //                  is NO_VERTEX if no path exists
         // матрица вершин,
         // precedents[i][j] непосредственно предшествует `j` в кратчайшем пути от `i` к `j`;
         //                  =NO_VERTEX если пути нет
         std::vector<std::vector<Vertex>> precedents;
-        // iterations count
         // количество итераций
         size_t iterations;
     };
+    // end snippet floyd_warshall_result_t
+    
     // поиск кратчайших путей от каждой вершины к каждой.
     floyd_warshall_result_t min_path_distances_floyd_warshall(const adjacency_matrix<>& g);
 
@@ -95,12 +105,19 @@ namespace graphs {
 
     // lab3
 
+    // start snippet flow_graph_t
     struct flow_graph_t {
+        // матрица пропускных способностей
         adjacency_matrix<> capacity;
-        adjacency_matrix<> cost; // 0 means ∞ cost
+        // матрица стоимостей
+        // 0 значит ∞ стоимость
+        adjacency_matrix<> cost;
+        // вершина источник
         Vertex source;
+        // вершина сток
         Vertex sink;
     };
+    // end snippet flow_graph_t
 
     // g: weight edge matrix
     // returns: random costs matrix y, such that
@@ -118,20 +135,24 @@ namespace graphs {
     // возвращает новую матрицу и номера вершин истока и стока в новой матрице.
     flow_graph_t add_supersource_supersink(const adjacency_matrix<>& capacity, const adjacency_matrix<>& cost);
 
+    // start snippet flow_result_t
     struct flow_result_t {
-        int max_flow;
-        adjacency_matrix<> flow;
+        int max_flow; // величина потока
+        adjacency_matrix<> flow; // матрица потока
     };
+    // end snippet flow_result_t
 
     // find maximim flow of given capacities matrix. Ignores g.cost.
     // найти максимальный поток по данной матрице пропускных способностей (игнорируя стоимости).
     flow_result_t max_flow_ford_fulkerson(const flow_graph_t& g);
 
+    // start snippet min_cost_flow_result_t
     struct min_cost_flow_result_t {
-        int flow_sum;
-        int cost;
-        adjacency_matrix<> flow;
+        int flow_sum; // величина потока
+        int cost; // стоимость
+        adjacency_matrix<> flow; // матрица потока
     };
+    // end snippet min_cost_flow_result_t
 
     // найти поток заданной стоимости с минимальной стоимостью в графе
     min_cost_flow_result_t
@@ -139,6 +160,7 @@ namespace graphs {
 
     // lab4
 
+    // start snippet edge_t
     struct edge_t {
         Vertex from;
         Vertex to;
@@ -151,7 +173,9 @@ namespace graphs {
 
         edge_t(Vertex from, Vertex to, int weight) : from(from), to(to), weight(weight) {}
     };
+    // end snippet edge_t
 
+    // start snippet min_st_result_t
     struct min_st_result_t {
         std::set<edge_t> spanning_tree;
         // sum of costs of edges
@@ -159,6 +183,8 @@ namespace graphs {
         // iterations count
         size_t iterations;
     };
+    // end snippet min_st_result_t
+
     // найти минимальное остовное дерево алгоритмом Краскала
     // dsu_t: сжатие пути + ранговая эвристика
     // http://e-maxx.ru/algo/dsu
@@ -187,12 +213,14 @@ namespace graphs {
     // является ли граф эйлеровым (неориентированный, полученный забыванием направлений дуг)
     bool is_eulerian(const adjacency_matrix<>& g);
 
+    // start snippet graph_change_t
     struct graph_change_t {
-        adjacency_matrix<> changed;
-        std::vector<edge_t> added;
-        std::vector<edge_t> removed;
+        adjacency_matrix<> changed; // матрица смежности модифицированного графа
+        std::vector<edge_t> added; // добавленные ребра
+        std::vector<edge_t> removed; // удаленные ребра
         bool has_changed() const { return !added.empty() || !removed.empty(); }
     };
+    // end snippet graph_change_t
 
     // модифицировать граф до эйлерова
     // std::tie = {,}... -- see https://stackoverflow.com/a/56739991/9385971
@@ -212,6 +240,7 @@ namespace graphs {
     // проверить, что граф является гамильтоновым
     bool is_hamiltonian(adjacency_matrix<> g);
 
+    // start snippet costed_path_t
     struct costed_path_t {
         path_t path;
         // суммарный вес пути
@@ -225,7 +254,9 @@ namespace graphs {
             return cost < rhs.cost;
         }
     };
+    // end snippet costed_path_t
 
+    // start snippet hamilton_cycles
     struct hamilton_cycles {
         // инициализация поиска гамильтоновых циклов
         hamilton_cycles(const adjacency_matrix<> &g) : g{unoriented(g)}, N(g.size()) {
@@ -249,6 +280,7 @@ namespace graphs {
         // номера вершин смежных c `x`
         std::deque<Vertex> adj(Vertex x);
     };
+    // end snippet hamilton_cycles
 
     // дополнить граф ребрами до гамильтонова
     graph_change_t hamiltonize(const adjacency_matrix<>& g);
