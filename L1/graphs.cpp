@@ -735,7 +735,7 @@ size_t graphs::count_paths::operator()(size_t v) {
         if (!graph[i][v]) {
             continue;
         }
-        // ∃ ребро из i в v
+        // ∃ ребро из i в v (рекурсивный вызов)
         result += operator()(i);
     }
     return d[v] = result;
