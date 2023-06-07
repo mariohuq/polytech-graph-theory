@@ -170,6 +170,9 @@ namespace graphs {
         bool operator<(const edge_t& rhs) const {
             return std::tie(weight, from, to) < std::tie(rhs.weight, rhs.from, rhs.to);
         }
+        bool operator==(const edge_t& rhs) const {
+            return std::tie(from, to) == std::tie(rhs.from, rhs.to);
+        }
 
         edge_t(Vertex from, Vertex to, int weight) : from(from), to(to), weight(weight) {}
     };

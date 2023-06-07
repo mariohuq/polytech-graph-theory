@@ -72,65 +72,32 @@ graph_change_t graphs::hamiltonize(const adjacency_matrix<> &g_orig) {
         }
     }
 
-    // Try with one edge
-    for (auto [from1, to1, w]: no_edges) {
-        g[from1][to1] = g[to1][from1] = w;
-        if (is_hamiltonian(g)) {
-            added.emplace_back(from1, to1, w);
+    int zero = (int)added.size();
+
+    auto iterate = [&](auto& that, int level) {
+        if (level == 0) {
+            return is_hamiltonian(g);
+        }
+        for (auto e : no_edges) {
+            if (std::find(added.begin() + zero, added.end(), e) != added.end()) {
+                continue;
+            }
+            // Try with edge e
+            g[e.from][e.to] = g[e.to][e.from] = e.weight;
+            added.push_back(e);
+            if (that(that, level - 1)) {
+                return true;
+            }
+            // If it still doesn't work, remove edge e
+            g[e.from][e.to] = g[e.to][e.from] = 0;
+            added.pop_back();
+        }
+        return false;
+    };
+    for (int k = 1; k <= 3; ++k) {
+        if (iterate(iterate, k)) {
             return result();
         }
-        g[from1][to1] = g[to1][from1] = 0;
-    }
-    // Try adding two edges
-    for (auto [from1, to1, w]: no_edges) {
-        g[from1][to1] = g[to1][from1] = w;
-        // adding a second edge
-        for (auto [from2, to2, ww]: no_edges) {
-            if (from2 == from1 && to2 == to1) {
-                continue;
-            }
-            g[from2][to2] = g[to2][from2] = ww;
-            if (is_hamiltonian(g)) {
-                added.emplace_back(from2, to2, ww);
-                return result();
-            }
-            // If it still doesn't work, remove the second edge
-            g[from2][to2] = g[to2][from2] = 0;
-        }
-        // Otherwise, remove the first edge
-        g[from1][to1] = g[to1][from1] = 0;
-    }
-    // Try adding three edges
-    for (auto [from1, to1, w]: no_edges) {
-        g[from1][to1] = g[to1][from1] = w;
-        // adding a second edge
-        for (auto [from2, to2, ww]: no_edges) {
-            if (from2 == from1 && to2 == to1) {
-                continue;
-            }
-            g[from2][to2] = g[to2][from2] = ww;
-            if (is_hamiltonian(g)) {
-                added.emplace_back(from2, to2, ww);
-                return result();
-            }
-            // If it Still doesn't work, add the third edge
-            for (auto [from3, to3, www]: no_edges) {
-                if (from3 == from1 && to3 == to1) {
-                    continue;
-                }
-                g[from3][to3] = g[to3][from3] = www;
-                if (is_hamiltonian(g)) {
-                    added.emplace_back(from3, to3, www);
-                    return result();
-                }
-                // If it STILL doesn't work, remove the third edge
-                g[from3][to3] = g[to3][from3] = 0;
-            }
-            // If it STILLL doesn't work, remove the second edge
-            g[from2][to2] = g[to2][from2] = 0;
-        }
-        // Otherwise, remove the first edge
-        g[from1][to1] = g[to1][from1] = 0;
     }
 //    assert(is_hamiltonian(g));
     return result();
