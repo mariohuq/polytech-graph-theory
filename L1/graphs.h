@@ -259,26 +259,47 @@ namespace graphs {
     // start snippet hamilton_cycles
     struct hamilton_cycles {
         // инициализация поиска гамильтоновых циклов
-        hamilton_cycles(const adjacency_matrix<> &g) : g{unoriented(g)}, N(g.size()) {
-            for (Vertex i = 0; i < g.size(); ++i) {
-                N[i] = adj(i);
+        explicit hamilton_cycles(const adjacency_matrix<> &g) : g{unoriented(g)} {
+        }
+
+        struct iterator {
+            using iterator_category = std::input_iterator_tag;
+            using value_type = costed_path_t;
+            using difference_type = std::ptrdiff_t;
+            using pointer = costed_path_t*;
+            using reference = costed_path_t&;
+
+            std::vector<std::deque<Vertex>> N;
+            hamilton_cycles* container;
+            path_t candidate;
+            costed_path_t result;
+
+            explicit iterator(hamilton_cycles* container) : container{container} { }
+            bool operator==(const iterator& rhs) const { return candidate == rhs.candidate; }
+            bool operator!=(const iterator& rhs) const { return !(*this == rhs); }
+            costed_path_t operator*() const { return result; }
+            iterator& operator++() {
+                result = find_next();
+                return *this;
             }
-            candidate.push_back(start);
-        }
-        // найти следующий гамильтонов цикл
-        costed_path_t operator()(); // next hamilton cycle
-        bool has_next() { // true for last iteration. What to do?
-            return !candidate.empty();
-        }
+
+        private:
+            // стоимость пути
+            static size_t cost(adjacency_matrix<> &g, decltype(candidate) &cand);
+            // найти следующий гамильтонов цикл
+            costed_path_t find_next();
+        };
+
+        iterator begin();
+        iterator end() { return iterator{this}; }
+
     private:
         // начальная вершина
         static const Vertex start;
         // матрица смежности
         adjacency_matrix<> g;
-        std::vector<std::deque<Vertex>> N;
-        path_t candidate;
         // номера вершин смежных c `x`
-        std::deque<Vertex> adj(Vertex x);
+        std::deque<Vertex> adj(Vertex x) const;
     };
     // end snippet hamilton_cycles
 

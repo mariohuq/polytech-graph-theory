@@ -56,6 +56,7 @@ void spanning_trees_count_test();
 void prufer_test();
 void eulerize_test();
 void gamiltonize_test();
+void hamilton_cycles_test();
 
 int main() {
 //    max_flow_test();
@@ -64,7 +65,8 @@ int main() {
 //    spanning_trees_count_test();
 //    prufer_test();
 //    eulerize_test();
-    gamiltonize_test();
+//    gamiltonize_test();
+    hamilton_cycles_test();
     return 0;
 }
 
@@ -267,7 +269,7 @@ void eulerize_test() {
         full,
         trivial,
     };
-    for (auto g:gs) {
+    for (auto& g:gs) {
         auto [eulerian, added, removed] = eulerize(g);
         auto euler_c = euler_cycle(eulerian);
         std::cout << "g:\n" << g
@@ -290,5 +292,17 @@ void gamiltonize_test() {
             std::cout << "," << res.added.size();
             std::cout.flush();
         }
+    }
+}
+
+void hamilton_cycles_test() {
+    auto g = adjacency_matrix<>{
+        {0, 1, 1, 1},
+        {0, 0, 1, 1},
+        {0, 0, 0, 1},
+        {0, 0, 0, 0},
+    };
+    for (auto [cycle, cost]: hamilton_cycles{g}) {
+        std::cout << cycle << " " << cost << "\n";
     }
 }

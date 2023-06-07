@@ -382,16 +382,13 @@ Lab1::Lab1(QWidget *parent)
             if (!is) return;
             graphs::hamilton_cycles hc{ matrixModel->matrix() };
             std::vector<graphs::costed_path_t> paths;
-            for (int i = 0; i < 50; ++i) {
-                auto res = hc();
-                if (!res.exists()) {
-                    break;
-                }
-                paths.push_back(res);
-            }
+
+            auto it = hc.begin();
+            std::copy_n<decltype(it)&>(it, 50, std::back_inserter(paths));
+
             std::sort(paths.begin(), paths.end());
             hamiltonModel->setUnderlying(paths);
-            if (!hc.has_next()) {
+            if (it == hc.end()) {
                 return;
             }
             QFile file{QFileDialog::getSaveFileName(this, "Гамильтоновы циклы куда сохранить?", "hamilton.tsv", "Tab-Delimited Files (*.tsv)")};
@@ -400,16 +397,13 @@ Lab1::Lab1(QWidget *parent)
             }
             QTextStream os{&file};
             os << "Cycle\tCost\n";
-            for (const auto& [path, cost]: paths) {
-                os << showUnoriented(path) << "\t" << cost << "\n";
-            }
-            while (hc.has_next()) {
-                auto x = hc();
-                if (!x.exists()) {
-                    break;
-                }
+            auto write_line = [&](const auto& x){
                 os << showUnoriented(x.path) << "\t" << x.cost << "\n";
+            };
+            for (const auto& x: paths) {
+                write_line(x);
             }
+            std::for_each(it, hc.end(), write_line);
         };
 
         connect(ui->hamiltonize, &QPushButton::pressed, [=]() {

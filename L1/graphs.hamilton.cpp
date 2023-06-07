@@ -26,60 +26,9 @@ bool graphs::is_hamiltonian(adjacency_matrix<> g) {
         return false;
     }
     hamilton_cycles hc{g};
-    return hc().exists();
+    return hc.begin() != hc.end();
 }
 // end snippet is_hamiltonian
-
-const Vertex graphs::hamilton_cycles::start = 0;
-
-// start snippet hamilton_cycles_op
-costed_path_t graphs::hamilton_cycles::operator()() {
-    static constexpr auto cost = [](decltype(g) &g, decltype(candidate) &candidate) {
-        size_t result = 0;
-        for (size_t i = 1; i < candidate.size(); ++i) {
-            result += g[candidate[i - 1]][candidate[i]];
-        }
-        return result + g[candidate.front()][candidate.back()];
-    };
-    while (has_next()) {
-        auto x = candidate.back();
-        if (N[x].empty()) {
-            candidate.pop_back();
-            continue;
-        }
-        auto y = N[x].back();
-        N[x].pop_back();
-        if (std::find(candidate.begin(), candidate.end(), y) != candidate.end()) {
-            continue;
-        }
-        candidate.push_back(y);
-        N[y] = adj(y);
-        if (candidate.size() != g.size()) {
-            continue;
-        }
-        if (std::find(N[y].begin(), N[y].end(), start) == N[y].end()) {
-            candidate.pop_back();
-            continue;
-        }
-        auto res = candidate;
-        candidate.pop_back();
-        res.push_back(start);
-        return {res, cost(g, res)};
-    }
-    return {};
-}
-// end snippet hamilton_cycles_op
-
-std::deque<Vertex> graphs::hamilton_cycles::adj(Vertex x) {
-    std::deque<Vertex> res;
-    for (Vertex i = 0; i < g.size(); ++i) {
-        if (g[x][i] == 0) {
-            continue;
-        }
-        res.push_back(i);
-    }
-    return res;
-}
 
 // start snippet hamiltonize
 graph_change_t graphs::hamiltonize(const adjacency_matrix<> &g_orig) {
@@ -187,3 +136,67 @@ graph_change_t graphs::hamiltonize(const adjacency_matrix<> &g_orig) {
     return result();
 }
 // end snippet hamiltonize
+
+const Vertex graphs::hamilton_cycles::start = 0;
+
+hamilton_cycles::iterator hamilton_cycles::begin() {
+    // инициализация поиска гамильтоновых циклов
+    auto it = iterator{this};
+    it.N.resize(g.size());
+    for (Vertex i = 0; i < g.size(); ++i) {
+        it.N[i] = adj(i);
+    }
+    it.candidate.push_back(start);
+    return ++it;
+}
+
+std::deque<Vertex> hamilton_cycles::adj(Vertex x) const {
+    std::deque<Vertex> res;
+    for (Vertex i = 0; i < g.size(); ++i) {
+        if (g[x][i] == 0) {
+            continue;
+        }
+        res.push_back(i);
+    }
+    return res;
+}
+
+
+// start snippet hamilton_cycles_op
+costed_path_t hamilton_cycles::iterator::find_next() {
+    while (!candidate.empty()) {
+        auto x = candidate.back();
+        if (N[x].empty()) {
+            candidate.pop_back();
+            continue;
+        }
+        auto y = N[x].back();
+        N[x].pop_back();
+        if (std::find(candidate.begin(), candidate.end(), y) != candidate.end()) {
+            continue;
+        }
+        candidate.push_back(y);
+        N[y] = container->adj(y);
+        if (candidate.size() != container->g.size()) {
+            continue;
+        }
+        if (std::find(N[y].begin(), N[y].end(), start) == N[y].end()) {
+            candidate.pop_back();
+            continue;
+        }
+        auto res = candidate;
+        candidate.pop_back();
+        res.push_back(start);
+        return {res, cost(container->g, res)};
+    }
+    return {};
+}
+// end snippet hamilton_cycles_op
+
+size_t hamilton_cycles::iterator::cost(adjacency_matrix<> &g, path_t &cand) {
+    size_t x = 0;
+    for (size_t i = 1; i < cand.size(); ++i) {
+        x += g[cand[i - 1]][cand[i]];
+    }
+    return x + g[cand.front()][cand.back()];
+}

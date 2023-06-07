@@ -295,7 +295,6 @@ graphs::reconstruct_path(const std::vector<Vertex> &precedents, Vertex from, Ver
 // end snippet reconstruct_path
 
 // start snippet generate_costs
-// end snippet generate_costs
 adjacency_matrix<> graphs::generate_costs(const adjacency_matrix<> &g, std::mt19937 &gen) {
     auto dis = polya_1<int>(4, 8, 3, 30 - 1);
     auto copy = g;
@@ -310,7 +309,9 @@ adjacency_matrix<> graphs::generate_costs(const adjacency_matrix<> &g, std::mt19
     }
     return copy;
 }
+// end snippet generate_costs
 
+// start snippet add_supersource_supersink
 flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &capacity, const adjacency_matrix<> &cost) {
     // identify sources and sinks
     std::vector<bool> is_source(capacity.size(), true);
@@ -377,6 +378,7 @@ flow_graph_t graphs::add_supersource_supersink(const adjacency_matrix<> &capacit
     }
     return result;
 }
+// end snippet add_supersource_supersink
 
 // start snippet max_flow_ford_fulkerson
 flow_result_t graphs::max_flow_ford_fulkerson(const flow_graph_t &g) {
