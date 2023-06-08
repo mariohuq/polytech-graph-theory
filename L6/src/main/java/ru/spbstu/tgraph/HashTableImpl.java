@@ -98,7 +98,7 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         final int newCapacity = PRIME_CAPACITIES[capacityIndex];
         // необходимо, так как Node === HashTableImpl<Key, Value>.Node,
         // а массивы с generic типом компонента вне закона (JLS 15.10.1)
-        final Node[] newTable = (Node[]) new Object[newCapacity];
+        final Node[] newTable = (Node[]) new HashTableImpl<?, ?>.Node[newCapacity];
         if (table == null) {
             return newTable;
         }
