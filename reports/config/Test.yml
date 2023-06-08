@@ -1,0 +1,3 @@
+input-files:
+- Test.md
+output-file: Test.pdf
