@@ -66,7 +66,8 @@ int main() {
 //    prufer_test();
 //    eulerize_test();
 //    gamiltonize_test();
-    hamilton_cycles_test();
+//    hamilton_cycles_test();
+    polya_1_histograms();
     return 0;
 }
 

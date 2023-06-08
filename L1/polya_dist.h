@@ -29,3 +29,4 @@ polya_1(IntType black_n, IntType red_n, IntType c, IntType size) {
 // end snippet polya_1
 
 void test_polya();
+void polya_1_histograms();
