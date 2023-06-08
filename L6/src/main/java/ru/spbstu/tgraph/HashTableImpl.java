@@ -3,6 +3,8 @@ package ru.spbstu.tgraph;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
 
     private static final int[] PRIME_CAPACITIES = {
@@ -76,6 +78,11 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         return size() == 0;
     }
 
+    @Override
+    public void clear() {
+        Arrays.fill(table, null);
+    }
+
     private int capacity() {
         return table != null ? table.length : DEFAULT_INITIAL_CAPACITY;
     }
@@ -98,6 +105,7 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         final int newCapacity = PRIME_CAPACITIES[capacityIndex];
         // необходимо, так как Node === HashTableImpl<Key, Value>.Node,
         // а массивы с generic типом компонента вне закона (JLS 15.10.1)
+        @SuppressWarnings("unchecked")
         final Node[] newTable = (Node[]) new HashTableImpl<?, ?>.Node[newCapacity];
         if (table == null) {
             return newTable;

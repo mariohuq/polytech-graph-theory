@@ -34,4 +34,6 @@ public interface Bst<Key extends Comparable<Key>, Value> {
     default boolean isEmpty() {
         return size() == 0;
     }
+
+    void clear();
 }

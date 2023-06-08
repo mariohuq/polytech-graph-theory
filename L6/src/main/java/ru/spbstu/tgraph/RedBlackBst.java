@@ -93,6 +93,12 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         return size;
     }
 
+    @Override
+    public void clear() {
+        root = null;
+        size = 0;
+    }
+
     private Value get(@Nullable Node node, @NotNull Key key) {
         if (node == null) {
             return null;
