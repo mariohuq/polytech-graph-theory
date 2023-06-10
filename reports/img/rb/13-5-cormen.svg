@@ -1,0 +1,1798 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg132"
+   width="583.97"
+   height="243.35"
+   viewBox="0 0 583.97 243.35"
+   sodipodi:docname="13-5-cormen.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs136">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4204">
+      <g
+         id="g4208">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4206"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4210">
+      <g
+         id="g4214">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4212"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4216">
+      <g
+         id="g4220">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4218"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4222">
+      <g
+         id="g4226">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4224"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4228">
+      <g
+         id="g4232">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4230"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4234">
+      <g
+         id="g4238">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4236"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4240">
+      <g
+         id="g4244">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4242"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4246">
+      <g
+         id="g4250">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4248"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4252">
+      <g
+         id="g4256">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4254"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4258">
+      <g
+         id="g4262">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4260"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4264">
+      <g
+         id="g4268">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4266"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4270">
+      <g
+         id="g4274">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4272"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4276">
+      <g
+         id="g4280">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4278"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4282">
+      <g
+         id="g4286">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4284"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4288">
+      <g
+         id="g4292">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4290"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4294">
+      <g
+         id="g4298">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4296"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4300">
+      <g
+         id="g4304">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4302"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4306">
+      <g
+         id="g4310">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4308"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4312">
+      <g
+         id="g4316">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4314"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4318">
+      <g
+         id="g4322">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4320"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4324">
+      <g
+         id="g4328">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4326"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4330">
+      <g
+         id="g4334">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4332"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4336">
+      <g
+         id="g4340">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4338"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4342">
+      <g
+         id="g4346">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4344"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4348">
+      <g
+         id="g4352">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4350"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4354">
+      <g
+         id="g4358">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4356"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4360">
+      <g
+         id="g4364">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4362"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4366">
+      <g
+         id="g4370">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4368"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4372">
+      <g
+         id="g4376">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4374"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4378">
+      <g
+         id="g4382">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4380"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4384">
+      <g
+         id="g4388">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4386"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4390">
+      <g
+         id="g4394">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4392"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4396">
+      <g
+         id="g4400">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4398"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4402">
+      <g
+         id="g4406">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4404"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4408">
+      <g
+         id="g4412">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4410"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4414">
+      <g
+         id="g4418">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4416"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4420">
+      <g
+         id="g4424">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4422"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4426">
+      <g
+         id="g4430">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4428"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4432">
+      <g
+         id="g4436">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4434"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4438">
+      <g
+         id="g4442">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4440"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4444">
+      <g
+         id="g4448">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4446"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4450">
+      <g
+         id="g4454">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4452"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4456">
+      <g
+         id="g4460">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4458"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4462">
+      <g
+         id="g4466">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4464"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4468">
+      <g
+         id="g4472">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4470"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4474">
+      <g
+         id="g4478">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4476"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4480">
+      <g
+         id="g4484">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4482"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4486">
+      <g
+         id="g4490">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4488"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4492">
+      <g
+         id="g4496">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4494"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4498">
+      <g
+         id="g4502">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4500"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4504">
+      <g
+         id="g4508">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4506"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4510">
+      <g
+         id="g4514">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4512"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4516">
+      <g
+         id="g4520">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4518"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4522">
+      <g
+         id="g4526">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4524"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4528">
+      <g
+         id="g4532">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4530"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4534">
+      <g
+         id="g4538">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4536"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4540">
+      <g
+         id="g4544">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4542"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4546">
+      <g
+         id="g4550">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4548"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4552">
+      <g
+         id="g4556">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4554"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4558">
+      <g
+         id="g4562">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4560"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4564">
+      <g
+         id="g4568">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4566"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4570">
+      <g
+         id="g4574">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4572"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4576">
+      <g
+         id="g4580">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4578"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4582">
+      <g
+         id="g4586">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4584"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4588">
+      <g
+         id="g4592">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4590"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4594">
+      <g
+         id="g4598">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4596"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4600">
+      <g
+         id="g4604">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4602"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4606">
+      <g
+         id="g4610">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4608"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4612">
+      <g
+         id="g4616">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4614"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4618">
+      <g
+         id="g4622">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4620"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4624">
+      <g
+         id="g4628">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4626"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4630">
+      <g
+         id="g4634">
+        <path
+           d="M 0,0.5 V 743 H 660 V 0.5 Z"
+           clip-rule="evenodd"
+           id="path4632"
+           style="stroke-width:0.1" />
+      </g>
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview134"
+     pagecolor="#ffffff"
+     bordercolor="#cccccc"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.1819"
+     inkscape:cx="296.13"
+     inkscape:cy="150.6"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g138" />
+  <g
+     id="g138"
+     inkscape:groupmode="layer"
+     inkscape:label="Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein - Introduction to Algorithms-The MIT Press (2022)"
+     transform="matrix(1.3333,0,0,-1.3333,-164.13,879.9)">
+    <path
+       d="m 324.83,640.14 h 74.1"
+       style="fill:none;stroke:#00aeef;stroke-width:0.52425;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path206"
+       clip-path="url(#clipPath4492)" />
+    <text
+       xml:space="preserve"
+       transform="scale(1,-1)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="text304"
+       x="122.92"
+       y="-617.49"><tspan
+         sodipodi:role="line"
+         id="tspan302"
+         x="122.92"
+         y="-617.49">(а)</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(1,-1)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="text478"
+       x="122.63"
+       y="-519.16"><tspan
+         id="tspan476"
+         sodipodi:role="line"
+         x="122.63"
+         y="-519.16">(б)</tspan></text>
+    <g
+       id="g5906">
+      <path
+         d="M 246.45,659.94 V 639.99"
+         style="fill:none;stroke:#000000;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path168"
+         clip-path="url(#clipPath4606)" />
+      <path
+         d="m 246.3,640.29 h 0.23 v -0.22 l -58.96,-19.73 h -0.3 v 0.3 l 59.03,19.65"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path170"
+         clip-path="url(#clipPath4600)" />
+      <path
+         d="m 187.27,620.64 h 0.3 l 29.48,-19.65 v -0.3 h -0.3 l -29.48,19.65 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path172"
+         clip-path="url(#clipPath4594)" />
+      <path
+         d="m 246.3,640.29 h 0.23 l 59.02,-19.65 v -0.3 h -0.22 l -59.03,19.73 v 0.22"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path174"
+         clip-path="url(#clipPath4588)" />
+      <path
+         d="m 187.27,620.64 h 0.3 v -0.3 l -14.7,-14.77 h -0.3 v 0.22 l 14.7,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path176"
+         clip-path="url(#clipPath4582)" />
+      <path
+         d="m 216.75,600.99 h 0.3 v -0.3 l -14.7,-14.85 h -0.23 v 0.3 l 14.63,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path178"
+         clip-path="url(#clipPath4576)" />
+      <path
+         d="m 216.75,600.99 h 0.3 l 14.85,-14.85 v -0.3 h -0.3 l -14.85,14.85 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path180"
+         clip-path="url(#clipPath4570)" />
+      <path
+         d="m 305.33,620.64 h 0.22 v -0.3 l -14.7,-14.77 h -0.22 v 0.22 l 14.7,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path182"
+         clip-path="url(#clipPath4564)" />
+      <path
+         d="m 305.33,620.64 h 0.22 l 14.85,-14.85 v -0.22 h -0.3 l -14.77,14.77 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path184"
+         clip-path="url(#clipPath4558)" />
+      <path
+         d="m 256.28,640.14 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.9,4.42 -9.9,9.82 0,5.48 4.43,9.9 9.9,9.9 5.4,0 9.83,-4.42 9.83,-9.9"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path236"
+         clip-path="url(#clipPath4402)" />
+      <path
+         d="m 256.28,640.14 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.9,4.42 -9.9,9.82 0,5.48 4.43,9.9 9.9,9.9 5.4,0 9.83,-4.42 9.83,-9.9 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path238"
+         clip-path="url(#clipPath4396)" />
+      <path
+         d="m 197.25,620.49 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.82,4.42 -9.82,9.82 0,5.48 4.35,9.83 9.82,9.83 5.4,0 9.83,-4.35 9.83,-9.83"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path240"
+         clip-path="url(#clipPath4390)" />
+      <path
+         d="m 197.25,620.49 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.82,4.42 -9.82,9.82 0,5.48 4.35,9.83 9.82,9.83 5.4,0 9.83,-4.35 9.83,-9.83 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path242"
+         clip-path="url(#clipPath4384)" />
+      <path
+         d="m 315.23,620.49 c 0,-5.4 -4.35,-9.82 -9.83,-9.82 -5.4,0 -9.82,4.42 -9.82,9.82 0,5.48 4.42,9.83 9.82,9.83 5.48,0 9.83,-4.35 9.83,-9.83"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path244"
+         clip-path="url(#clipPath4378)" />
+      <path
+         d="m 315.23,620.49 c 0,-5.4 -4.35,-9.82 -9.83,-9.82 -5.4,0 -9.82,4.42 -9.82,9.82 0,5.48 4.42,9.83 9.82,9.83 5.48,0 9.83,-4.35 9.83,-9.83 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path246"
+         clip-path="url(#clipPath4372)" />
+      <path
+         d="m 226.73,600.84 c 0,-5.47 -4.35,-9.82 -9.83,-9.82 -5.4,0 -9.82,4.35 -9.82,9.82 0,5.4 4.42,9.83 9.82,9.83 5.48,0 9.83,-4.43 9.83,-9.83"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path248"
+         clip-path="url(#clipPath4366)" />
+      <path
+         d="m 226.73,600.84 c 0,-5.47 -4.35,-9.82 -9.83,-9.82 -5.4,0 -9.82,4.35 -9.82,9.82 0,5.4 4.42,9.83 9.82,9.83 5.48,0 9.83,-4.43 9.83,-9.83 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path250"
+         clip-path="url(#clipPath4360)" />
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text256"
+         x="229.19"
+         y="-598.06"><tspan
+           x="229.19"
+           y="-598.06"
+           id="tspan254"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">z</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text260"
+         x="317.47"
+         y="-617.49"><tspan
+           x="317.47"
+           y="-617.49"
+           id="tspan258"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">y</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;white-space:pre;inline-size:0;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text284"
+         x="38.675"
+         y="-597.54"><tspan
+           x="38.675"
+           y="-597.54"
+           id="tspan282"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">α</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text288"
+         x="72.736"
+         y="-577.89"><tspan
+           x="72.736"
+           y="-577.89"
+           id="tspan286"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">β</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text292"
+         x="107.92"
+         y="-577.89"><tspan
+           x="107.92"
+           y="-577.89"
+           id="tspan290"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">γ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text296"
+         x="157.32"
+         y="-597.54"><tspan
+           x="157.32"
+           y="-597.54"
+           id="tspan294"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">δ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text300"
+         x="192.05"
+         y="-597.54"><tspan
+           x="192.05"
+           y="-597.54"
+           id="tspan298"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">ε</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text266"
+         x="242.79"
+         y="-637.43"><tspan
+           x="242.79"
+           y="-637.43"
+           id="tspan264"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">C</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text270"
+         x="302.21"
+         y="-617.78"><tspan
+           x="302.21"
+           y="-617.78"
+           id="tspan268"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">D</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text274"
+         x="183.99"
+         y="-617.78"><tspan
+           x="183.99"
+           y="-617.78"
+           id="tspan272"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">A</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text278"
+         x="213.94"
+         y="-598.13"><tspan
+           x="213.94"
+           y="-598.13"
+           id="tspan276"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">B</tspan></text>
+    </g>
+    <g
+       id="g5948">
+      <path
+         d="M 482.48,659.94 V 639.99"
+         style="fill:none;stroke:#000000;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path186"
+         clip-path="url(#clipPath4552)" />
+      <path
+         d="m 482.33,640.29 h 0.3 v -0.22 L 423.6,620.34 h -0.3 v 0.3 l 59.03,19.65"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path188"
+         clip-path="url(#clipPath4546)" />
+      <path
+         d="m 423.3,620.64 h 0.3 l 29.48,-19.65 v -0.3 h -0.23 l -29.55,19.65 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path190"
+         clip-path="url(#clipPath4540)" />
+      <path
+         d="m 482.33,640.29 h 0.3 l 58.95,-19.65 v -0.3 h -0.23 l -59.02,19.73 v 0.22"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path192"
+         clip-path="url(#clipPath4534)" />
+      <path
+         d="m 423.3,620.64 h 0.3 v -0.3 l -14.7,-14.77 h -0.3 v 0.22 l 14.7,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path194"
+         clip-path="url(#clipPath4528)" />
+      <path
+         d="m 452.85,600.99 h 0.23 v -0.3 l -14.7,-14.85 h -0.23 v 0.3 l 14.7,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path196"
+         clip-path="url(#clipPath4522)" />
+      <path
+         d="m 452.85,600.99 h 0.23 l 14.85,-14.85 v -0.3 h -0.3 l -14.78,14.85 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path198"
+         clip-path="url(#clipPath4516)" />
+      <path
+         d="m 541.35,620.64 h 0.23 v -0.3 l -14.63,-14.77 h -0.3 v 0.22 l 14.7,14.85"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path200"
+         clip-path="url(#clipPath4510)" />
+      <path
+         d="m 541.35,620.64 h 0.23 l 14.85,-14.85 v -0.22 h -0.3 l -14.78,14.77 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path202"
+         clip-path="url(#clipPath4504)" />
+      <path
+         d="m 403.8,640.14 -7.8,-2.62 2.63,2.62 -2.63,2.63 7.8,-2.63"
+         style="fill:#00aeef;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1"
+         id="path204"
+         clip-path="url(#clipPath4498)" />
+      <path
+         d="m 492.3,640.14 c 0,-5.4 -4.42,-9.82 -9.82,-9.82 -5.48,0 -9.83,4.42 -9.83,9.82 0,5.48 4.35,9.9 9.83,9.9 5.4,0 9.82,-4.42 9.82,-9.9"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path306"
+         clip-path="url(#clipPath4354)" />
+      <path
+         d="m 492.3,640.14 c 0,-5.4 -4.42,-9.82 -9.82,-9.82 -5.48,0 -9.83,4.42 -9.83,9.82 0,5.48 4.35,9.9 9.83,9.9 5.4,0 9.82,-4.42 9.82,-9.9 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path308"
+         clip-path="url(#clipPath4348)" />
+      <path
+         d="m 433.28,620.49 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.82,4.42 -9.82,9.82 0,5.48 4.35,9.83 9.82,9.83 5.4,0 9.83,-4.35 9.83,-9.83"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path310"
+         clip-path="url(#clipPath4342)" />
+      <path
+         d="m 433.28,620.49 c 0,-5.4 -4.43,-9.82 -9.83,-9.82 -5.47,0 -9.82,4.42 -9.82,9.82 0,5.48 4.35,9.83 9.82,9.83 5.4,0 9.83,-4.35 9.83,-9.83 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path312"
+         clip-path="url(#clipPath4336)" />
+      <path
+         d="m 551.33,620.49 c 0,-5.4 -4.43,-9.82 -9.9,-9.82 -5.4,0 -9.83,4.42 -9.83,9.82 0,5.48 4.43,9.83 9.83,9.83 5.47,0 9.9,-4.35 9.9,-9.83"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path314"
+         clip-path="url(#clipPath4330)" />
+      <path
+         d="m 551.33,620.49 c 0,-5.4 -4.43,-9.82 -9.9,-9.82 -5.4,0 -9.83,4.42 -9.83,9.82 0,5.48 4.43,9.83 9.83,9.83 5.47,0 9.9,-4.35 9.9,-9.83 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path316"
+         clip-path="url(#clipPath4324)" />
+      <path
+         d="m 462.75,600.84 c 0,-5.47 -4.35,-9.82 -9.82,-9.82 -5.4,0 -9.83,4.35 -9.83,9.82 0,5.4 4.43,9.83 9.83,9.83 5.47,0 9.82,-4.43 9.82,-9.83"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path318"
+         clip-path="url(#clipPath4318)" />
+      <path
+         d="m 462.75,600.84 c 0,-5.47 -4.35,-9.82 -9.82,-9.82 -5.4,0 -9.83,4.35 -9.83,9.82 0,5.4 4.43,9.83 9.83,9.83 5.47,0 9.82,-4.43 9.82,-9.83 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path320"
+         clip-path="url(#clipPath4312)" />
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text326"
+         x="478.85"
+         y="-637.14"><tspan
+           x="478.85"
+           y="-637.14"
+           id="tspan324"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">C</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text338"
+         x="449.8"
+         y="-597.52"><tspan
+           x="449.8"
+           y="-597.52"
+           id="tspan336"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">B</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text344"
+         x="274.7"
+         y="-597.54"><tspan
+           x="274.7"
+           y="-597.54"
+           id="tspan342"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">α</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text348"
+         x="308.77"
+         y="-577.89"><tspan
+           x="308.77"
+           y="-577.89"
+           id="tspan346"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">β</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text352"
+         x="343.94"
+         y="-577.89"><tspan
+           x="343.94"
+           y="-577.89"
+           id="tspan350"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">γ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text356"
+         x="393.35"
+         y="-597.54"><tspan
+           x="393.35"
+           y="-597.54"
+           id="tspan354"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">δ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text360"
+         x="428.07"
+         y="-597.54"><tspan
+           x="428.07"
+           y="-597.54"
+           id="tspan358"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">ε</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text364"
+         x="445.87"
+         y="-637.44"><tspan
+           x="445.87"
+           sodipodi:role="line"
+           id="tspan362"
+           y="-637.44"> </tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text368"
+         x="464.77"
+         y="-637.44"><tspan
+           x="464.77"
+           y="-637.44"
+           id="tspan366"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">z'</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text330"
+         x="538"
+         y="-617.17"><tspan
+           x="538"
+           y="-617.17"
+           id="tspan328"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">D</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text334"
+         x="420.02"
+         y="-617.1"><tspan
+           x="420.02"
+           y="-617.1"
+           id="tspan332"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">A</tspan></text>
+    </g>
+    <g
+       id="g5989">
+      <path
+         d="m 187.27,522.32 h 0.3 v -0.3 l -29.55,-19.65 h -0.22 v 0.22 l 29.47,19.73"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path164"
+         clip-path="url(#clipPath4618)" />
+      <path
+         d="m 187.27,522.32 h 0.3 l 14.78,-14.85 v -0.3 h -0.23 l -14.85,14.85 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path166"
+         clip-path="url(#clipPath4612)" />
+      <path
+         d="M 246.45,561.62 V 541.67"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path208"
+         clip-path="url(#clipPath4486)" />
+      <path
+         d="m 246.3,541.97 h 0.23 v -0.3 l -58.96,-19.65 h -0.3 v 0.3 l 59.03,19.65"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path210"
+         clip-path="url(#clipPath4480)" />
+      <path
+         d="m 246.3,541.97 h 0.23 l 59.02,-19.65 v -0.3 h -0.22 l -59.03,19.65 v 0.3"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path212"
+         clip-path="url(#clipPath4474)" />
+      <path
+         d="m 305.33,522.32 h 0.22 v -0.3 l -14.7,-14.85 h -0.22 v 0.3 l 14.7,14.85"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path214"
+         clip-path="url(#clipPath4468)" />
+      <path
+         d="m 305.33,522.32 h 0.22 l 14.85,-14.85 v -0.3 h -0.3 l -14.77,14.85 v 0.3"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path216"
+         clip-path="url(#clipPath4462)" />
+      <path
+         d="m 157.8,502.59 h 0.22 v -0.22 l -14.7,-14.85 h -0.22 v 0.3 l 14.7,14.77"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path232"
+         clip-path="url(#clipPath4414)" />
+      <path
+         d="m 157.8,502.59 h 0.22 l 14.85,-14.77 v -0.3 h -0.3 l -14.77,14.85 v 0.22"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path234"
+         clip-path="url(#clipPath4408)" />
+      <path
+         d="m 256.28,541.82 c 0,-5.4 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.9,4.43 -9.9,9.83 0,5.4 4.43,9.82 9.9,9.82 5.4,0 9.83,-4.42 9.83,-9.82"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path370"
+         clip-path="url(#clipPath4306)" />
+      <path
+         d="m 256.28,541.82 c 0,-5.4 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.9,4.43 -9.9,9.83 0,5.4 4.43,9.82 9.9,9.82 5.4,0 9.83,-4.42 9.83,-9.82 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path372"
+         clip-path="url(#clipPath4300)" />
+      <path
+         d="m 197.25,522.17 c 0,-5.48 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.82,4.35 -9.82,9.83 0,5.4 4.35,9.82 9.82,9.82 5.4,0 9.83,-4.42 9.83,-9.82"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path374"
+         clip-path="url(#clipPath4294)" />
+      <path
+         d="m 197.25,522.17 c 0,-5.48 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.82,4.35 -9.82,9.83 0,5.4 4.35,9.82 9.82,9.82 5.4,0 9.83,-4.42 9.83,-9.82 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path376"
+         clip-path="url(#clipPath4288)" />
+      <path
+         d="m 315.23,522.17 c 0,-5.48 -4.35,-9.83 -9.83,-9.83 -5.4,0 -9.82,4.35 -9.82,9.83 0,5.4 4.42,9.82 9.82,9.82 5.48,0 9.83,-4.42 9.83,-9.82"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path378"
+         clip-path="url(#clipPath4282)" />
+      <path
+         d="m 315.23,522.17 c 0,-5.48 -4.35,-9.83 -9.83,-9.83 -5.4,0 -9.82,4.35 -9.82,9.83 0,5.4 4.42,9.82 9.82,9.82 5.48,0 9.83,-4.42 9.83,-9.82 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path380"
+         clip-path="url(#clipPath4276)" />
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text386"
+         x="317.46"
+         y="-519.16"><tspan
+           x="317.46"
+           y="-519.16"
+           id="tspan384"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">y</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text406"
+         x="178.4"
+         y="-499.21"><tspan
+           x="178.4"
+           y="-499.21"
+           id="tspan404"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">δ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text410"
+         x="213.13"
+         y="-499.21"><tspan
+           x="213.13"
+           y="-499.21"
+           id="tspan408"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">ε</tspan></text>
+      <path
+         d="m 167.7,502.52 c 0,-5.48 -4.35,-9.9 -9.83,-9.9 -5.4,0 -9.82,4.42 -9.82,9.9 0,5.4 4.42,9.82 9.82,9.82 5.48,0 9.83,-4.42 9.83,-9.82"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path480"
+         clip-path="url(#clipPath4222)" />
+      <path
+         d="m 167.7,502.52 c 0,-5.48 -4.35,-9.9 -9.83,-9.9 -5.4,0 -9.82,4.42 -9.82,9.9 0,5.4 4.42,9.82 9.82,9.82 5.48,0 9.83,-4.42 9.83,-9.82 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path482"
+         clip-path="url(#clipPath4216)" />
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text392"
+         x="242.79"
+         y="-539.1"><tspan
+           x="242.79"
+           y="-539.1"
+           id="tspan390"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">C</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text396"
+         x="301.94"
+         y="-519.45"><tspan
+           x="301.94"
+           y="-519.45"
+           id="tspan394"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">D</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text400"
+         x="184.3"
+         y="-519.45"><tspan
+           x="184.3"
+           y="-519.45"
+           id="tspan398"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">B</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text488"
+         x="154.44"
+         y="-499.73"><tspan
+           x="154.44"
+           y="-499.73"
+           id="tspan486"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">A</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text494"
+         x="34.406"
+         y="-479.56"><tspan
+           x="34.406"
+           y="-479.56"
+           id="tspan492"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">α</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text498"
+         x="69.286"
+         y="-479.56"><tspan
+           x="69.286"
+           y="-479.56"
+           id="tspan496"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">β</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text502"
+         x="95.224"
+         y="-499.22"><tspan
+           x="95.224"
+           y="-499.22"
+           id="tspan500"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">γ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text506"
+         x="140.69"
+         y="-499.74"><tspan
+           x="140.69"
+           y="-499.74"
+           id="tspan504"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">z</tspan></text>
+    </g>
+    <g
+       id="g6031">
+      <path
+         d="m 423.3,522.32 h 0.3 v -0.3 l -29.55,-19.65 h -0.22 v 0.22 l 29.47,19.73"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path160"
+         clip-path="url(#clipPath4630)" />
+      <path
+         d="m 423.3,522.32 h 0.3 l 14.78,-14.85 v -0.3 h -0.23 l -14.85,14.85 v 0.3"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path162"
+         clip-path="url(#clipPath4624)" />
+      <path
+         d="M 482.48,561.62 V 541.67"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path218"
+         clip-path="url(#clipPath4456)" />
+      <path
+         d="m 482.33,541.97 h 0.3 v -0.3 L 423.6,522.02 h -0.3 v 0.3 l 59.03,19.65"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path220"
+         clip-path="url(#clipPath4450)" />
+      <path
+         d="m 482.33,541.97 h 0.3 l 58.95,-19.65 v -0.3 h -0.23 l -59.02,19.65 v 0.3"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path222"
+         clip-path="url(#clipPath4444)" />
+      <path
+         d="m 393.83,502.59 h 0.22 v -0.22 l -14.62,-14.85 h -0.3 v 0.3 l 14.7,14.77"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path224"
+         clip-path="url(#clipPath4438)" />
+      <path
+         d="m 393.83,502.59 h 0.22 l 14.85,-14.77 v -0.3 h -0.3 l -14.77,14.85 v 0.22"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path226"
+         clip-path="url(#clipPath4432)" />
+      <path
+         d="m 541.35,522.32 h 0.23 v -0.3 l -14.63,-14.85 h -0.3 v 0.3 l 14.7,14.85"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path228"
+         clip-path="url(#clipPath4426)" />
+      <path
+         d="m 541.35,522.32 h 0.23 l 14.85,-14.85 v -0.3 h -0.3 l -14.78,14.85 v 0.3"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path230"
+         clip-path="url(#clipPath4420)" />
+      <path
+         d="m 492.3,541.82 c 0,-5.4 -4.42,-9.83 -9.82,-9.83 -5.48,0 -9.83,4.43 -9.83,9.83 0,5.4 4.35,9.82 9.83,9.82 5.4,0 9.82,-4.42 9.82,-9.82"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path412"
+         clip-path="url(#clipPath4270)" />
+      <path
+         d="m 492.3,541.82 c 0,-5.4 -4.42,-9.83 -9.82,-9.83 -5.48,0 -9.83,4.43 -9.83,9.83 0,5.4 4.35,9.82 9.83,9.82 5.4,0 9.82,-4.42 9.82,-9.82 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path414"
+         clip-path="url(#clipPath4264)" />
+      <path
+         d="m 433.28,522.17 c 0,-5.48 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.82,4.35 -9.82,9.83 0,5.4 4.35,9.82 9.82,9.82 5.4,0 9.83,-4.42 9.83,-9.82"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path416"
+         clip-path="url(#clipPath4258)" />
+      <path
+         d="m 433.28,522.17 c 0,-5.48 -4.43,-9.83 -9.83,-9.83 -5.47,0 -9.82,4.35 -9.82,9.83 0,5.4 4.35,9.82 9.82,9.82 5.4,0 9.83,-4.42 9.83,-9.82 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path418"
+         clip-path="url(#clipPath4252)" />
+      <path
+         d="m 551.33,522.17 c 0,-5.48 -4.43,-9.83 -9.9,-9.83 -5.4,0 -9.83,4.35 -9.83,9.83 0,5.4 4.43,9.82 9.83,9.82 5.47,0 9.9,-4.42 9.9,-9.82"
+         style="fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path420"
+         clip-path="url(#clipPath4246)" />
+      <path
+         d="m 551.33,522.17 c 0,-5.48 -4.43,-9.83 -9.9,-9.83 -5.4,0 -9.83,4.35 -9.83,9.83 0,5.4 4.43,9.82 9.83,9.82 5.47,0 9.9,-4.42 9.9,-9.82 z"
+         style="fill:none;stroke:#231f20;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path422"
+         clip-path="url(#clipPath4240)" />
+      <path
+         d="m 403.8,502.52 c 0,-5.48 -4.42,-9.9 -9.82,-9.9 -5.48,0 -9.9,4.42 -9.9,9.9 0,5.4 4.42,9.82 9.9,9.82 5.4,0 9.82,-4.42 9.82,-9.82"
+         style="fill:#c8242b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1"
+         id="path424"
+         clip-path="url(#clipPath4234)" />
+      <path
+         d="m 403.8,502.52 c 0,-5.48 -4.42,-9.9 -9.82,-9.9 -5.48,0 -9.9,4.42 -9.9,9.9 0,5.4 4.42,9.82 9.9,9.82 5.4,0 9.82,-4.42 9.82,-9.82 z"
+         style="fill:none;stroke:#a61c1f;stroke-width:0.27225;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path426"
+         clip-path="url(#clipPath4228)" />
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text450"
+         x="270.44"
+         y="-479.56"><tspan
+           x="270.44"
+           y="-479.56"
+           id="tspan448"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">α</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text454"
+         x="305.31"
+         y="-479.56"><tspan
+           x="305.31"
+           y="-479.56"
+           id="tspan452"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">β</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text458"
+         x="331.24"
+         y="-499.22"><tspan
+           x="331.24"
+           y="-499.22"
+           id="tspan456"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">γ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text462"
+         x="414.42"
+         y="-499.22"><tspan
+           x="414.42"
+           y="-499.22"
+           id="tspan460"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">δ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,-0.21429,-1,0,0)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.9778"
+         id="text466"
+         x="449.14"
+         y="-499.22"><tspan
+           x="449.14"
+           y="-499.22"
+           id="tspan464"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.9778">ε</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text470"
+         x="445.87"
+         y="-539.04"><tspan
+           x="445.87"
+           sodipodi:role="line"
+           id="tspan468"
+           y="-539.04"> </tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#231f20;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text474"
+         x="464.77"
+         y="-539.04"><tspan
+           x="464.77"
+           y="-539.04"
+           id="tspan472"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">z'</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text432"
+         x="478.85"
+         y="-538.51"><tspan
+           x="478.85"
+           y="-538.51"
+           id="tspan430"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">C</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text436"
+         x="538.16"
+         y="-519.45"><tspan
+           x="538.16"
+           y="-519.45"
+           id="tspan434"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">D</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text440"
+         x="420.33"
+         y="-518.84"><tspan
+           x="420.33"
+           y="-518.84"
+           id="tspan438"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">B</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="scale(1,-1)"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:lr-tb;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text444"
+         x="390.51"
+         y="-499.08"><tspan
+           x="390.51"
+           y="-499.08"
+           id="tspan442"
+           style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.84226px;font-family:XITS;-inkscape-font-specification:'XITS, Bold Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">A</tspan></text>
+      <path
+         d="m 403.8,541.82 -7.8,-2.63 2.63,2.63 -2.63,2.62 7.8,-2.62"
+         style="fill:#00aeef;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1"
+         id="path508"
+         clip-path="url(#clipPath4210)" />
+    </g>
+    <path
+       d="m 324.83,541.82 h 74.1"
+       style="fill:none;stroke:#00aeef;stroke-width:0.52425;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path510"
+       clip-path="url(#clipPath4204)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.84229px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#231f20;stroke-width:0.2778;stroke-linejoin:round"
+       x="171.07"
+       y="-695.3"
+       id="text5281"
+       transform="scale(1,-1)"><tspan
+         sodipodi:role="line"
+         id="tspan5279"
+         style="stroke-width:0.2778"
+         x="171.07"
+         y="-695.3" /></text>
+  </g>
+</svg>

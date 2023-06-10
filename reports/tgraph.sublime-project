@@ -4,6 +4,11 @@
 			"name": "Pandoc for current file",
 			"cmd": ["./build.sh", "$file_base_name"],
 			"selector": "text.html.markdown",
+		},
+		{
+			"name": "GraphVis current",
+			"cmd": ["dot", "-Tsvg", "$file", "-o", "$file_base_name.svg"],
+			"selector": "source.dot"
 		}
 	],
 	"folders":
