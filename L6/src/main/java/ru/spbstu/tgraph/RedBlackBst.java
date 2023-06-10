@@ -39,7 +39,6 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
     }
 
     @Nullable
-    @Override
     public Key min() {
         if (root == null) {
             return null;
@@ -48,7 +47,6 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
     }
 
     @Nullable
-    @Override
     public Value minValue() {
         if (root == null) {
             return null;
@@ -57,7 +55,6 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
     }
 
     @Nullable
-    @Override
     public Key max() {
         if (root == null) {
             return null;
@@ -66,7 +63,6 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
     }
 
     @Nullable
-    @Override
     public Value maxValue() {
         if (root == null) {
             return null;
@@ -75,14 +71,12 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
     }
 
     @Nullable
-    @Override
     public Key floor(@NotNull Key key) {
         final Node floor = floor(root, key);
         return floor == null ? null : floor.key;
     }
 
     @Nullable
-    @Override
     public Key ceil(@NotNull Key key) {
         final Node ceil = ceil(root, key);
         return ceil == null ? null : ceil.key;

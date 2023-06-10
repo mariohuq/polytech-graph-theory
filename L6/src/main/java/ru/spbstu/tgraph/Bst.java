@@ -18,18 +18,6 @@ public interface Bst<Key extends Comparable<Key>, Value> {
 
     @Nullable Value remove(@NotNull Key key);
 
-    @Nullable Key min();
-
-    @Nullable Value minValue();
-
-    @Nullable Key max();
-
-    @Nullable Value maxValue();
-
-    @Nullable Key floor(@NotNull Key key);
-
-    @Nullable Key ceil(@NotNull Key key);
-
     int size();
 
     default boolean isEmpty() {
