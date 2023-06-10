@@ -93,12 +93,14 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         return size;
     }
 
+    // start snippet clear
     @Override
     public void clear() {
         root = null;
         size = 0;
     }
-
+    // end snippet clear
+    // start snippet get
     private Value get(@Nullable Node node, @NotNull Key key) {
         if (node == null) {
             return null;
@@ -112,7 +114,8 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         }
         return node.value;
     }
-
+    // end snippet get
+    // start snippet put
     private Node put(@Nullable Node node, @NotNull Key key, Value value) {
         if (node == null) {
             size++;
@@ -128,7 +131,7 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         }
         return fixUp(node);
     }
-
+    // end snippet put
     private Node removeMin(Node node) {
         if (node.left == null) {
             return null;
@@ -139,7 +142,7 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         node.left = removeMin(node.left);
         return fixUp(node);
     }
-
+    // start snippet remove
     private Node remove(@Nullable Node node, @NotNull Key key) {
         if (node == null) {
             return null;
@@ -179,11 +182,12 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         }
         return fixUp(node);
     }
-
+    // end snippet remove
     private boolean isRed(Node node) {
         return node != null && node.color == RED;
     }
 
+    // start snippet fixUp
     private Node fixUp(@NotNull Node node) {
         if (isRed(node.right) && !isRed(node.left)) {
             node = node.rotateLeft();
@@ -196,6 +200,7 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         }
         return node;
     }
+    // end snippet fixUp
 
     @Nullable
     private Node floor(@Nullable Node node, @NotNull Key key) {
@@ -285,6 +290,7 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
             return node;
         }
 
+        // start snippet Node-rotateLeft
         @NotNull
         private Node rotateLeft() {
             Node x = right;
@@ -294,7 +300,9 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
             color = RED;
             return x;
         }
+        // end snippet Node-rotateLeft
 
+        // start snippet Node-rotateRight
         @NotNull
         private Node rotateRight() {
             Node x = left;
@@ -304,5 +312,6 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
             color = RED;
             return x;
         }
+        // end snippet Node-rotateRight
     }
 }

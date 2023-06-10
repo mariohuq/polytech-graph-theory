@@ -77,11 +77,13 @@ public class DictionaryApp {
         this.set = set;
     }
 
+     // start snippet addFromFile
     private void addFromFile() throws FileNotFoundException {
         out.println("Введите путь до файла без пробелов:");
         Scanner input = new Scanner(new File(askWord())).useDelimiter("[\\p{Punct}\\p{Space}]+");
         input.forEachRemaining(set::add); // прочитать
     }
+    // end snippet addFromFile
 
     private static String askWord() {
         out.print("> ");

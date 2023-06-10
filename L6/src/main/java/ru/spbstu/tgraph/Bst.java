@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Binary search tree with ordered operations support.
  */
+// start snippet Bst.Bst
 public interface Bst<Key extends Comparable<Key>, Value> {
     @Nullable Value get(@NotNull Key key);
 
@@ -37,3 +38,4 @@ public interface Bst<Key extends Comparable<Key>, Value> {
 
     void clear();
 }
+// end snippet Bst.Bst
