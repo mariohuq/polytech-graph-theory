@@ -7,7 +7,7 @@
 		},
 		{
 			"name": "GraphVis current",
-			"cmd": ["dot", "-Tsvg", "$file", "-o", "$file_base_name.svg"],
+			"cmd": ["dot", "-Tpdf", "$file", "-o", "$file_base_name.pdf"],
 			"selector": "source.dot",
 		}
 	],

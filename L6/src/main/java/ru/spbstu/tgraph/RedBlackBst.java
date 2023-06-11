@@ -234,7 +234,7 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         if (n == null) {
             return sb.append(String.format("node%d [label=\"NIL\", shape=record, width=.4,height=.25];\n", i));
         } else {
-            sb.append(String.format("node%d [label=\"%s\"%s];\n", i, n.key, (n.color == RED ? ",fillcolor=red" : "")));
+            sb.append(String.format("node%d [label=\"%s\"%s];\n", i, n.key, (n.color == RED ? ",fillcolor=\"#C8242B\",penwidth=0" : "")));
         }
         int leftN = 2 * i;
         int rightN = 2 * i + 1;
