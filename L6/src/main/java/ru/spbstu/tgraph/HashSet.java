@@ -3,7 +3,7 @@ package ru.spbstu.tgraph;
 import org.jetbrains.annotations.NotNull;
 
 public class HashSet<E> implements Set<E> {
-    private HashTable<E, Object> map;
+    private final HashTable<E, Object> map;
 
     public HashSet() {
         map = new HashTableImpl<>();
@@ -40,5 +40,10 @@ public class HashSet<E> implements Set<E> {
     @Override
     public void clear() {
         map.clear();
+    }
+
+    @Override
+    public String toString() {
+        return map.toString();
     }
 }

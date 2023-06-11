@@ -7,9 +7,9 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class DictionaryApp {
-    static Scanner userInput = new Scanner(System.in);
+    private final static Scanner userInput = new Scanner(System.in);
 
-    final Set<String> set;
+    private final Set<String> set;
 
     public static void main(String[] args) throws FileNotFoundException {
         out.println("Выберите, с какой структурой данных вы хотите работать:");
@@ -20,45 +20,53 @@ public class DictionaryApp {
         }).main();
     }
 
-    void main() throws FileNotFoundException {
+    private void main() throws FileNotFoundException {
         if (set == null) {
             out.println("Выбрать можно лишь hash/rb. Попробуйте снова");
             return;
         }
         while (true) {
             switch (askWord()) {
-                case "add":
+                case "add" -> {
                     out.println("Введите слово, чтобы добавить в словарь:");
-                    set.add(askWord());
+
+                    for (String word : askLine().split("(?U)\\s+")) {
+                        set.add(word);
+                    }
                     out.printf("В словаре %d эл.\n", set.size());
-                    break;
-                case "remove":
+                }
+                case "remove" -> {
                     out.println("Введите слово, чтобы удалить из словаря:");
                     if (set.remove(askWord())) {
                         out.println("Слово удалено из словаря.");
                     } else {
                         out.println("Слова в словаре не было.");
                     }
-                    break;
-                case "import":
+                }
+                case "import" -> {
                     addFromFile();
                     out.printf("В словаре %d эл.\n", set.size());
-                    break;
-                case "clear":
+                }
+                case "clear" -> {
                     set.clear();
                     out.printf("В словаре %d эл.\n", set.size());
-                    break;
-                case "find":
+                }
+                case "find" -> {
                     out.println("Введите слово, чтобы найти его в словаре:");
                     if (set.contains(askWord())) {
                         out.println("Слово есть в словаре.");
                     } else {
                         out.println("Слова нет в словаре.");
                     }
-                    break;
-                case "exit":
+                }
+                case "show" -> {
+                    out.println("Структура:");
+                    out.println(set);
+                }
+                case "exit" -> {
                     return;
-                case "?":
+                }
+                case "?" -> {
                     out.println("Доступные команды:");
                     out.println("add: добавить слово в словарь");
                     out.println("remove: удалить слово из словаря");
@@ -66,9 +74,8 @@ public class DictionaryApp {
                     out.println("clear: очистить словарь");
                     out.println("find: найти слово в словаре");
                     out.println("exit: выйти");
-                    break;
-                default:
-                    out.println("Неизвестная команда. Введите ? чтобы вывести меню");
+                }
+                default -> out.println("Неизвестная команда. Введите ? чтобы вывести меню");
             }
         }
     }
@@ -80,7 +87,7 @@ public class DictionaryApp {
      // start snippet addFromFile
     private void addFromFile() throws FileNotFoundException {
         out.println("Введите путь до файла без пробелов:");
-        Scanner input = new Scanner(new File(askWord())).useDelimiter("[\\p{Punct}\\p{Space}]+");
+        Scanner input = new Scanner(new File(askWord())).useDelimiter("(?U)[\\p{Punct}\\s&&[^-']]+");
         input.forEachRemaining(set::add); // прочитать
     }
     // end snippet addFromFile
@@ -88,5 +95,10 @@ public class DictionaryApp {
     private static String askWord() {
         out.print("> ");
         return userInput.next();
+    }
+    private static String askLine() {
+        out.print("> ");
+        userInput.skip("\n+");
+        return userInput.nextLine();
     }
 }

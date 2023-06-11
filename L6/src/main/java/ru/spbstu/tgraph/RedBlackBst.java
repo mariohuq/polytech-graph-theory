@@ -228,6 +228,36 @@ public class RedBlackBst<Key extends Comparable<Key>, Value>
         return node;
     }
 
+    // This won't work for larger unbalanced trees (int overflow), but then again you probably
+    // wouldn't be displaying them anyway, so this is good enough for now.
+    private StringBuilder getDotTreeContent(StringBuilder sb, Node n, int i) {
+        if (n == null) {
+            return sb.append(String.format("node%d [label=\"NIL\", shape=record, width=.4,height=.25];\n", i));
+        } else {
+            sb.append(String.format("node%d [label=\"%s\"%s];\n", i, n.key, (n.color == RED ? ",fillcolor=red" : "")));
+        }
+        int leftN = 2 * i;
+        int rightN = 2 * i + 1;
+        sb.append(String.format("node%d -> node%d;\n", i, leftN));
+        getDotTreeContent(sb, n.left, leftN);
+        sb.append(String.format("node%d -> node%d;\n", i, rightN));
+        getDotTreeContent(sb, n.right, rightN);
+        return sb;
+    }
+
+    @Override
+    public String toString() {
+        return "digraph G {\n" +
+                "graph [ dpi = 96 ]\n" +
+                "nodesep=0.3;\n" +
+                "ranksep=0.2;\n" +
+                "margin=0.1;\n" +
+                "node [shape=ellipse, style=filled, color=black, fontname=XITS, fontcolor=white];\n" +
+                "edge [arrowsize=0.8];\n" +
+                getDotTreeContent(new StringBuilder(), root, 1) +
+                "}";
+    }
+
     private class Node {
         Key key;
         Value value;

@@ -131,6 +131,25 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
     }
     // end snippet resize
 
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] == null) {
+                continue;
+            }
+            sb.append(String.format("[%d] ", i));
+            for (Node node = table[i]; node != null; node = node.next) {
+                sb.append(" → \"");
+                sb.append(node.key);
+                sb.append("\"");
+            }
+            sb.append(" → ∅\n");
+        }
+        return sb.toString();
+    }
+
     // start snippet Node
     private class Node {
         final Key key;

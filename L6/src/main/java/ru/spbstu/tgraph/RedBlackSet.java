@@ -3,7 +3,7 @@ package ru.spbstu.tgraph;
 import org.jetbrains.annotations.NotNull;
 
 public class RedBlackSet<E extends Comparable<E>> implements Set<E> {
-    private Bst<E, Object> map;
+    private final Bst<E, Object> map;
 
     public RedBlackSet() {
         map = new RedBlackBst<>();
@@ -40,5 +40,10 @@ public class RedBlackSet<E extends Comparable<E>> implements Set<E> {
     @Override
     public void clear() {
         map.clear();
+    }
+
+    @Override
+    public String toString() {
+        return map.toString();
     }
 }
