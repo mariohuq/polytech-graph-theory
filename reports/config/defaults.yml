@@ -2,6 +2,7 @@ from: markdown+tex_math_dollars+raw_attribute+inline_code_attributes+definition_
 # yaml_metadata_block +grid_tables+pipe_tables+simple_tables
 to: pdf
 pdf-engine: xelatex
+pdf-engine-opt: -shell-escape
 standalone: true
 fail-if-warnings: true
 # Manually in report.md

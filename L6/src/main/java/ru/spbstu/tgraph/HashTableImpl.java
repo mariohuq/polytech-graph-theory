@@ -7,14 +7,16 @@ import java.util.Arrays;
 
 public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
 
+    // start snippet PRIME_CAPACITIES
     private static final int[] PRIME_CAPACITIES = {
             53, 97, 193, 389, 769, 1543, 3079,
             6151, 12289, 24593, 49157, 98317, 196613, 393241,
             786433, 1572869, 3145739, 6291469, 12582917, 25165843, 50331653,
             100663319, 201326611, 402653189, 805306457, 1610612741
     };
-
+    
     private static final int DEFAULT_INITIAL_CAPACITY = PRIME_CAPACITIES[0];
+    // end snippet PRIME_CAPACITIES
     private static final double LOAD_FACTOR = 0.75;
 
     int size;
@@ -24,6 +26,7 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
     public HashTableImpl() {
     }
 
+    // start snippet get
     @Override
     public @Nullable Value get(@NotNull Key key) {
         if (table == null) {
@@ -33,7 +36,9 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         final Node bucket = table[index(hash)];
         return bucket == null ? null : bucket.get(hash, key);
     }
+    // end snippet get
 
+    // start snippet put
     @Override
     public void put(@NotNull Key key, @NotNull Value value) {
         if (table == null || size >= LOAD_FACTOR * capacity()) {
@@ -48,7 +53,9 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         }
         table[index].put(hash, key, value);
     }
+    // end snippet put
 
+    // start snippet remove
     @Override
     public @Nullable Value remove(@NotNull Key key) {
         if (table == null) {
@@ -67,7 +74,8 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         }
         return table[index].remove(hash, key);
     }
-
+    // end snippet remove
+    
     @Override
     public int size() {
         return size;
@@ -95,6 +103,7 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
      * Максимальное capacity() == PRIME_CAPACITIES[PRIME_CAPACITIES.length - 1],
      * Если capacity() достигло максимального значения, то дальше table не расширяется.
      */
+    // start snippet resize
     private Node[] resize() {
         if (capacityIndex >= PRIME_CAPACITIES.length) {
             return table;
@@ -120,7 +129,9 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         }
         return newTable;
     }
+    // end snippet resize
 
+    // start snippet Node
     private class Node {
         final Key key;
         final int hash;
@@ -188,4 +199,5 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
             return this.hash == hash && this.key.equals(key);
         }
     }
+    // end snippet Node
 }

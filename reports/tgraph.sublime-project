@@ -8,7 +8,7 @@
 		{
 			"name": "GraphVis current",
 			"cmd": ["dot", "-Tsvg", "$file", "-o", "$file_base_name.svg"],
-			"selector": "source.dot"
+			"selector": "source.dot",
 		}
 	],
 	"folders":
@@ -18,20 +18,20 @@
 			"file_exclude_patterns": ["*.pdf"],
 		},
 		{
-			"path": "../L1"
+			"path": "/home/mhq/github.com/polytech/tgraph/L1",
 		},
 		{
-			"path": "../L6"
+			"path": "/home/mhq/github.com/polytech/tgraph/L6",
 		},
 		{
-			"path": "../ydsk"
+			"path": "/home/mhq/github.com/polytech/tgraph/Course",
 		},
 		{
-			"path": "../lections"
+			"path": "/home/mhq/github.com/polytech/tgraph/ydsk",
 		},{
-			"path": "../Course"
+			"path": "/home/mhq/github.com/polytech/tgraph/lections",
 		},{
-			"path": "../korenova-nastya"
+			"path": "/home/mhq/github.com/polytech/tgraph/korenova-nastya",
 		}
 	],
 }

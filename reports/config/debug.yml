@@ -2,6 +2,6 @@ defaults:
 - config/release.yml
 to: latex
 input-files:
-- L1.md
-output-file: L1.tex
-include-before-body: config/titlepageL1.tex
+- L6.md
+output-file: L6.tex
+include-before-body: config/titlepageL6.tex
