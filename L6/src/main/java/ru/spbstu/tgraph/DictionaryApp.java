@@ -1,3 +1,4 @@
+
 package ru.spbstu.tgraph;
 
 import java.io.File;
@@ -20,6 +21,10 @@ public class DictionaryApp {
         }).main();
     }
 
+    private void showSize() {
+        out.printf("В словаре %d эл.\n", set.size());
+    }
+
     private void main() throws FileNotFoundException {
         if (set == null) {
             out.println("Выбрать можно лишь hash/rb. Попробуйте снова");
@@ -33,7 +38,7 @@ public class DictionaryApp {
                     for (String word : askLine().split("(?U)\\s+")) {
                         set.add(word);
                     }
-                    out.printf("В словаре %d эл.\n", set.size());
+
                 }
                 case "remove" -> {
                     out.println("Введите слово, чтобы удалить из словаря:");
@@ -45,11 +50,11 @@ public class DictionaryApp {
                 }
                 case "import" -> {
                     addFromFile();
-                    out.printf("В словаре %d эл.\n", set.size());
+                    showSize();
                 }
                 case "clear" -> {
                     set.clear();
-                    out.printf("В словаре %d эл.\n", set.size());
+                    showSize();
                 }
                 case "find" -> {
                     out.println("Введите слово, чтобы найти его в словаре:");
@@ -60,6 +65,7 @@ public class DictionaryApp {
                     }
                 }
                 case "show" -> {
+                    showSize();
                     out.println("Структура:");
                     out.println(set);
                 }
@@ -94,11 +100,10 @@ public class DictionaryApp {
 
     private static String askWord() {
         out.print("> ");
-        return userInput.next();
+        return userInput.next().trim();
     }
     private static String askLine() {
         out.print("> ");
-        userInput.skip("\n+");
-        return userInput.nextLine();
+        return userInput.nextLine().trim();
     }
 }

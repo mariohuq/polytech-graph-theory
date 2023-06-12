@@ -134,6 +134,9 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
 
     @Override
     public String toString() {
+        if (table == null) {
+            return "пусто";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < table.length; i++) {
             if (table[i] == null) {

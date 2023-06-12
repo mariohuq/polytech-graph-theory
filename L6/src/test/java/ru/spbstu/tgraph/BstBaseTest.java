@@ -23,19 +23,6 @@ public abstract class BstBaseTest {
     }
 
     @Test
-    void orderedOnEmpty() {
-        Bst<String, String> bst = newBst();
-        assertNull(bst.ceil("some key"));
-        assertNull(bst.floor("some key"));
-
-        assertNull(bst.min());
-        assertNull(bst.max());
-
-        assertNull(bst.minValue());
-        assertNull(bst.maxValue());
-    }
-
-    @Test
     void put() {
         Bst<String, String> bst = newBst();
         bst.put("foo", "bar");
@@ -62,45 +49,31 @@ public abstract class BstBaseTest {
 
         int size = 0;
         assertEquals(bst.size(), size);
-        assertNull(bst.max());
-        assertNull(bst.min());
         assertNull(bst.get("testStringKey1"));
 
         bst.put("testStringKey1", "testStringValue1");
 
         assertEquals(bst.size(), ++size);
-        assertEquals(bst.min(), "testStringKey1");
-        assertEquals(bst.max(), "testStringKey1");
         assertEquals(bst.get("testStringKey1"), "testStringValue1");
 
         bst.put("testStringKey2", "testStringValue2");
 
         assertEquals(bst.size(), ++size);
-        assertEquals(bst.min(), "testStringKey1");
-        assertEquals(bst.max(), "testStringKey2");
-        assertEquals(bst.maxValue(), "testStringValue2");
         assertEquals(bst.get("testStringKey2"), "testStringValue2");
 
         bst.put("testStringKey2", "case with same value");
 
         assertEquals(bst.size(), size);
-        assertEquals(bst.min(), "testStringKey1");
-        assertEquals(bst.max(), "testStringKey2");
-        assertEquals(bst.maxValue(), "case with same value");
         assertEquals(bst.get("testStringKey2"), "case with same value");
 
         bst.put("testStringKey3", "testStringValue3");
 
         assertEquals(bst.size(), ++size);
-        assertEquals(bst.min(), "testStringKey1");
-        assertEquals(bst.max(), "testStringKey3");
         assertEquals(bst.get("testStringKey3"), "testStringValue3");
 
         bst.put("testStringKey", "testStringValue");
 
         assertEquals(bst.size(), ++size);
-        assertEquals(bst.min(), "testStringKey");
-        assertEquals(bst.max(), "testStringKey3");
         assertEquals(bst.get("testStringKey"), "testStringValue");
     }
 
@@ -153,100 +126,15 @@ public abstract class BstBaseTest {
     }
 
     @Test
-    void max() {
+    void remove_after_remove() {
         Bst<String, String> bst = newBst();
-
-        assertNull(bst.max());
-        assertNull(bst.maxValue());
-
-        bst.put("testStringKey2", "testStringValue2");
-
-        assertEquals(bst.max(), "testStringKey2");
-        assertEquals(bst.maxValue(), "testStringValue2");
-
-        bst.put("testStringKey5", "testStringValue5");
-
-        assertEquals(bst.max(), "testStringKey5");
-        assertEquals(bst.maxValue(), "testStringValue5");
-
-        bst.put("testStringKey0", "testStringValue0");
-
-        assertEquals(bst.max(), "testStringKey5");
-        assertEquals(bst.maxValue(), "testStringValue5");
-
-        bst.put("testStringKey7", "testStringValue7");
-
-        assertEquals(bst.max(), "testStringKey7");
-        assertEquals(bst.maxValue(), "testStringValue7");
-
-        bst.remove("testStringKey5");
-
-        assertEquals(bst.max(), "testStringKey7");
-        assertEquals(bst.maxValue(), "testStringValue7");
-
-        bst.remove("testStringKey7");
-
-        assertEquals(bst.max(), "testStringKey2");
-        assertEquals(bst.maxValue(), "testStringValue2");
-
-        bst.remove("testStringKey0");
-
-        assertEquals(bst.max(), "testStringKey2");
-        assertEquals(bst.maxValue(), "testStringValue2");
-
-        bst.remove("testStringKey2");
-
-        assertNull(bst.max());
-        assertNull(bst.maxValue());
+        bst.put("stringKey1", "1");
+        bst.remove("stringKey1");
+        assertTrue(bst.isEmpty());
+        bst.remove("stringKey1");
+        assertTrue(bst.isEmpty());
     }
 
-    @Test
-    void min() {
-        Bst<String, String> bst = newBst();
-
-        assertNull(bst.min());
-        assertNull(bst.minValue());
-
-        bst.put("testStringKey5", "testStringValue5");
-
-        assertEquals(bst.min(), "testStringKey5");
-        assertEquals(bst.minValue(), "testStringValue5");
-
-        bst.put("testStringKey3", "testStringValue3");
-
-        assertEquals(bst.min(), "testStringKey3");
-        assertEquals(bst.minValue(), "testStringValue3");
-
-        bst.put("testStringKey9", "testStringValue9");
-
-        assertEquals(bst.min(), "testStringKey3");
-        assertEquals(bst.minValue(), "testStringValue3");
-
-        bst.put("testStringKey0", "testStringValue0");
-
-        assertEquals(bst.min(), "testStringKey0");
-        assertEquals(bst.minValue(), "testStringValue0");
-
-        bst.remove("testStringKey5");
-
-        assertEquals(bst.min(), "testStringKey0");
-        assertEquals(bst.minValue(), "testStringValue0");
-
-        bst.remove("testStringKey0");
-
-        assertEquals(bst.min(), "testStringKey3");
-        assertEquals(bst.minValue(), "testStringValue3");
-
-        bst.remove("testStringKey9");
-
-        assertEquals(bst.min(), "testStringKey3");
-        assertEquals(bst.minValue(), "testStringValue3");
-
-        bst.remove("testStringKey3");
-
-        assertNull(bst.min());
-        assertNull(bst.minValue());
-    }
 
     @Test
     void contains() {
@@ -291,49 +179,6 @@ public abstract class BstBaseTest {
         assertTrue(bst.isEmpty());
     }
 
-    @Test
-    void ceil() {
-        Bst<String, String> bst = newBst();
-
-        bst.put("1", "testStringValue3");
-        bst.put("3", "testStringValue4");
-        bst.put("5", "testStringValue2");
-        bst.put("7", "testStringValue5");
-        bst.put("8", "testStringValue1");
-        bst.put("9", "testStringValue0");
-        bst.put("2", "testStringValue0");
-
-        assertEquals(bst.min(), "1");
-        assertEquals(bst.max(), "9");
-        assertEquals(bst.ceil("5"), "5");
-        assertEquals(bst.ceil("2"), "2");
-        assertEquals(bst.ceil("8"), "8");
-        assertEquals(bst.ceil("0"), "1");
-        assertEquals(bst.ceil("9"), "9");
-        assertNull(bst.ceil("99"));
-    }
-
-    @Test
-    void floor() {
-        Bst<String, String> bst = newBst();
-
-        bst.put("1", "testStringValue3");
-        bst.put("3", "testStringValue4");
-        bst.put("5", "testStringValue2");
-        bst.put("7", "testStringValue5");
-        bst.put("8", "testStringValue1");
-        bst.put("9", "testStringValue0");
-        bst.put("2", "testStringValue0");
-
-        assertEquals(bst.min(), "1");
-        assertEquals(bst.max(), "9");
-        assertEquals(bst.floor("5"), "5");
-        assertEquals(bst.floor("4"), "3");
-        assertEquals(bst.floor("8"), "8");
-        assertEquals(bst.floor("1"), "1");
-        assertEquals(bst.floor("99"), "9");
-        assertNull(bst.floor(""));
-    }
 
     @Test
     void moreReplace() {

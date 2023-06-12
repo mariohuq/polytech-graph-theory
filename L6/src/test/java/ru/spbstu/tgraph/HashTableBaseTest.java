@@ -139,6 +139,17 @@ class HashTableBaseTest {
     }
 
     @Test
+    void remove_after_remove() {
+        HashTable<String, String> ht = newTable();
+        ht.put("stringKey1", "1");
+        ht.remove("stringKey1");
+        assertTrue(ht.isEmpty());
+        ht.remove("stringKey1");
+        assertTrue(ht.isEmpty());
+    }
+
+
+    @Test
     void contains() {
         HashTable<String, String> table = newTable();
 
