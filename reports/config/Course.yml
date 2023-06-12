@@ -1,0 +1,4 @@
+input-files:
+- Course.md
+output-file: Курсовая-Кондраев.pdf
+include-before-body: config/titlepageCourse.tex

@@ -1,4 +1,4 @@
 input-files:
 - L6.md
-output-file: L6.pdf
+output-file: L6 Кондраев.pdf
 include-before-body: config/titlepageL6.tex

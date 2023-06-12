@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="184.18mm"
+   height="189.94mm"
+   viewBox="-0.5 -0.5 696.12 717.89"
+   id="svg446"
+   sodipodi:docname="Хоббит.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview448"
+     pagecolor="#ffffff"
+     bordercolor="#cccccc"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:document-units="mm"
+     inkscape:zoom="1"
+     inkscape:cx="320"
+     inkscape:cy="381"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg446">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4745"
+       originx="-97.574"
+       originy="-43.626" />
+  </sodipodi:namedview>
+  <defs
+     id="defs132">
+    <marker
+       style="overflow:visible"
+       id="Arrow2"
+       refX="5"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow2"
+       markerWidth="7.7"
+       markerHeight="5.6"
+       viewBox="0 0 7.7 5.6"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="arrow2L" />
+    </marker>
+  </defs>
+  <text
+     x="434.57"
+     y="75.763"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text138"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">принять</text>
+  <text
+     x="260.35"
+     y="73.34"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text148"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">отказать</text>
+  <text
+     x="606.85"
+     y="167.73"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text166"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">согласиться</text>
+  <text
+     x="429.68"
+     y="131.77"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text176"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">отказаться</text>
+  <text
+     x="610.93"
+     y="340.9"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text194"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan6777"
+       x="610.93"
+       y="340.9">поддержать</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6779"
+       x="610.93"
+       y="357.56">разговор</tspan></text>
+  <text
+     x="561.17"
+     y="224.92"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text204"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan7722"
+       x="561.17"
+       y="224.92">попытаться</tspan><tspan
+       sodipodi:role="line"
+       id="tspan7724"
+       x="561.17"
+       y="241.58">бороться</tspan></text>
+  <text
+     x="610.13"
+     y="401.57"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text222"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan7718"
+       x="610.13"
+       y="401.57">проиграть</tspan><tspan
+       sodipodi:role="line"
+       id="tspan7720"
+       x="610.13"
+       y="418.23">хоть раз</tspan></text>
+  <text
+     x="653.94"
+     y="527.5"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text232"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">угадать все 4</text>
+  <text
+     x="473.27"
+     y="673.67"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text250"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan6773"
+       x="473.27"
+       y="673.67">воспользоваться</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6775"
+       x="473.27"
+       y="690.33">кольцом</tspan></text>
+  <text
+     x="519.17"
+     y="532.48"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text260"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke:none;stroke-width:3.64719;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"><tspan
+       sodipodi:role="line"
+       id="tspan9960"
+       x="519.17"
+       y="532.48">не</tspan><tspan
+       sodipodi:role="line"
+       x="519.17"
+       y="549.14"
+       id="tspan12324">пользоваться</tspan><tspan
+       sodipodi:role="line"
+       id="tspan9962"
+       x="519.17"
+       y="565.81">кольцом</tspan></text>
+  <text
+     x="249.01"
+     y="676.14"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text278"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan6757"
+       x="249.01"
+       y="676.14">вызволить</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6759"
+       x="249.01"
+       y="692.8">гномов</tspan><tspan
+       sodipodi:role="line"
+       x="249.01"
+       y="709.47"
+       id="tspan6761">кольцом</tspan></text>
+  <text
+     x="436.31"
+     y="644.37"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text288"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">попасться</text>
+  <text
+     x="337.01"
+     y="609.57"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text298"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan14046"
+       x="337.01"
+       y="609.57">отказаться</tspan><tspan
+       sodipodi:role="line"
+       id="tspan14048"
+       x="337.01"
+       y="626.23">бороться</tspan></text>
+  <text
+     x="87.005"
+     y="569.96"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text316"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan6765"
+       x="87.005"
+       y="569.96">узнать</tspan><tspan
+       sodipodi:role="line"
+       x="87.005"
+       y="586.62"
+       id="tspan6769">слабость</tspan><tspan
+       sodipodi:role="line"
+       x="87.005"
+       y="603.29"
+       id="tspan6771">дракона</tspan></text>
+  <text
+     x="94.125"
+     y="382.99"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text316-9"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3332px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.99999"><tspan
+       sodipodi:role="line"
+       x="94.125"
+       y="382.99"
+       id="tspan6771-6"
+       style="stroke-width:0.99999">предательство =</tspan><tspan
+       sodipodi:role="line"
+       x="94.125"
+       y="399.65"
+       style="stroke-width:0.99999"
+       id="tspan7591">отдать его</tspan><tspan
+       sodipodi:role="line"
+       x="94.125"
+       y="416.32"
+       style="stroke-width:0.99999"
+       id="tspan7593">осаждающим</tspan></text>
+  <text
+     x="263.14"
+     y="616.8"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text326"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">не узнать</text>
+  <text
+     x="141.6"
+     y="495.25"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text348"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       sodipodi:role="line"
+       id="tspan17026"
+       x="141.6"
+       y="495.25">отдать</tspan><tspan
+       sodipodi:role="line"
+       id="tspan17028"
+       x="141.6"
+       y="511.92">Торину</tspan></text>
+  <text
+     x="147.67"
+     y="441.04"
+     fill="#000000"
+     font-family="Helvetica"
+     font-size="11px"
+     text-anchor="middle"
+     id="text358"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">спрятать</text>
+  <g
+     id="g7597"
+     transform="translate(-19.746,-69.057)">
+    <ellipse
+       cx="232.28"
+       cy="535.25"
+       rx="60"
+       ry="30"
+       fill="#fff2cc"
+       stroke="#d6b656"
+       pointer-events="all"
+       id="ellipse376" />
+    <text
+       x="319.5"
+       y="568.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text378"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse376);display:inline"
+       transform="translate(-0.1198,13.78)"
+       xml:space="preserve"><tspan
+         x="214.53"
+         y="516.92"
+         id="tspan22267">Война </tspan><tspan
+         x="208.13"
+         y="533.58"
+         id="tspan22269">с осадой</tspan></text>
+  </g>
+  <g
+     id="g7607"
+     transform="translate(-36.234,-35.652)">
+    <ellipse
+       cx="329.77"
+       cy="581.57"
+       rx="60"
+       ry="30"
+       fill="#fff2cc"
+       stroke="#d6b656"
+       pointer-events="all"
+       id="ellipse388" />
+    <text
+       x="479.5"
+       y="623.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text390"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse388);display:inline"
+       transform="translate(-0.23953,-3.4269)"
+       xml:space="preserve"><tspan
+         x="286.88"
+         y="579.9"
+         id="tspan22271">Озерный город </tspan><tspan
+         x="302.52"
+         y="596.57"
+         id="tspan22273">разрушен</tspan></text>
+  </g>
+  <g
+     id="g7617"
+     transform="translate(1.7966,-95.756)">
+    <ellipse
+       cx="451.9"
+       cy="585.87"
+       rx="59.861"
+       ry="49.12"
+       fill="#fff2cc"
+       stroke="#d6b656"
+       pointer-events="all"
+       id="ellipse400"
+       style="stroke-width:1.27811" />
+    <text
+       x="249.5"
+       y="433.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text402"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse400);display:inline"
+       transform="translate(-0.09375,-1.1532)"
+       xml:space="preserve"><tspan
+         x="425.66"
+         y="565.08"
+         id="tspan22275">Кольцо у </tspan><tspan
+         x="410.83"
+         y="581.75"
+         id="tspan22277">эльфов, гора у </tspan><tspan
+         x="397.98"
+         y="598.42"
+         id="tspan22279">дракона, товарищи </tspan><tspan
+         x="425.67"
+         y="615.08"
+         id="tspan22281">в тюрьме</tspan></text>
+  </g>
+  <g
+     id="g20650"
+     transform="translate(-48.785,-21.812)">
+    <rect
+       x="336.43"
+       y="349.67"
+       width="119.85"
+       height="93.355"
+       fill="#f8cecc"
+       stroke="#b85450"
+       pointer-events="all"
+       id="rect416"
+       style="stroke-width:1.1541" />
+    <text
+       x="465.5"
+       y="418.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text418"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect416);display:inline"
+       transform="translate(-0.252,5.318)"
+       xml:space="preserve"><tspan
+         x="351.86"
+         y="361.34"
+         id="tspan22283">Гора у дракона. </tspan><tspan
+         x="350.66"
+         y="378"
+         id="tspan22285">Бильбо и гномы </tspan><tspan
+         x="362.61"
+         y="394.67"
+         id="tspan22287">пострадали. </tspan><tspan
+         x="351.19"
+         y="411.34"
+         id="tspan22289">Средиземье под </tspan><tspan
+         x="351.01"
+         y="428"
+         id="tspan22291">гнетом Саурона</tspan></text>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.333;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     x="636.5"
+     y="663.57"
+     id="text4611"><tspan
+       sodipodi:role="line"
+       id="tspan4609"
+       x="636.5"
+       y="663.57" /></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.333;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     x="650.21"
+     y="634.36"
+     id="text4615"><tspan
+       sodipodi:role="line"
+       id="tspan4613"
+       x="650.21"
+       y="634.36"></tspan></text>
+  <g
+     id="g4823"
+     transform="translate(-48.79,-21.812)">
+    <ellipse
+       cx="396.35"
+       cy="93.985"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse154" />
+    <text
+       x="469.5"
+       y="43.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text156"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse154);display:inline"
+       transform="translate(0.06596,6.3004)"
+       xml:space="preserve"><tspan
+         x="367.3"
+         y="82.318"
+         id="tspan22293">Гендальф. </tspan><tspan
+         x="357.25"
+         y="98.984"
+         id="tspan22295">Предложение</tspan></text>
+  </g>
+  <g
+     id="g4819"
+     transform="translate(-48.789,-21.812)">
+    <ellipse
+       cx="574.07"
+       cy="151.73"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse182" />
+    <text
+       x="704.63"
+       y="121.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text184"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse182);display:inline"
+       transform="translate(-0.10045,16.16)"
+       xml:space="preserve"><tspan
+         x="531.94"
+         y="140.06"
+         id="tspan22297">Гномы. Работа</tspan></text>
+  </g>
+  <g
+     id="g4827"
+     transform="translate(-48.781,-21.813)">
+    <ellipse
+       cx="683.9"
+       cy="302.91"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse210" />
+    <text
+       x="850.5"
+       y="318.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text212"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse210);display:inline"
+       transform="translate(-0.04713,14.634)"
+       xml:space="preserve"><tspan
+         x="662.89"
+         y="291.24"
+         id="tspan22299">Тролли</tspan></text>
+  </g>
+  <g
+     id="g4831"
+     transform="translate(-48.781,-21.816)">
+    <ellipse
+       cx="683.9"
+       cy="489.78"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse238" />
+    <text
+       x="849.5"
+       y="566.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text240"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse238);display:inline"
+       transform="translate(0.01957,23.499)"
+       xml:space="preserve"><tspan
+         x="670.13"
+         y="461.45"
+         id="tspan22301">Игра </tspan><tspan
+         x="649.58"
+         y="478.11"
+         id="tspan22303">в загадки x4</tspan></text>
+  </g>
+  <g
+     id="g4840"
+     transform="translate(-48.78,-21.811)">
+    <ellipse
+       cx="396.34"
+       cy="698.7"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse304" />
+    <text
+       x="465.5"
+       y="844.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text306"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse304);display:inline;fill:#000000"
+       transform="translate(-0.04064,14.728)"
+       xml:space="preserve"><tspan
+         x="376.64"
+         y="687.03"
+         id="tspan22305">Эльфы</tspan></text>
+  </g>
+  <g
+     id="g4844"
+     transform="translate(-48.782,-21.817)">
+    <ellipse
+       cx="218.62"
+       cy="640.96"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse332" />
+    <text
+       x="231.5"
+       y="769.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text334"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse332);display:inline"
+       transform="translate(0.06017,6.3005)"
+       xml:space="preserve"><tspan
+         x="192.84"
+         y="629.29"
+         id="tspan22307">Беседа с  </tspan><tspan
+         x="191.42"
+         y="645.96"
+         id="tspan22309">драконом</tspan></text>
+  </g>
+  <g
+     id="g4852"
+     transform="translate(-48.785,-21.808)">
+    <rect
+       x="48.815"
+       y="269.45"
+       width="119.94"
+       height="66.91"
+       fill="#d5e8d4"
+       stroke="#82b366"
+       pointer-events="all"
+       id="rect364"
+       style="stroke-width:1.05577" />
+    <text
+       x="91.5"
+       y="321.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text366"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect364);display:inline"
+       transform="translate(-0.12016,8.7759)"
+       xml:space="preserve"><tspan
+         x="57.305"
+         y="281.12"
+         id="tspan22311">После битвы пяти </tspan><tspan
+         x="57.752"
+         y="297.78"
+         id="tspan22313">воинств награда и </tspan><tspan
+         x="56.905"
+         y="314.45"
+         id="tspan22315">счастливый конец</tspan></text>
+  </g>
+  <g
+     id="g4856"
+     transform="translate(-48.782,-21.812)">
+    <rect
+       x="158.65"
+       y="112.4"
+       width="119.94"
+       height="78.66"
+       fill="#f8cecc"
+       stroke="#b85450"
+       pointer-events="all"
+       id="rect408"
+       style="stroke-width:1.05979" />
+    <text
+       x="238.5"
+       y="116.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text410"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect408);display:inline"
+       transform="translate(-0.08678,5.623)"
+       xml:space="preserve"><tspan
+         x="174.13"
+         y="124.07"
+         id="tspan22317">Гора у дракона. </tspan><tspan
+         x="180.94"
+         y="140.73"
+         id="tspan22319">Бильбо дома. </tspan><tspan
+         x="173.46"
+         y="157.4"
+         id="tspan22321">Средиземье под </tspan><tspan
+         x="173.27"
+         y="174.07"
+         id="tspan22323">гнетом Саурона</tspan></text>
+  </g>
+  <g
+     id="g4848"
+     transform="translate(-48.79,-21.816)">
+    <ellipse
+       cx="108.79"
+       cy="489.78"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse428" />
+    <text
+       x="89.5"
+       y="568.5"
+       fill="#000000"
+       font-family="Helvetica"
+       font-size="12px"
+       text-anchor="middle"
+       id="text430"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#ellipse428);display:inline"
+       transform="translate(0.09278,14.713)"
+       xml:space="preserve"><tspan
+         x="77.903"
+         y="478.11"
+         id="tspan22325">Аркенстон</tspan></text>
+  </g>
+  <g
+     id="g4836"
+     transform="translate(-48.789,-21.817)">
+    <ellipse
+       cx="574.07"
+       cy="640.96"
+       rx="60"
+       ry="40"
+       fill="#ffffff"
+       stroke="#000000"
+       pointer-events="all"
+       id="ellipse266" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;white-space:pre;shape-inside:url(#ellipse266);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="698.18"
+       y="759.66"
+       id="text4619"
+       transform="translate(0.02643,15.028)"
+       inkscape:label="text4619"><tspan
+         x="556.12"
+         y="629.29"
+         id="tspan22327">Пауки</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="bg"
+     transform="translate(-48.785,-21.812)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="edges"
+     transform="translate(-48.785,-21.812)" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="m 562.38,162.75 c 23.09,23.42 42.39,50.61 56.88,80.55"
+     id="path5805" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.40596;stroke-linejoin:round;stroke-dasharray:none;marker-end:url(#Arrow2)"
+     d="m 406.62,78.708 c 25.98,5.18 50.75,13.7 73.85,25.092"
+     id="path5801" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linecap:round;stroke-linejoin:bevel;marker-start:url(#Arrow2)"
+     d="m 229.88,96.688 c 18.36,-7.74 38.1,-13.93 58.1,-17.93"
+     id="path5795"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="m 50.645,428.07 c -3.112,-17.38 -4.737,-35.27 -4.737,-53.54 0,-20.52 2.049,-40.56 5.957,-59.93"
+     id="path5791" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="M 133.64,587.21 C 110.34,563.78 90.875,536.54 76.235,506.51"
+     id="path5787" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="M 288.72,670.45 C 262.8,665.33 238.07,656.88 215,645.58"
+     id="path5783" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="m 479.82,645.73 c -23.23,11.34 -48.13,19.8 -74.23,24.88"
+     id="path5779" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="m 619.02,506.47 c -14.6,30.01 -34.03,57.24 -57.27,80.67"
+     id="path5817" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
+     d="m 644.7,322.01 c 3,17.06 4.56,34.61 4.56,52.52 v 0 c 0,18.05 -1.58,35.72 -4.62,52.9"
+     id="path6093"
+     sodipodi:nodetypes="cccc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40596;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="M 330.18,0.20079 C 355.4,7.9298 351.46,17.805 351.41,31.511"
+     id="path6643"
+     sodipodi:nodetypes="cc" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3332px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     x="96.585"
+     y="373.13"
+     id="text7521"><tspan
+       sodipodi:role="line"
+       id="tspan7519"
+       style="stroke-width:1.40597"
+       x="96.585"
+       y="373.13" /></text>
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40596;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="m 464.76,135.63 c -171.6,42.19 -232.9,-17.89 -232.9,-17.89"
+     id="path7702"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="M 578.67,266.25 C 412.76,162.05 339.53,326.17 339.53,326.17"
+     id="path7710"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="M 595.8,438.09 C 520.71,261.96 408.76,328.31 408.76,328.31"
+     id="path9964"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="M 392.33,648.58 C 433.98,623.52 450.3,541.8 450.3,541.8"
+     id="path11460"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2)"
+     d="M 548.66,581.65 C 629.35,358.81 407.07,357.32 407.07,357.32"
+     id="path12210"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40596;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="M 358.34,636.49 C 435.16,506.91 323.48,459.53 274.26,434.45 128.04,359.95 170.01,209.82 172.18,170.73"
+     id="path13134"
+     sodipodi:nodetypes="csc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 228.63,609.06 c 20.06,0 47.71,-33.42 47.71,-33.42"
+     id="path14796"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 107.79,442.44 c 59,-54.38 93.26,-6.11 93.26,-6.11"
+     id="path17030"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 102.59,498.23 c 48.45,56.69 90.73,-2.9 90.73,-2.9"
+     id="path17038"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 271.77,464.39 c 34.67,9.2 48.75,-43.22 48.75,-43.22"
+     id="path19272"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 327.78,520.77 c 17.3,-19.6 32.95,-37.39 39.79,-99.38"
+     id="path19280"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
+     d="m 463.8,441.07 c -4.79,-47.65 -56.33,-42.56 -56.33,-42.56"
+     id="path19288" />
+</svg>
