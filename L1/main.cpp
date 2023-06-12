@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cassert>
+#include <algorithm>
 
 using namespace graphs;
 
@@ -66,8 +67,8 @@ int main() {
 //    prufer_test();
 //    eulerize_test();
 //    gamiltonize_test();
-//    hamilton_cycles_test();
-    polya_1_histograms();
+    hamilton_cycles_test();
+//    polya_1_histograms();
     return 0;
 }
 
@@ -306,4 +307,22 @@ void hamilton_cycles_test() {
     for (auto [cycle, cost]: hamilton_cycles{g}) {
         std::cout << cycle << " " << cost << "\n";
     }
+
+    g = adjacency_matrix<>{
+        {0,1,0,0,5,18,0,17},
+        {0,0,0,12,0,0,15,0},
+        {0,0,0,0,14,0,0,24},
+        {0,0,0,0,1,0,18,0},
+        {0,0,0,0,0,0,0,16},
+        {0,0,0,0,0,0,0,4},
+        {0,0,0,0,0,0,0,38},
+        {0,0,0,0,0,0,0,0},
+    };
+    for (auto [cycle, cost]: hamilton_cycles{g}) {
+        std::cout << cycle << " " << cost << "\n";
+    }
+
+    auto cyc = hamilton_cycles{g};
+    std::vector<costed_path_t> res(50);
+    auto it = cyc.begin();
 }

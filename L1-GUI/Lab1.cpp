@@ -384,7 +384,9 @@ Lab1::Lab1(QWidget *parent)
             std::vector<graphs::costed_path_t> paths;
 
             auto it = hc.begin();
-            std::copy_n<decltype(it)&>(it, 50, std::back_inserter(paths));
+            for (int i = 0; i < 50 && it != hc.end(); ++i, ++it) {
+                paths.push_back(*it);
+            }
 
             std::sort(paths.begin(), paths.end());
             hamiltonModel->setUnderlying(paths);
