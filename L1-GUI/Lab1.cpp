@@ -344,7 +344,7 @@ Lab1::Lab1(QWidget *parent)
             edit->setText(list.join(", "));
         };
         const auto check_print_cycle = [=]() {
-            bool is = graphs::is_eulerian(matrixModel->matrix());
+            bool is = matrixModel->matrix().size() > 2 && graphs::is_eulerian(matrixModel->matrix());
             ui->isEulerianAns->setText(is ? "Да!" : "Нет!");
             if (is) {
                 ui->eulerCycle->setText(showUnoriented(graphs::euler_cycle(matrixModel->matrix())));
