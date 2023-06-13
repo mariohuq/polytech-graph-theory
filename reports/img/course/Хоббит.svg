@@ -7,6 +7,9 @@
    id="svg446"
    sodipodi:docname="Хоббит.svg"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:export-filename="Хоббит.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +26,8 @@
      showgrid="false"
      inkscape:document-units="mm"
      inkscape:zoom="1"
-     inkscape:cx="320"
-     inkscape:cy="381"
+     inkscape:cx="293"
+     inkscape:cy="375"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -57,6 +60,44 @@
          d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
          id="arrow2L" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2-3"
+       refX="5"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow2"
+       markerWidth="7.7"
+       markerHeight="5.6"
+       viewBox="0 0 7.7 5.6"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="arrow2L-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2-3-2"
+       refX="5"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow2"
+       markerWidth="7.7"
+       markerHeight="5.6"
+       viewBox="0 0 7.7 5.6"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="arrow2L-5-9" />
     </marker>
   </defs>
   <text
@@ -345,10 +386,10 @@
        xml:space="preserve"><tspan
          x="214.53"
          y="516.92"
-         id="tspan22267">Война </tspan><tspan
+         id="tspan2726">Война </tspan><tspan
          x="208.13"
          y="533.58"
-         id="tspan22269">с осадой</tspan></text>
+         id="tspan2728">с осадой</tspan></text>
   </g>
   <g
      id="g7607"
@@ -375,10 +416,10 @@
        xml:space="preserve"><tspan
          x="286.88"
          y="579.9"
-         id="tspan22271">Озерный город </tspan><tspan
+         id="tspan2730">Озерный город </tspan><tspan
          x="302.52"
          y="596.57"
-         id="tspan22273">разрушен</tspan></text>
+         id="tspan2732">разрушен</tspan></text>
   </g>
   <g
      id="g7617"
@@ -406,30 +447,29 @@
        xml:space="preserve"><tspan
          x="425.66"
          y="565.08"
-         id="tspan22275">Кольцо у </tspan><tspan
+         id="tspan2734">Кольцо у </tspan><tspan
          x="410.83"
          y="581.75"
-         id="tspan22277">эльфов, гора у </tspan><tspan
+         id="tspan2736">эльфов, гора у </tspan><tspan
          x="397.98"
          y="598.42"
-         id="tspan22279">дракона, товарищи </tspan><tspan
+         id="tspan2738">дракона, товарищи </tspan><tspan
          x="425.67"
          y="615.08"
-         id="tspan22281">в тюрьме</tspan></text>
+         id="tspan2740">в тюрьме</tspan></text>
   </g>
   <g
-     id="g20650"
-     transform="translate(-48.785,-21.812)">
+     id="g1673">
     <rect
-       x="336.43"
-       y="349.67"
-       width="119.85"
-       height="93.355"
+       x="287.55"
+       y="327.77"
+       width="120.03"
+       height="66.986"
        fill="#f8cecc"
        stroke="#b85450"
        pointer-events="all"
        id="rect416"
-       style="stroke-width:1.1541" />
+       style="stroke-width:0.978327" />
     <text
        x="465.5"
        y="418.5"
@@ -439,23 +479,14 @@
        text-anchor="middle"
        id="text418"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect416);display:inline"
-       transform="translate(-0.252,5.318)"
+       transform="translate(-0.12711,16.613)"
        xml:space="preserve"><tspan
-         x="351.86"
-         y="361.34"
-         id="tspan22283">Гора у дракона. </tspan><tspan
-         x="350.66"
-         y="378"
-         id="tspan22285">Бильбо и гномы </tspan><tspan
-         x="362.61"
-         y="394.67"
-         id="tspan22287">пострадали. </tspan><tspan
-         x="351.19"
-         y="411.34"
-         id="tspan22289">Средиземье под </tspan><tspan
-         x="351.01"
-         y="428"
-         id="tspan22291">гнетом Саурона</tspan></text>
+         x="301.87"
+         y="339.44"
+         id="tspan2742">Бильбо и гномы </tspan><tspan
+         x="313.82"
+         y="356.1"
+         id="tspan2744">пострадали.</tspan></text>
   </g>
   <text
      xml:space="preserve"
@@ -476,7 +507,7 @@
        sodipodi:role="line"
        id="tspan4613"
        x="650.21"
-       y="634.36"></tspan></text>
+       y="634.36" /></text>
   <g
      id="g4823"
      transform="translate(-48.79,-21.812)">
@@ -502,10 +533,10 @@
        xml:space="preserve"><tspan
          x="367.3"
          y="82.318"
-         id="tspan22293">Гендальф. </tspan><tspan
+         id="tspan2746">Гендальф. </tspan><tspan
          x="357.25"
          y="98.984"
-         id="tspan22295">Предложение</tspan></text>
+         id="tspan2748">Предложение</tspan></text>
   </g>
   <g
      id="g4819"
@@ -532,7 +563,7 @@
        xml:space="preserve"><tspan
          x="531.94"
          y="140.06"
-         id="tspan22297">Гномы. Работа</tspan></text>
+         id="tspan2750">Гномы. Работа</tspan></text>
   </g>
   <g
      id="g4827"
@@ -559,7 +590,7 @@
        xml:space="preserve"><tspan
          x="662.89"
          y="291.24"
-         id="tspan22299">Тролли</tspan></text>
+         id="tspan2752">Тролли</tspan></text>
   </g>
   <g
      id="g4831"
@@ -586,10 +617,10 @@
        xml:space="preserve"><tspan
          x="670.13"
          y="461.45"
-         id="tspan22301">Игра </tspan><tspan
+         id="tspan2754">Игра </tspan><tspan
          x="649.58"
          y="478.11"
-         id="tspan22303">в загадки x4</tspan></text>
+         id="tspan2756">в загадки x4</tspan></text>
   </g>
   <g
      id="g4840"
@@ -616,7 +647,7 @@
        xml:space="preserve"><tspan
          x="376.64"
          y="687.03"
-         id="tspan22305">Эльфы</tspan></text>
+         id="tspan2758">Эльфы</tspan></text>
   </g>
   <g
      id="g4844"
@@ -643,10 +674,10 @@
        xml:space="preserve"><tspan
          x="192.84"
          y="629.29"
-         id="tspan22307">Беседа с  </tspan><tspan
+         id="tspan2760">Беседа с  </tspan><tspan
          x="191.42"
          y="645.96"
-         id="tspan22309">драконом</tspan></text>
+         id="tspan2762">драконом</tspan></text>
   </g>
   <g
      id="g4852"
@@ -674,27 +705,26 @@
        xml:space="preserve"><tspan
          x="57.305"
          y="281.12"
-         id="tspan22311">После битвы пяти </tspan><tspan
+         id="tspan2764">После битвы пяти </tspan><tspan
          x="57.752"
          y="297.78"
-         id="tspan22313">воинств награда и </tspan><tspan
+         id="tspan2766">воинств награда и </tspan><tspan
          x="56.905"
          y="314.45"
-         id="tspan22315">счастливый конец</tspan></text>
+         id="tspan2768">счастливый конец</tspan></text>
   </g>
   <g
-     id="g4856"
-     transform="translate(-48.782,-21.812)">
+     id="g1662">
     <rect
-       x="158.65"
-       y="112.4"
-       width="119.94"
-       height="78.66"
+       x="109.83"
+       y="90.547"
+       width="120.02"
+       height="66.986"
        fill="#f8cecc"
        stroke="#b85450"
        pointer-events="all"
        id="rect408"
-       style="stroke-width:1.05979" />
+       style="stroke-width:0.978321" />
     <text
        x="238.5"
        y="116.5"
@@ -703,21 +733,12 @@
        font-size="12px"
        text-anchor="middle"
        id="text410"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect408);display:inline"
-       transform="translate(-0.08678,5.623)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect408);display:inline;fill:#000000"
+       transform="translate(0.33349,25.48)"
        xml:space="preserve"><tspan
-         x="174.13"
-         y="124.07"
-         id="tspan22317">Гора у дракона. </tspan><tspan
-         x="180.94"
-         y="140.73"
-         id="tspan22319">Бильбо дома. </tspan><tspan
-         x="173.46"
-         y="157.4"
-         id="tspan22321">Средиземье под </tspan><tspan
-         x="173.27"
-         y="174.07"
-         id="tspan22323">гнетом Саурона</tspan></text>
+         x="132.16"
+         y="102.21"
+         id="tspan2770">Бильбо дома.</tspan></text>
   </g>
   <g
      id="g4848"
@@ -744,7 +765,7 @@
        xml:space="preserve"><tspan
          x="77.903"
          y="478.11"
-         id="tspan22325">Аркенстон</tspan></text>
+         id="tspan2772">Аркенстон</tspan></text>
   </g>
   <g
      id="g4836"
@@ -768,7 +789,7 @@
        inkscape:label="text4619"><tspan
          x="556.12"
          y="629.29"
-         id="tspan22327">Пауки</tspan></text>
+         id="tspan2774">Пауки</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -792,6 +813,16 @@
      style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linecap:round;stroke-linejoin:bevel;marker-start:url(#Arrow2)"
      d="m 229.88,96.688 c 18.36,-7.74 38.1,-13.93 58.1,-17.93"
      id="path5795"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linecap:round;stroke-linejoin:bevel;marker-start:url(#Arrow2-3)"
+     d="M 265.84,205.03 C 263.25,148.06 249.25,141.1 230.11,145.72"
+     id="path5795-6"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linecap:round;stroke-linejoin:bevel;marker-start:url(#Arrow2-3-2)"
+     d="m 256.7,273.89 c -2.67,56.97 10.63,65.19 30.12,62.35"
+     id="path5795-6-1"
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;stroke:#1f1a12;stroke-width:1.4049;stroke-linejoin:round;marker-end:url(#Arrow2)"
@@ -861,7 +892,7 @@
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-opacity:1;stroke:#1f1a12;stroke-width:1.40596;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
-     d="M 358.34,636.49 C 435.16,506.91 323.48,459.53 274.26,434.45 128.04,359.95 170.01,209.82 172.18,170.73"
+     d="M 358.34,636.49 C 435.16,506.91 323.48,459.53 274.26,434.45 128.04,359.95 166.55,199.47 168.72,160.38"
      id="path13134"
      sodipodi:nodetypes="csc" />
   <path
@@ -881,16 +912,49 @@
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
-     d="m 271.77,464.39 c 34.67,9.2 48.75,-43.22 48.75,-43.22"
+     d="m 271.77,464.39 c 34.67,9.2 60.73,-66.67 60.73,-66.67"
      id="path19272"
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
-     d="m 327.78,520.77 c 17.3,-19.6 32.95,-37.39 39.79,-99.38"
+     d="m 327.78,520.77 c 17.3,-19.6 39.56,-63.38 46.4,-125.37"
      id="path19280"
      sodipodi:nodetypes="cc" />
   <path
      style="fill:none;fill-opacity:1;stroke:#575757;stroke-width:1.40597;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.40597, 2.81194;stroke-dashoffset:0.84358;stroke-opacity:1;marker-end:url(#Arrow2);paint-order:markers stroke fill"
-     d="m 463.8,441.07 c -4.79,-47.65 -56.33,-42.56 -56.33,-42.56"
-     id="path19288" />
+     d="m 463.8,441.07 c -4.79,-47.65 -55.28,-52.61 -55.28,-52.61"
+     id="path19288"
+     sodipodi:nodetypes="cc" />
+  <g
+     id="g1651"
+     transform="translate(-43.639,16.594)">
+    <rect
+       x="252.38"
+       y="189.51"
+       width="120.02"
+       height="66.986"
+       fill="#f8cecc"
+       stroke="#b85450"
+       pointer-events="all"
+       id="rect408-7"
+       style="stroke-width:0.978321" />
+    <text
+       xml:space="preserve"
+       style="font-size:13.3333px;font-family:XITS;-inkscape-font-specification:'XITS, Normal';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00157;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:2.11961, 1.0598;paint-order:markers stroke fill"
+       x="312.3"
+       y="209.3"
+       id="text569"><tspan
+         sodipodi:role="line"
+         id="tspan567"
+         x="312.3"
+         y="209.3">Гора у дракона.</tspan><tspan
+         sodipodi:role="line"
+         x="312.3"
+         y="225.97"
+         id="tspan1395">Средиземье под</tspan><tspan
+         sodipodi:role="line"
+         x="312.3"
+         y="242.63"
+         id="tspan1397">гнетом Саурона</tspan></text>
+  </g>
 </svg>
