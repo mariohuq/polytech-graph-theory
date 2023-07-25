@@ -3,6 +3,7 @@
 //
 #include "runlength.h"
 #include <cassert>
+#include <cstdint>
 
 struct Code {
     char byte;
