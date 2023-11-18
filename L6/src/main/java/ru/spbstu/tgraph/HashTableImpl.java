@@ -66,16 +66,19 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
         if (table[index] == null) {
             return null;
         }
-        if (table[index].isLast() && table[index].matches(hash, key)) {
+        if (table[index].matches(hash, key)) {
             final Value previous = table[index].value;
-            table[index] = null;
+            table[index] = table[index].next;
             size--;
             return previous;
+        }
+        if (table[index].isLast()) {
+            return null;
         }
         return table[index].remove(hash, key);
     }
     // end snippet remove
-    
+
     @Override
     public int size() {
         return size;
@@ -88,6 +91,7 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
 
     @Override
     public void clear() {
+        size = 0;
         Arrays.fill(table, null);
     }
 
@@ -197,9 +201,10 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
             while (!node.next.isLast() && !node.next.matches(hash, key)) {
                 node = node.next;
             }
-            if (!node.next.isLast() || node.next.matches(hash, key)) {
-                size--;
+            if (node.next.isLast() && !node.next.matches(hash, key)) {
+                return null;
             }
+            size--;
             Value previous = node.next.value;
             node.next = node.next.next;
             return previous;
