@@ -200,7 +200,7 @@ EncodingStats encode(std::istream &is, std::ostream &os, const AlphabetCoding &c
     };
     // Size of padding at the end
     unsigned int leftover = (body_size_bits + 2) % 8;
-    bitout({(leftover == 0 || longest.length > 8 - leftover) ? 0u : (8 - leftover) & 0x11, 2});
+    bitout({(leftover == 0 || longest.length > 8 - leftover) ? 0u : (8 - leftover) & 0b11, 2});
     // Body
     char input_buffer;
     result.input_size = 0;
